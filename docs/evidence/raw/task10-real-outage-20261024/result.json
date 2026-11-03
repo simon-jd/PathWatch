@@ -1,0 +1,13 @@
+{
+  "backlog_batches_verified": 11,
+  "physical_duplicate_rows": 0,
+  "spool_drops": 0,
+  "scope": "home-only; fixture alert presence does not prove healthy-to-firing transition; no external delivery",
+  "burn_alerts_observed": [
+    "PathWatchFreshnessBudgetBurn",
+    "PathWatchReadinessBudgetBurn"
+  ],
+  "actual_outage_seconds": 1200.444101604051,
+  "fixture": false,
+  "real_20_minute_outage": true
+}

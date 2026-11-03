@@ -1,0 +1,9 @@
+PATHWATCH_KIND_KUBECONFIG=/home/postedism/Desktop/PathWatch/.cache/kind/kubeconfig go test -count=1 -v -run '^TestClusters$' ./infra/test
+=== RUN   TestClusters
+    k8s_test.go:62: pathwatch-api Synced/Healthy
+    k8s_test.go:62: pathwatch-ingest Synced/Healthy
+    k8s_test.go:62: pathwatch-observability Synced/Healthy
+    k8s_test.go:62: pathwatch-root Synced/Healthy
+--- PASS: TestClusters (0.12s)
+PASS
+ok  	pathwatch.local/pathwatch/infra/test	0.307s

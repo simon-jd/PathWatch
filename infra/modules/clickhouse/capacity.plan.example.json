@@ -1,0 +1,23 @@
+{
+  "observers": [
+    {
+      "site": "home-ubuntu",
+      "days": 35,
+      "config": ".cache/task10c3-home/probe.json",
+      "start_utc": "2026-11-01T00:00:00Z"
+    },
+    {
+      "site": "azure-a",
+      "days": 35,
+      "config": ".cache/task10c3-a/probe.json",
+      "start_utc": "2026-11-01T00:00:00Z"
+    },
+    {
+      "site": "azure-b",
+      "days": 2,
+      "config": ".cache/task10c3-b/probe.json",
+      "start_utc": "2026-11-01T00:00:00Z"
+    }
+  ],
+  "campaign_id": "replace-with-owned-campaign-id"
+}

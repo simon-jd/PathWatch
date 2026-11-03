@@ -1,0 +1,342 @@
+{
+  "monotonic_ns": 621421832194510,
+  "realtime_ns": 1792823668737623984,
+  "home": {
+    "bgp": {
+      "routerId": "10.30.0.2",
+      "as": 64512,
+      "vrfId": 0,
+      "vrfName": "default",
+      "tableVersion": 34,
+      "ribCount": 3,
+      "ribMemory": 576,
+      "peerCount": 2,
+      "peerMemory": 1482928,
+      "peers": {
+        "10.255.0.1": {
+          "hostname": "vm-pathwatch-hybrid-nva",
+          "remoteAs": 65010,
+          "localAs": 64512,
+          "version": 4,
+          "msgRcvd": 72,
+          "msgSent": 116,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:05",
+          "peerUptimeMsec": 5000,
+          "peerUptimeEstablishedEpoch": 1792823660,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 17,
+          "connectionsDropped": 16,
+          "idType": "ipv4"
+        },
+        "10.255.0.5": {
+          "hostname": "vm-pathwatch-hybrid-nva",
+          "remoteAs": 65010,
+          "localAs": 64512,
+          "version": 4,
+          "msgRcvd": 78,
+          "msgSent": 84,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:35",
+          "peerUptimeMsec": 35000,
+          "peerUptimeEstablishedEpoch": 1792823630,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 6,
+          "connectionsDropped": 5,
+          "idType": "ipv4"
+        }
+      },
+      "failedPeers": 0,
+      "displayedPeers": 2,
+      "totalPeers": 2,
+      "dynamicPeers": 0,
+      "bestPath": {
+        "multiPathRelax": "false"
+      }
+    },
+    "route": {
+      "10.10.0.0/16": [
+        {
+          "prefix": "10.10.0.0/16",
+          "prefixLen": 16,
+          "protocol": "bgp",
+          "vrfId": 0,
+          "vrfName": "default",
+          "selected": true,
+          "destSelected": true,
+          "distance": 20,
+          "metric": 0,
+          "installed": true,
+          "table": 254,
+          "internalStatus": 16,
+          "internalFlags": 8,
+          "internalNextHopNum": 1,
+          "internalNextHopActiveNum": 1,
+          "nexthopGroupId": 10,
+          "installedNexthopGroupId": 10,
+          "uptime": "00:00:04",
+          "nexthops": [
+            {
+              "flags": 3,
+              "fib": true,
+              "ip": "10.255.0.1",
+              "afi": "ipv4",
+              "interfaceIndex": 3,
+              "interfaceName": "pw-wg0",
+              "active": true,
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bfd": [
+      {
+        "multihop": false,
+        "peer": "10.255.0.1",
+        "local": "10.255.0.2",
+        "vrf": "default",
+        "interface": "pw-wg0",
+        "id": 3341359836,
+        "remote-id": 111370771,
+        "passive-mode": false,
+        "status": "up",
+        "uptime": 5,
+        "diagnostic": "ok",
+        "remote-diagnostic": "ok",
+        "receive-interval": 300,
+        "transmit-interval": 300,
+        "echo-receive-interval": 50,
+        "echo-transmit-interval": 0,
+        "detect-multiplier": 3,
+        "remote-receive-interval": 300,
+        "remote-transmit-interval": 300,
+        "remote-echo-receive-interval": 50,
+        "remote-detect-multiplier": 3,
+        "rtt-min": 0,
+        "rtt-avg": 0,
+        "rtt-max": 0
+      },
+      {
+        "multihop": false,
+        "peer": "10.255.0.5",
+        "local": "10.255.0.6",
+        "vrf": "default",
+        "interface": "pw-wg1",
+        "id": 2830084576,
+        "remote-id": 879905630,
+        "passive-mode": false,
+        "status": "up",
+        "uptime": 35,
+        "diagnostic": "ok",
+        "remote-diagnostic": "ok",
+        "receive-interval": 300,
+        "transmit-interval": 300,
+        "echo-receive-interval": 50,
+        "echo-transmit-interval": 0,
+        "detect-multiplier": 3,
+        "remote-receive-interval": 300,
+        "remote-transmit-interval": 300,
+        "remote-echo-receive-interval": 50,
+        "remote-detect-multiplier": 3,
+        "rtt-min": 0,
+        "rtt-avg": 0,
+        "rtt-max": 0
+      }
+    ],
+    "kernel": [
+      {
+        "dst": "10.10.0.4",
+        "gateway": "10.255.0.1",
+        "dev": "pw-wg0",
+        "prefsrc": "10.255.0.2",
+        "flags": [],
+        "uid": 0,
+        "cache": []
+      }
+    ],
+    "handshake_epochs": [
+      1792823554,
+      1792823589
+    ]
+  },
+  "azure": {
+    "bgp": {
+      "routerId": "10.10.1.4",
+      "as": 65010,
+      "vrfId": 0,
+      "vrfName": "default",
+      "tableVersion": 36,
+      "ribCount": 3,
+      "ribMemory": 576,
+      "peerCount": 2,
+      "peerMemory": 1482944,
+      "peers": {
+        "10.255.0.2": {
+          "hostname": "1c697984f3bf",
+          "remoteAs": 64512,
+          "localAs": 65010,
+          "version": 4,
+          "msgRcvd": 94,
+          "msgSent": 133,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:06",
+          "peerUptimeMsec": 6000,
+          "peerUptimeEstablishedEpoch": 1792823660,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 18,
+          "connectionsDropped": 17,
+          "idType": "ipv4"
+        },
+        "10.255.0.6": {
+          "hostname": "1c697984f3bf",
+          "remoteAs": 64512,
+          "localAs": 65010,
+          "version": 4,
+          "msgRcvd": 94,
+          "msgSent": 84,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:37",
+          "peerUptimeMsec": 37000,
+          "peerUptimeEstablishedEpoch": 1792823629,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 7,
+          "connectionsDropped": 6,
+          "idType": "ipv4"
+        }
+      },
+      "failedPeers": 0,
+      "displayedPeers": 2,
+      "totalPeers": 2,
+      "dynamicPeers": 0,
+      "bestPath": {
+        "multiPathRelax": "false"
+      }
+    },
+    "route": {
+      "10.30.0.0/16": [
+        {
+          "prefix": "10.30.0.0/16",
+          "prefixLen": 16,
+          "protocol": "bgp",
+          "vrfId": 0,
+          "vrfName": "default",
+          "selected": true,
+          "destSelected": true,
+          "distance": 20,
+          "metric": 0,
+          "installed": true,
+          "table": 254,
+          "internalStatus": 16,
+          "internalFlags": 8,
+          "internalNextHopNum": 1,
+          "internalNextHopActiveNum": 1,
+          "nexthopGroupId": 51,
+          "installedNexthopGroupId": 51,
+          "uptime": "00:00:05",
+          "nexthops": [
+            {
+              "flags": 3,
+              "fib": true,
+              "ip": "10.255.0.2",
+              "afi": "ipv4",
+              "interfaceIndex": 5,
+              "interfaceName": "pw-wg0",
+              "active": true,
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bfd": [
+      {
+        "multihop": false,
+        "peer": "10.255.0.6",
+        "local": "10.255.0.5",
+        "vrf": "default",
+        "interface": "pw-wg1",
+        "id": 879905630,
+        "remote-id": 2830084576,
+        "passive-mode": false,
+        "status": "up",
+        "uptime": 38,
+        "diagnostic": "ok",
+        "remote-diagnostic": "ok",
+        "receive-interval": 300,
+        "transmit-interval": 300,
+        "echo-receive-interval": 50,
+        "echo-transmit-interval": 0,
+        "detect-multiplier": 3,
+        "remote-receive-interval": 300,
+        "remote-transmit-interval": 300,
+        "remote-echo-receive-interval": 50,
+        "remote-detect-multiplier": 3,
+        "rtt-min": 0,
+        "rtt-avg": 0,
+        "rtt-max": 0
+      },
+      {
+        "multihop": false,
+        "peer": "10.255.0.2",
+        "local": "10.255.0.1",
+        "vrf": "default",
+        "interface": "pw-wg0",
+        "id": 111370771,
+        "remote-id": 3341359836,
+        "passive-mode": false,
+        "status": "up",
+        "uptime": 7,
+        "diagnostic": "ok",
+        "remote-diagnostic": "ok",
+        "receive-interval": 300,
+        "transmit-interval": 300,
+        "echo-receive-interval": 50,
+        "echo-transmit-interval": 0,
+        "detect-multiplier": 3,
+        "remote-receive-interval": 300,
+        "remote-transmit-interval": 300,
+        "remote-echo-receive-interval": 50,
+        "remote-detect-multiplier": 3,
+        "rtt-min": 0,
+        "rtt-avg": 0,
+        "rtt-max": 0
+      }
+    ],
+    "kernel": [
+      {
+        "dst": "10.30.0.10",
+        "gateway": "10.255.0.2",
+        "dev": "pw-wg0",
+        "prefsrc": "10.255.0.1",
+        "flags": [],
+        "uid": 1000,
+        "cache": []
+      }
+    ],
+    "handshake_epochs": [
+      1792823554,
+      1792823589
+    ]
+  }
+}

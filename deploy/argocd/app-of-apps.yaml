@@ -1,0 +1,20 @@
+# Root application. Its source is the strictly local desired-state repository
+# served read-only by the git-daemon sidecar inside argocd-repo-server
+# (deploy/argocd/bootstrap/repo-server-git-daemon.yaml); nothing leaves the host.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pathwatch-root
+  namespace: argocd
+  labels: { project: pathwatch }
+spec:
+  project: pathwatch-root
+  source:
+    repoURL: git://127.0.0.1:9418/pathwatch-deploy
+    targetRevision: main
+    path: deploy/argocd/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }

@@ -1,0 +1,236 @@
+{
+  "monotonic_ns": 621340919696736,
+  "realtime_ns": 1792823587825126201,
+  "home": {
+    "bgp": {
+      "routerId": "10.30.0.2",
+      "as": 64512,
+      "vrfId": 0,
+      "vrfName": "default",
+      "tableVersion": 25,
+      "ribCount": 3,
+      "ribMemory": 576,
+      "peerCount": 2,
+      "peerMemory": 1482928,
+      "peers": {
+        "10.255.0.1": {
+          "hostname": "vm-pathwatch-hybrid-nva",
+          "remoteAs": 65010,
+          "localAs": 64512,
+          "version": 4,
+          "msgRcvd": 51,
+          "msgSent": 87,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:05",
+          "peerUptimeMsec": 5000,
+          "peerUptimeEstablishedEpoch": 1792823579,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 12,
+          "connectionsDropped": 11,
+          "idType": "ipv4"
+        },
+        "10.255.0.5": {
+          "hostname": "vm-pathwatch-hybrid-nva",
+          "remoteAs": 65010,
+          "localAs": 64512,
+          "version": 4,
+          "msgRcvd": 61,
+          "msgSent": 66,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:01:13",
+          "peerUptimeMsec": 73000,
+          "peerUptimeEstablishedEpoch": 1792823511,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 5,
+          "connectionsDropped": 4,
+          "idType": "ipv4"
+        }
+      },
+      "failedPeers": 0,
+      "displayedPeers": 2,
+      "totalPeers": 2,
+      "dynamicPeers": 0,
+      "bestPath": {
+        "multiPathRelax": "false"
+      }
+    },
+    "route": {
+      "10.10.0.0/16": [
+        {
+          "prefix": "10.10.0.0/16",
+          "prefixLen": 16,
+          "protocol": "bgp",
+          "vrfId": 0,
+          "vrfName": "default",
+          "selected": true,
+          "destSelected": true,
+          "distance": 20,
+          "metric": 0,
+          "installed": true,
+          "table": 254,
+          "internalStatus": 16,
+          "internalFlags": 8,
+          "internalNextHopNum": 1,
+          "internalNextHopActiveNum": 1,
+          "nexthopGroupId": 10,
+          "installedNexthopGroupId": 10,
+          "uptime": "00:00:03",
+          "nexthops": [
+            {
+              "flags": 3,
+              "fib": true,
+              "ip": "10.255.0.1",
+              "afi": "ipv4",
+              "interfaceIndex": 3,
+              "interfaceName": "pw-wg0",
+              "active": true,
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bfd": [],
+    "kernel": [
+      {
+        "dst": "10.10.0.4",
+        "gateway": "10.255.0.1",
+        "dev": "pw-wg0",
+        "prefsrc": "10.255.0.2",
+        "flags": [],
+        "uid": 0,
+        "cache": []
+      }
+    ],
+    "handshake_epochs": [
+      1792823554,
+      1792823468
+    ]
+  },
+  "azure": {
+    "bgp": {
+      "routerId": "10.10.1.4",
+      "as": 65010,
+      "vrfId": 0,
+      "vrfName": "default",
+      "tableVersion": 27,
+      "ribCount": 3,
+      "ribMemory": 576,
+      "peerCount": 2,
+      "peerMemory": 1482944,
+      "peers": {
+        "10.255.0.2": {
+          "hostname": "1c697984f3bf",
+          "remoteAs": 64512,
+          "localAs": 65010,
+          "version": 4,
+          "msgRcvd": 75,
+          "msgSent": 103,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:00:06",
+          "peerUptimeMsec": 6000,
+          "peerUptimeEstablishedEpoch": 1792823579,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 13,
+          "connectionsDropped": 12,
+          "idType": "ipv4"
+        },
+        "10.255.0.6": {
+          "hostname": "1c697984f3bf",
+          "remoteAs": 64512,
+          "localAs": 65010,
+          "version": 4,
+          "msgRcvd": 75,
+          "msgSent": 67,
+          "tableVersion": 0,
+          "outq": 0,
+          "inq": 0,
+          "peerUptime": "00:01:14",
+          "peerUptimeMsec": 74000,
+          "peerUptimeEstablishedEpoch": 1792823511,
+          "pfxRcd": 1,
+          "pfxSnt": 1,
+          "state": "Established",
+          "peerState": "OK",
+          "connectionsEstablished": 6,
+          "connectionsDropped": 5,
+          "idType": "ipv4"
+        }
+      },
+      "failedPeers": 0,
+      "displayedPeers": 2,
+      "totalPeers": 2,
+      "dynamicPeers": 0,
+      "bestPath": {
+        "multiPathRelax": "false"
+      }
+    },
+    "route": {
+      "10.30.0.0/16": [
+        {
+          "prefix": "10.30.0.0/16",
+          "prefixLen": 16,
+          "protocol": "bgp",
+          "vrfId": 0,
+          "vrfName": "default",
+          "selected": true,
+          "destSelected": true,
+          "distance": 20,
+          "metric": 0,
+          "installed": true,
+          "table": 254,
+          "internalStatus": 16,
+          "internalFlags": 8,
+          "internalNextHopNum": 1,
+          "internalNextHopActiveNum": 1,
+          "nexthopGroupId": 51,
+          "installedNexthopGroupId": 51,
+          "uptime": "00:00:05",
+          "nexthops": [
+            {
+              "flags": 3,
+              "fib": true,
+              "ip": "10.255.0.2",
+              "afi": "ipv4",
+              "interfaceIndex": 5,
+              "interfaceName": "pw-wg0",
+              "active": true,
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bfd": [],
+    "kernel": [
+      {
+        "dst": "10.30.0.10",
+        "gateway": "10.255.0.2",
+        "dev": "pw-wg0",
+        "prefsrc": "10.255.0.1",
+        "flags": [],
+        "uid": 1000,
+        "cache": []
+      }
+    ],
+    "handshake_epochs": [
+      1792823554,
+      1792823468
+    ]
+  }
+}

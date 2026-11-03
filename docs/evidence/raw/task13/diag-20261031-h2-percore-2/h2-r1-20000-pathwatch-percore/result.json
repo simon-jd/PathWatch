@@ -1,0 +1,175 @@
+{
+  "proxy": "pathwatch",
+  "variant": "pathwatch-percore",
+  "proxy_env": {},
+  "proxy_config": "bench/pathwatch-proxy-percore.toml",
+  "protocol": "h2",
+  "rate": 20000,
+  "round": 1,
+  "duration_s": 30,
+  "warmup_s": 5,
+  "start_utc": "2026-10-31T21:26:05Z",
+  "offered_requests": 600000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    1412645
+  ],
+  "proxy_identities": [
+    {
+      "pid": 1412645,
+      "state": "S",
+      "ppid": 1124493,
+      "pgrp": 1412645,
+      "session": 1412645,
+      "starttime": 127971817
+    }
+  ],
+  "warmup_pid": 1412746,
+  "warmup": {
+    "configured_s": 5,
+    "wall_elapsed_s": 5.065253454027697,
+    "reported_elapsed_s": 5.0,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/nghttp2-build/src/h2load",
+    "-t4",
+    "-c100",
+    "-m16",
+    "-D30",
+    "--rps=200.0",
+    "--connect-to=127.0.0.1:18443",
+    "--connection-active-timeout=40",
+    "--connection-inactivity-timeout=10",
+    "https://bench.pathwatch.test:18443/",
+    "--log-file=/home/postedism/Desktop/PathWatch/.cache/task13/runtime/requests.fifo"
+  ],
+  "generator_pid": 1414661,
+  "collector_pid": 1414595,
+  "wall_elapsed_s": 30.287438296014443,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 30,
+    "wall_elapsed_s": 30.287438296014443,
+    "reported_elapsed_s": 30.0,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 7,
+    "connections": 9,
+    "requests": 599764
+  },
+  "cpu_pidstat_seconds": 25.1426,
+  "cpu_proc_seconds": 25.22,
+  "cpu_boundary_delta_seconds": 0.07739999999999725,
+  "counts": {
+    "total": 599738,
+    "started": 599792,
+    "done": 599738,
+    "succeeded": 599738,
+    "failed": 0,
+    "errored": 0,
+    "timeout": 0
+  },
+  "latency": {
+    "p50_us_bounds": [
+      925,
+      925
+    ],
+    "p99_us_bounds": [
+      31808,
+      31823
+    ],
+    "p999_us_bounds": [
+      55104,
+      55135
+    ]
+  },
+  "received_body_bytes": 614131712,
+  "completed_success_body_bytes_expected": 614131712,
+  "body_bytes_delta": 0,
+  "h2_count_reconciliation": "matched",
+  "proxy_per_completed": {
+    "syscr": 0.0,
+    "syscw": 1.1305269967885976,
+    "ctx_switches": 0.05525579503049665
+  },
+  "configured_window_rps": 19991.266666666666,
+  "achieved_rps": 19991.266666666666,
+  "cpu_us_per_completed": 41.922639552604636,
+  "upstream_requests_per_new_connection": 66640.44444444444,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 0,
+    "fifo_write_calls": 599738,
+    "fifo_bytes": 15277024,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 1114043621,
+    "fifo_max_write_ns": 1579001
+  },
+  "unfinished_at_end": 54,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 1412645,
+      "state": "S",
+      "ppid": 1124493,
+      "pgrp": 1412645,
+      "session": 1412645,
+      "starttime": 127971817
+    },
+    "observed_identities": [
+      {
+        "pid": 1412645,
+        "state": "S",
+        "ppid": 1124493,
+        "pgrp": 1412645,
+        "session": 1412645,
+        "starttime": 127971817
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 1412645,
+          "state": "S",
+          "ppid": 1124493,
+          "pgrp": 1412645,
+          "session": 1412645,
+          "starttime": 127971817
+        },
+        "signal": 2
+      }
+    ]
+  },
+  "total_elapsed_s": 36.26179384603165,
+  "end_utc": "2026-10-31T21:26:41Z"
+}

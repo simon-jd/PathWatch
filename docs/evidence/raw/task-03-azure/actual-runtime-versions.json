@@ -1,0 +1,23 @@
+{
+  "captured_utc": "2026-10-24T05:34:11Z",
+  "home": {
+    "kernel": "7.0.0-38-generic",
+    "iperf": "iperf 3.16 (cJSON 1.7.15)",
+    "frr": "FRRouting 8.4.4 (e952af4b5254) on Linux(7.0.0-38-generic).",
+    "wireguard": "wireguard-tools v1.0.20210914 - https://git.zx2c4.com/wireguard-tools/"
+  },
+  "azure": {
+    "kernel": "7.0.0-1017-azure",
+    "iperf": "iperf 3.16 (cJSON 1.7.15)",
+    "frr": "FRRouting 8.4.4 (vm-pathwatch-hybrid-nva) on Linux(7.0.0-1017-azure).",
+    "wireguard": "wireguard-tools v1.0.20210914 - https://git.zx2c4.com/wireguard-tools/"
+  },
+  "home-client": {
+    "kernel": "7.0.0-38-generic",
+    "iperf": "iperf 3.16 (cJSON 1.7.15)"
+  },
+  "azure-client": {
+    "kernel": "7.0.0-1017-azure",
+    "iperf": "iperf 3.16 (cJSON 1.7.15)"
+  }
+}

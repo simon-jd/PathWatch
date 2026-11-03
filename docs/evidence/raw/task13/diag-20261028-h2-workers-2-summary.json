@@ -1,0 +1,134 @@
+[
+  {
+    "variant": "nginx",
+    "rate": 1000,
+    "rounds": 3,
+    "completed": 90000,
+    "errors": 0,
+    "cpu_us_per_completed": 55.08444444444448,
+    "per_completed": {
+      "syscr": 2.0346333333333333,
+      "syscw": 3.0134333333333334,
+      "ctx_switches": 0.7098
+    },
+    "loadavg_1m_median": 7.28,
+    "p50_us_bounds": [
+      146,
+      146
+    ],
+    "p99_us_bounds": [
+      1625,
+      1625
+    ]
+  },
+  {
+    "variant": "pathwatch",
+    "rate": 1000,
+    "rounds": 3,
+    "completed": 90000,
+    "errors": 0,
+    "cpu_us_per_completed": 61.97888888888892,
+    "per_completed": {
+      "syscr": 3.3333333333333335e-05,
+      "syscw": 1.156,
+      "ctx_switches": 0.2213
+    },
+    "loadavg_1m_median": 7.46,
+    "p50_us_bounds": [
+      455,
+      455
+    ],
+    "p99_us_bounds": [
+      3166,
+      3167
+    ]
+  },
+  {
+    "variant": "pathwatch-w1",
+    "rate": 1000,
+    "rounds": 3,
+    "completed": 90000,
+    "errors": 0,
+    "cpu_us_per_completed": 60.875555555555586,
+    "per_completed": {
+      "syscr": 3.3333333333333335e-05,
+      "syscw": 1.3406666666666667,
+      "ctx_switches": 0.3187333333333333
+    },
+    "loadavg_1m_median": 6.8,
+    "p50_us_bounds": [
+      216,
+      216
+    ],
+    "p99_us_bounds": [
+      10664,
+      10671
+    ]
+  },
+  {
+    "variant": "nginx",
+    "rate": 10000,
+    "rounds": 3,
+    "completed": 899886,
+    "errors": 0,
+    "cpu_us_per_completed": 46.32953507444276,
+    "per_completed": {
+      "syscr": 1.9993499068199776,
+      "syscw": 3.001353509289541,
+      "ctx_switches": 0.5930104246885428
+    },
+    "loadavg_1m_median": 10.27,
+    "p50_us_bounds": [
+      129,
+      129
+    ],
+    "p99_us_bounds": [
+      1385,
+      1385
+    ]
+  },
+  {
+    "variant": "pathwatch",
+    "rate": 10000,
+    "rounds": 3,
+    "completed": 899944,
+    "errors": 0,
+    "cpu_us_per_completed": 51.65876987901469,
+    "per_completed": {
+      "syscr": 0.0,
+      "syscw": 1.1171409618352672,
+      "ctx_switches": 0.19524928739310896
+    },
+    "loadavg_1m_median": 11.1,
+    "p50_us_bounds": [
+      378,
+      378
+    ],
+    "p99_us_bounds": [
+      4888,
+      4891
+    ]
+  },
+  {
+    "variant": "pathwatch-w1",
+    "rate": 10000,
+    "rounds": 3,
+    "completed": 899920,
+    "errors": 0,
+    "cpu_us_per_completed": 48.883345186238785,
+    "per_completed": {
+      "syscr": 0.0,
+      "syscw": 1.2123437692735959,
+      "ctx_switches": 0.1762319265761426
+    },
+    "loadavg_1m_median": 9.41,
+    "p50_us_bounds": [
+      279,
+      279
+    ],
+    "p99_us_bounds": [
+      2404,
+      2405
+    ]
+  }
+]

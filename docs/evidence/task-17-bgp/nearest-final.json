@@ -1,0 +1,26 @@
+{
+  "c1": {
+    "traceroute_hops": [
+      "10.117.6.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop1",
+    "as_path": "64601 64500"
+  },
+  "c2": {
+    "traceroute_hops": [
+      "10.117.7.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop2",
+    "as_path": "64601 64500"
+  },
+  "c3": {
+    "traceroute_hops": [
+      "10.117.9.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop3",
+    "as_path": "64602 64500"
+  }
+}

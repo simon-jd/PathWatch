@@ -1,0 +1,15 @@
+{
+  "2873824": {
+    "cpu_ticks": 1467,
+    "starttime": 94282560,
+    "session": 2873824,
+    "pgrp": 2873824,
+    "threads": 9,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 74661888,
+    "command": "/home/postedism/Desktop/PathWatch/.cache/task13/envoy -c bench/envoy.yaml --concurrency 2 --disable-hot-restart --log-level error "
+  }
+}

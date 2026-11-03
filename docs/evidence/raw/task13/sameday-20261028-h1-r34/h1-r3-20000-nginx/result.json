@@ -1,0 +1,181 @@
+{
+  "proxy": "nginx",
+  "protocol": "h1",
+  "rate": 20000,
+  "round": 3,
+  "duration_s": 120,
+  "warmup_s": 15,
+  "start_utc": "2026-10-28T08:28:20Z",
+  "offered_requests": 2400000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    1739616,
+    1739617,
+    1739618
+  ],
+  "proxy_identities": [
+    {
+      "pid": 1739616,
+      "state": "S",
+      "ppid": 1365496,
+      "pgrp": 1739616,
+      "session": 1739616,
+      "starttime": 97385373
+    },
+    {
+      "pid": 1739617,
+      "state": "S",
+      "ppid": 1739616,
+      "pgrp": 1739616,
+      "session": 1739616,
+      "starttime": 97385374
+    },
+    {
+      "pid": 1739618,
+      "state": "S",
+      "ppid": 1739616,
+      "pgrp": 1739616,
+      "session": 1739616,
+      "starttime": 97385374
+    }
+  ],
+  "warmup_pid": 1739949,
+  "warmup": {
+    "configured_s": 15,
+    "wall_elapsed_s": 15.160916100023314,
+    "reported_elapsed_s": 15.001312,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/wrk2-44a94c17d8e6a0bac8559b53da76848e430cb7a7/wrk",
+    "-t4",
+    "-c100",
+    "-d120s",
+    "-R20000",
+    "--timeout",
+    "10s",
+    "--latency",
+    "-s",
+    "bench/wrk.lua",
+    "https://bench.pathwatch.test:18443/"
+  ],
+  "generator_pid": 1745236,
+  "collector_pid": null,
+  "wall_elapsed_s": 120.37205856200308,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 120,
+    "wall_elapsed_s": 120.37205856200308,
+    "reported_elapsed_s": 120.001302,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 0,
+    "connections": 0,
+    "requests": 2394158
+  },
+  "cpu_pidstat_seconds": 73.551,
+  "cpu_proc_seconds": 73.62,
+  "cpu_boundary_delta_seconds": 0.06900000000000261,
+  "counts": {
+    "completed": 2394111,
+    "elapsed_s": 120.0,
+    "errors": {
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0,
+      "http": 0
+    },
+    "started": 2394158
+  },
+  "latency": {
+    "p50_us": 1160.0,
+    "p99_us": 9940.0,
+    "p999_us": 49500.0
+  },
+  "configured_window_rps": 19950.925,
+  "achieved_rps": 19950.7085348124,
+  "cpu_us_per_completed": 30.72163320748286,
+  "upstream_requests_per_new_connection": null,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 2394158,
+    "fifo_write_calls": 0,
+    "fifo_bytes": 0,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 0,
+    "fifo_max_write_ns": 0
+  },
+  "unfinished_at_end": 47,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 1739616,
+      "state": "S",
+      "ppid": 1365496,
+      "pgrp": 1739616,
+      "session": 1739616,
+      "starttime": 97385373
+    },
+    "observed_identities": [
+      {
+        "pid": 1739616,
+        "state": "S",
+        "ppid": 1365496,
+        "pgrp": 1739616,
+        "session": 1739616,
+        "starttime": 97385373
+      },
+      {
+        "pid": 1739617,
+        "state": "S",
+        "ppid": 1739616,
+        "pgrp": 1739616,
+        "session": 1739616,
+        "starttime": 97385374
+      },
+      {
+        "pid": 1739618,
+        "state": "S",
+        "ppid": 1739616,
+        "pgrp": 1739616,
+        "session": 1739616,
+        "starttime": 97385374
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 1739616,
+          "state": "S",
+          "ppid": 1365496,
+          "pgrp": 1739616,
+          "session": 1739616,
+          "starttime": 97385373
+        },
+        "signal": 3
+      }
+    ]
+  },
+  "total_elapsed_s": 136.6167578380555,
+  "end_utc": "2026-10-28T08:30:37Z"
+}

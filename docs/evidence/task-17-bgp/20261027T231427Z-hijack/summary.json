@@ -1,0 +1,333 @@
+{
+  "run": "20261027T231427Z-hijack",
+  "results": [
+    {
+      "repetition": 1,
+      "incident": "hijack",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "4.42",
+          "4.12",
+          "4.20"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142873.0504463,
+      "apply_seconds": 0.061,
+      "detected": true,
+      "detection_seconds": 0.426,
+      "first_alert": {
+        "at": 1793142873.4763103,
+        "kind": "rpki-invalid",
+        "feed": "t1a",
+        "prefix": "198.51.100.0/25",
+        "as_path": [
+          64601,
+          64602,
+          64703
+        ],
+        "why": "origin AS64703 not authorized for 198.51.100.0/25"
+      },
+      "alert_kinds": [
+        [
+          "rpki-invalid",
+          "t1a"
+        ],
+        [
+          "rpki-invalid",
+          "t1b"
+        ],
+        [
+          "rpki-invalid",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "",
+        "c2": "",
+        "c3": ""
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "64601 64602 64703",
+        "c2": "64601 64602 64703",
+        "c3": "Local"
+      },
+      "t2_best_path_to_c1_during": "64601 64701",
+      "restore_seconds_after_withdraw": 2.6,
+      "restored": true
+    },
+    {
+      "repetition": 2,
+      "incident": "hijack",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "5.55",
+          "4.42",
+          "4.30"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142907.4990962,
+      "apply_seconds": 0.063,
+      "detected": true,
+      "detection_seconds": 0.179,
+      "first_alert": {
+        "at": 1793142907.6777208,
+        "kind": "rpki-invalid",
+        "feed": "t2",
+        "prefix": "198.51.100.0/25",
+        "as_path": [
+          64602,
+          64703
+        ],
+        "why": "origin AS64703 not authorized for 198.51.100.0/25"
+      },
+      "alert_kinds": [
+        [
+          "rpki-invalid",
+          "t1a"
+        ],
+        [
+          "rpki-invalid",
+          "t1b"
+        ],
+        [
+          "rpki-invalid",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "",
+        "c2": "",
+        "c3": ""
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "64601 64602 64703",
+        "c2": "64601 64602 64703",
+        "c3": "Local"
+      },
+      "t2_best_path_to_c1_during": "64601 64701",
+      "restore_seconds_after_withdraw": 2.6,
+      "restored": true
+    },
+    {
+      "repetition": 3,
+      "incident": "hijack",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "6.07",
+          "4.68",
+          "4.39"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142941.8001475,
+      "apply_seconds": 0.061,
+      "detected": true,
+      "detection_seconds": 0.179,
+      "first_alert": {
+        "at": 1793142941.979004,
+        "kind": "rpki-invalid",
+        "feed": "t2",
+        "prefix": "198.51.100.0/25",
+        "as_path": [
+          64602,
+          64703
+        ],
+        "why": "origin AS64703 not authorized for 198.51.100.0/25"
+      },
+      "alert_kinds": [
+        [
+          "rpki-invalid",
+          "t1a"
+        ],
+        [
+          "rpki-invalid",
+          "t1b"
+        ],
+        [
+          "rpki-invalid",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "",
+        "c2": "",
+        "c3": ""
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "64601 64602 64703",
+        "c2": "64601 64602 64703",
+        "c3": "Local"
+      },
+      "t2_best_path_to_c1_during": "64601 64701",
+      "restore_seconds_after_withdraw": 2.6,
+      "restored": true
+    },
+    {
+      "repetition": 4,
+      "incident": "hijack",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "6.89",
+          "5.01",
+          "4.51"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142976.111919,
+      "apply_seconds": 0.066,
+      "detected": true,
+      "detection_seconds": 0.179,
+      "first_alert": {
+        "at": 1793142976.2909558,
+        "kind": "rpki-invalid",
+        "feed": "t2",
+        "prefix": "198.51.100.0/25",
+        "as_path": [
+          64602,
+          64703
+        ],
+        "why": "origin AS64703 not authorized for 198.51.100.0/25"
+      },
+      "alert_kinds": [
+        [
+          "rpki-invalid",
+          "t1a"
+        ],
+        [
+          "rpki-invalid",
+          "t1b"
+        ],
+        [
+          "rpki-invalid",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "",
+        "c2": "",
+        "c3": ""
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "64601 64602 64703",
+        "c2": "64601 64602 64703",
+        "c3": "Local"
+      },
+      "t2_best_path_to_c1_during": "64601 64701",
+      "restore_seconds_after_withdraw": 2.6,
+      "restored": true
+    },
+    {
+      "repetition": 5,
+      "incident": "hijack",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "6.49",
+          "5.13",
+          "4.57"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793143010.3379831,
+      "apply_seconds": 0.054,
+      "detected": true,
+      "detection_seconds": 0.178,
+      "first_alert": {
+        "at": 1793143010.5155473,
+        "kind": "rpki-invalid",
+        "feed": "t2",
+        "prefix": "198.51.100.0/25",
+        "as_path": [
+          64602,
+          64703
+        ],
+        "why": "origin AS64703 not authorized for 198.51.100.0/25"
+      },
+      "alert_kinds": [
+        [
+          "rpki-invalid",
+          "t1a"
+        ],
+        [
+          "rpki-invalid",
+          "t1b"
+        ],
+        [
+          "rpki-invalid",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "",
+        "c2": "",
+        "c3": ""
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "64601 64602 64703",
+        "c2": "64601 64602 64703",
+        "c3": "Local"
+      },
+      "t2_best_path_to_c1_during": "64601 64701",
+      "restore_seconds_after_withdraw": 2.5,
+      "restored": true
+    }
+  ],
+  "rpki": "Network            Maxlen AS         Server\n198.51.100.0/24    24     64500      10.117.100.9:3323\n",
+  "environment": "FRR 10.7.1 containers on Docker bridge networks; GoBGP 4.10.0 collector; Krill 0.16.0 test TA + Routinator 0.15.3; host shared with other projects"
+}

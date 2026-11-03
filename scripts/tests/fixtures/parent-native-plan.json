@@ -1,0 +1,594 @@
+{
+  "plan_format_version": "1.2",
+  "output_changes": {
+    "container_name": {
+      "actions": [
+        "no-op"
+      ],
+      "before": "tfstate",
+      "after": "tfstate",
+      "after_unknown": false,
+      "before_sensitive": false,
+      "after_sensitive": false
+    },
+    "resource_group_name": {
+      "actions": [
+        "no-op"
+      ],
+      "before": "rg-pathwatch-lab",
+      "after": "rg-pathwatch-lab",
+      "after_unknown": false,
+      "before_sensitive": false,
+      "after_sensitive": false
+    },
+    "storage_account_name": {
+      "actions": [
+        "no-op"
+      ],
+      "before": "pwteststate",
+      "after": "pwteststate",
+      "after_unknown": false,
+      "before_sensitive": false,
+      "after_sensitive": false
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "azurerm_resource_group.project",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "project",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab",
+          "location": "westus",
+          "managed_by": null,
+          "name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0.001",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-25T03:03:27Z"
+          },
+          "timeouts": null
+        },
+        "after": {
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab",
+          "location": "westus",
+          "managed_by": null,
+          "name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0.001",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-11-27T19:59:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "tags": {}
+        },
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_role_assignment.operator_state",
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "operator_state",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "condition": null,
+          "condition_version": "3e0fp05a",
+          "delegated_managed_identity_resource_id": null,
+          "description": null,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate/providers/Microsoft.Authorization/roleAssignments/22222222-2222-2222-2222-222222222222",
+          "name": "clybhhjn",
+          "principal_id": "33333333-3333-3333-3333-333333333333",
+          "principal_type": "av3rkef3",
+          "role_definition_id": "941zsylr",
+          "role_definition_name": "Storage Blob Data Contributor",
+          "scope": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "skip_service_principal_aad_check": false,
+          "timeouts": null
+        },
+        "after": {
+          "condition": null,
+          "condition_version": "3e0fp05a",
+          "delegated_managed_identity_resource_id": null,
+          "description": null,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate/providers/Microsoft.Authorization/roleAssignments/22222222-2222-2222-2222-222222222222",
+          "name": "clybhhjn",
+          "principal_id": "33333333-3333-3333-3333-333333333333",
+          "principal_type": "av3rkef3",
+          "role_definition_id": "941zsylr",
+          "role_definition_name": "Storage Blob Data Contributor",
+          "scope": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "skip_service_principal_aad_check": false,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "azurerm_storage_account.state",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "state",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "access_tier": "e6l6gjz9",
+          "account_kind": "StorageV2",
+          "account_replication_type": "LRS",
+          "account_tier": "Standard",
+          "allow_nested_items_to_be_public": false,
+          "allowed_copy_scope": null,
+          "azure_files_authentication": [],
+          "blob_properties": [
+            {
+              "change_feed_enabled": true,
+              "change_feed_retention_in_days": 7,
+              "container_delete_retention_policy": [
+                {
+                  "days": 7
+                }
+              ],
+              "cors_rule": [],
+              "default_service_version": "tbb2ilv8",
+              "delete_retention_policy": [
+                {
+                  "days": 7,
+                  "permanent_delete_enabled": null
+                }
+              ],
+              "last_access_time_enabled": null,
+              "restore_policy": [],
+              "versioning_enabled": true
+            }
+          ],
+          "cross_tenant_replication_enabled": false,
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "default_to_oauth_authentication": true,
+          "dns_endpoint_type": null,
+          "edge_zone": null,
+          "https_traffic_only_enabled": true,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "identity": [],
+          "immutability_policy": [],
+          "infrastructure_encryption_enabled": null,
+          "is_hns_enabled": null,
+          "large_file_share_enabled": false,
+          "local_user_enabled": null,
+          "location": "westus",
+          "min_tls_version": "TLS1_2",
+          "name": "pwteststate",
+          "network_rules": [
+            {
+              "bypass": [
+                "None"
+              ],
+              "default_action": "Deny",
+              "ip_rules": [
+                "8.8.8.8"
+              ],
+              "private_link_access": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "nfsv3_enabled": null,
+          "primary_access_key": "svco68he",
+          "primary_blob_connection_string": "jhviskrz",
+          "primary_blob_endpoint": "guamjn3v",
+          "primary_blob_host": "vaa13iqd",
+          "primary_blob_internet_endpoint": "k5uh4m74",
+          "primary_blob_internet_host": "bhrkei0x",
+          "primary_blob_microsoft_endpoint": "vo8mdqli",
+          "primary_blob_microsoft_host": "x471zx5m",
+          "primary_connection_string": "qeh718oc",
+          "primary_dfs_endpoint": "tyz3ou84",
+          "primary_dfs_host": "222u9aep",
+          "primary_dfs_internet_endpoint": "byxwiipb",
+          "primary_dfs_internet_host": "eaj3tf4h",
+          "primary_dfs_microsoft_endpoint": "7mcth7i1",
+          "primary_dfs_microsoft_host": "v04sr01p",
+          "primary_file_endpoint": "ypqjbxnl",
+          "primary_file_host": "6cyl4037",
+          "primary_file_internet_endpoint": "2yc3p26x",
+          "primary_file_internet_host": "15kpdy2a",
+          "primary_file_microsoft_endpoint": "ehzpj2i6",
+          "primary_file_microsoft_host": "o2ycwa07",
+          "primary_location": "rw49jnbp",
+          "primary_queue_endpoint": "sjw64fns",
+          "primary_queue_host": "zdw81hgf",
+          "primary_queue_microsoft_endpoint": "sdtxeqam",
+          "primary_queue_microsoft_host": "dwijpito",
+          "primary_table_endpoint": "y43grxia",
+          "primary_table_host": "lju6ynvi",
+          "primary_table_microsoft_endpoint": "v333tml4",
+          "primary_table_microsoft_host": "2vayv9lg",
+          "primary_web_endpoint": "5c75hn8t",
+          "primary_web_host": "qo07pnsb",
+          "primary_web_internet_endpoint": "4jyij9d2",
+          "primary_web_internet_host": "0n6khpsz",
+          "primary_web_microsoft_endpoint": "adc1h5iq",
+          "primary_web_microsoft_host": "o643m4zd",
+          "provisioned_billing_model_version": null,
+          "public_network_access_enabled": true,
+          "queue_encryption_key_type": null,
+          "queue_properties": [],
+          "resource_group_name": "rg-pathwatch-lab",
+          "routing": [],
+          "sas_policy": [],
+          "secondary_access_key": "if9b3dv6",
+          "secondary_blob_connection_string": "xs4h35mo",
+          "secondary_blob_endpoint": "h8ahos8j",
+          "secondary_blob_host": "x1j54efg",
+          "secondary_blob_internet_endpoint": "dt9xbgj9",
+          "secondary_blob_internet_host": "x2oyp490",
+          "secondary_blob_microsoft_endpoint": "k0i3unxh",
+          "secondary_blob_microsoft_host": "q9zq4q00",
+          "secondary_connection_string": "doep2dkm",
+          "secondary_dfs_endpoint": "kksrml2r",
+          "secondary_dfs_host": "x2nhera0",
+          "secondary_dfs_internet_endpoint": "m1sdj94b",
+          "secondary_dfs_internet_host": "80sft5d0",
+          "secondary_dfs_microsoft_endpoint": "yajf6zcx",
+          "secondary_dfs_microsoft_host": "qgg25cd0",
+          "secondary_file_endpoint": "on0lunze",
+          "secondary_file_host": "5h6uzp5o",
+          "secondary_file_internet_endpoint": "onw4zz2u",
+          "secondary_file_internet_host": "sngil0kw",
+          "secondary_file_microsoft_endpoint": "n01ns4n9",
+          "secondary_file_microsoft_host": "baxkyouy",
+          "secondary_location": "i3jid9wy",
+          "secondary_queue_endpoint": "1eoia119",
+          "secondary_queue_host": "7v0ns71i",
+          "secondary_queue_microsoft_endpoint": "zldnzdnr",
+          "secondary_queue_microsoft_host": "4qni2b4z",
+          "secondary_table_endpoint": "5xsd5wg2",
+          "secondary_table_host": "wi039njy",
+          "secondary_table_microsoft_endpoint": "nnqlbdcl",
+          "secondary_table_microsoft_host": "56bak4kk",
+          "secondary_web_endpoint": "1engdgk1",
+          "secondary_web_host": "3xt6gxnt",
+          "secondary_web_internet_endpoint": "fopx2x4u",
+          "secondary_web_internet_host": "p0ekz25d",
+          "secondary_web_microsoft_endpoint": "zt5bf985",
+          "secondary_web_microsoft_host": "cr9ro2e7",
+          "sftp_enabled": null,
+          "share_properties": [],
+          "shared_access_key_enabled": false,
+          "static_website": [],
+          "table_encryption_key_type": null,
+          "tags": {
+            "est_usd_per_hour": "0.001",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-25T03:03:27Z"
+          },
+          "timeouts": null
+        },
+        "after": {
+          "access_tier": "e6l6gjz9",
+          "account_kind": "StorageV2",
+          "account_replication_type": "LRS",
+          "account_tier": "Standard",
+          "allow_nested_items_to_be_public": false,
+          "allowed_copy_scope": null,
+          "azure_files_authentication": [],
+          "blob_properties": [
+            {
+              "change_feed_enabled": true,
+              "change_feed_retention_in_days": 7,
+              "container_delete_retention_policy": [
+                {
+                  "days": 7
+                }
+              ],
+              "cors_rule": [],
+              "default_service_version": "tbb2ilv8",
+              "delete_retention_policy": [
+                {
+                  "days": 7,
+                  "permanent_delete_enabled": null
+                }
+              ],
+              "last_access_time_enabled": null,
+              "restore_policy": [],
+              "versioning_enabled": true
+            }
+          ],
+          "cross_tenant_replication_enabled": false,
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "default_to_oauth_authentication": true,
+          "dns_endpoint_type": null,
+          "edge_zone": null,
+          "https_traffic_only_enabled": true,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "identity": [],
+          "immutability_policy": [],
+          "infrastructure_encryption_enabled": null,
+          "is_hns_enabled": null,
+          "large_file_share_enabled": false,
+          "local_user_enabled": null,
+          "location": "westus",
+          "min_tls_version": "TLS1_2",
+          "name": "pwteststate",
+          "network_rules": [
+            {
+              "bypass": [
+                "None"
+              ],
+              "default_action": "Deny",
+              "ip_rules": [
+                "8.8.8.8"
+              ],
+              "private_link_access": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "nfsv3_enabled": null,
+          "primary_access_key": "svco68he",
+          "primary_blob_connection_string": "jhviskrz",
+          "primary_blob_endpoint": "guamjn3v",
+          "primary_blob_host": "vaa13iqd",
+          "primary_blob_internet_endpoint": "k5uh4m74",
+          "primary_blob_internet_host": "bhrkei0x",
+          "primary_blob_microsoft_endpoint": "vo8mdqli",
+          "primary_blob_microsoft_host": "x471zx5m",
+          "primary_connection_string": "qeh718oc",
+          "primary_dfs_endpoint": "tyz3ou84",
+          "primary_dfs_host": "222u9aep",
+          "primary_dfs_internet_endpoint": "byxwiipb",
+          "primary_dfs_internet_host": "eaj3tf4h",
+          "primary_dfs_microsoft_endpoint": "7mcth7i1",
+          "primary_dfs_microsoft_host": "v04sr01p",
+          "primary_file_endpoint": "ypqjbxnl",
+          "primary_file_host": "6cyl4037",
+          "primary_file_internet_endpoint": "2yc3p26x",
+          "primary_file_internet_host": "15kpdy2a",
+          "primary_file_microsoft_endpoint": "ehzpj2i6",
+          "primary_file_microsoft_host": "o2ycwa07",
+          "primary_location": "rw49jnbp",
+          "primary_queue_endpoint": "sjw64fns",
+          "primary_queue_host": "zdw81hgf",
+          "primary_queue_microsoft_endpoint": "sdtxeqam",
+          "primary_queue_microsoft_host": "dwijpito",
+          "primary_table_endpoint": "y43grxia",
+          "primary_table_host": "lju6ynvi",
+          "primary_table_microsoft_endpoint": "v333tml4",
+          "primary_table_microsoft_host": "2vayv9lg",
+          "primary_web_endpoint": "5c75hn8t",
+          "primary_web_host": "qo07pnsb",
+          "primary_web_internet_endpoint": "4jyij9d2",
+          "primary_web_internet_host": "0n6khpsz",
+          "primary_web_microsoft_endpoint": "adc1h5iq",
+          "primary_web_microsoft_host": "o643m4zd",
+          "provisioned_billing_model_version": null,
+          "public_network_access_enabled": true,
+          "queue_encryption_key_type": null,
+          "queue_properties": [],
+          "resource_group_name": "rg-pathwatch-lab",
+          "routing": [],
+          "sas_policy": [],
+          "secondary_access_key": "if9b3dv6",
+          "secondary_blob_connection_string": "xs4h35mo",
+          "secondary_blob_endpoint": "h8ahos8j",
+          "secondary_blob_host": "x1j54efg",
+          "secondary_blob_internet_endpoint": "dt9xbgj9",
+          "secondary_blob_internet_host": "x2oyp490",
+          "secondary_blob_microsoft_endpoint": "k0i3unxh",
+          "secondary_blob_microsoft_host": "q9zq4q00",
+          "secondary_connection_string": "doep2dkm",
+          "secondary_dfs_endpoint": "kksrml2r",
+          "secondary_dfs_host": "x2nhera0",
+          "secondary_dfs_internet_endpoint": "m1sdj94b",
+          "secondary_dfs_internet_host": "80sft5d0",
+          "secondary_dfs_microsoft_endpoint": "yajf6zcx",
+          "secondary_dfs_microsoft_host": "qgg25cd0",
+          "secondary_file_endpoint": "on0lunze",
+          "secondary_file_host": "5h6uzp5o",
+          "secondary_file_internet_endpoint": "onw4zz2u",
+          "secondary_file_internet_host": "sngil0kw",
+          "secondary_file_microsoft_endpoint": "n01ns4n9",
+          "secondary_file_microsoft_host": "baxkyouy",
+          "secondary_location": "i3jid9wy",
+          "secondary_queue_endpoint": "1eoia119",
+          "secondary_queue_host": "7v0ns71i",
+          "secondary_queue_microsoft_endpoint": "zldnzdnr",
+          "secondary_queue_microsoft_host": "4qni2b4z",
+          "secondary_table_endpoint": "5xsd5wg2",
+          "secondary_table_host": "wi039njy",
+          "secondary_table_microsoft_endpoint": "nnqlbdcl",
+          "secondary_table_microsoft_host": "56bak4kk",
+          "secondary_web_endpoint": "1engdgk1",
+          "secondary_web_host": "3xt6gxnt",
+          "secondary_web_internet_endpoint": "fopx2x4u",
+          "secondary_web_internet_host": "p0ekz25d",
+          "secondary_web_microsoft_endpoint": "zt5bf985",
+          "secondary_web_microsoft_host": "cr9ro2e7",
+          "sftp_enabled": null,
+          "share_properties": [],
+          "shared_access_key_enabled": false,
+          "static_website": [],
+          "table_encryption_key_type": null,
+          "tags": {
+            "est_usd_per_hour": "0.001",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-11-27T19:59:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "azure_files_authentication": [],
+          "blob_properties": [
+            {
+              "container_delete_retention_policy": [
+                {}
+              ],
+              "cors_rule": [],
+              "delete_retention_policy": [
+                {}
+              ],
+              "restore_policy": []
+            }
+          ],
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "identity": [],
+          "immutability_policy": [],
+          "network_rules": [
+            {
+              "bypass": [
+                false
+              ],
+              "ip_rules": [
+                false
+              ],
+              "private_link_access": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_connection_string": true,
+          "queue_properties": [],
+          "routing": [],
+          "sas_policy": [],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_connection_string": true,
+          "share_properties": [],
+          "static_website": [],
+          "tags": {}
+        },
+        "after_sensitive": {
+          "azure_files_authentication": [],
+          "blob_properties": [
+            {
+              "container_delete_retention_policy": [
+                {}
+              ],
+              "cors_rule": [],
+              "delete_retention_policy": [
+                {}
+              ],
+              "restore_policy": []
+            }
+          ],
+          "custom_domain": [],
+          "customer_managed_key": [],
+          "identity": [],
+          "immutability_policy": [],
+          "network_rules": [
+            {
+              "bypass": [
+                false
+              ],
+              "ip_rules": [
+                false
+              ],
+              "private_link_access": [],
+              "virtual_network_subnet_ids": []
+            }
+          ],
+          "primary_access_key": true,
+          "primary_blob_connection_string": true,
+          "primary_connection_string": true,
+          "queue_properties": [],
+          "routing": [],
+          "sas_policy": [],
+          "secondary_access_key": true,
+          "secondary_blob_connection_string": true,
+          "secondary_connection_string": true,
+          "share_properties": [],
+          "static_website": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "azurerm_storage_container.state",
+      "mode": "managed",
+      "type": "azurerm_storage_container",
+      "name": "state",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "container_access_type": "private",
+          "default_encryption_scope": "gyg01f5l",
+          "encryption_scope_override_enabled": null,
+          "has_immutability_policy": false,
+          "has_legal_hold": false,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate/blobServices/default/containers/tfstate",
+          "metadata": {},
+          "name": "tfstate",
+          "resource_manager_id": "opxmj0bh",
+          "storage_account_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "storage_account_name": null,
+          "timeouts": null
+        },
+        "after": {
+          "container_access_type": "private",
+          "default_encryption_scope": "gyg01f5l",
+          "encryption_scope_override_enabled": null,
+          "has_immutability_policy": false,
+          "has_legal_hold": false,
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate/blobServices/default/containers/tfstate",
+          "metadata": {},
+          "name": "tfstate",
+          "resource_manager_id": "opxmj0bh",
+          "storage_account_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwteststate",
+          "storage_account_name": null,
+          "timeouts": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+          "metadata": {}
+        },
+        "after_sensitive": {
+          "metadata": {}
+        }
+      }
+    }
+  ],
+  "relevant_attributes": [
+    {
+      "resource": "azurerm_resource_group.project",
+      "attribute": [
+        "location"
+      ]
+    },
+    {
+      "resource": "azurerm_resource_group.project",
+      "attribute": [
+        "name"
+      ]
+    }
+  ],
+  "provider_format_version": "1.0"
+}

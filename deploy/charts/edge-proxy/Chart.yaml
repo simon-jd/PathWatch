@@ -1,0 +1,5 @@
+apiVersion: v2
+name: edge-proxy
+description: PathWatch Rust edge proxy as a pod-local TLS sidecar (library chart).
+type: library
+version: 0.1.0

@@ -1,0 +1,9 @@
+20261101T072918Z-control query {'200': 1598, '429': 2} report {'OK': 160} span {'OK': ['07:29:14', '07:30:33']}
+20261101T073034Z-bad500 query {'200': 446, '429': 56, 'transport_error': 41, '500': 5, '503': 92} report {'OK': 26, 'Unavailable': 38} span {'OK': ['07:30:29', '07:30:41'], 'Unavailable': ['07:30:42', '07:31:00']}
+20261101T073102Z-control query {'200': 12088, '429': 12} report {'Unavailable': 128, 'OK': 1082} span {'Unavailable': ['07:30:58', '07:32:01'], 'OK': ['07:32:02', '07:41:02']}
+20261101T121713Z-control query {'200': 1600} report {'Unavailable': 13, 'ResourceExhausted': 147} span {'Unavailable': ['12:17:09', '12:17:15'], 'ResourceExhausted': ['12:17:15', '12:18:28']}
+20261101T121959Z-bad500 query {'200': 522, '500': 5, '503': 93} report {'Unavailable': 2, 'ResourceExhausted': 60} span {'Unavailable': ['12:19:55', '12:19:55'], 'ResourceExhausted': ['12:19:56', '12:20:25']}
+20261101T122156Z-bad500 query {'200': 534, '500': 5, '503': 81} report {'ResourceExhausted': 62} span {'ResourceExhausted': ['12:21:52', '12:22:22']}
+20261101T122816Z-control query {'200': 1619, '429': 1} report {'OK': 35, 'Unavailable': 127} span {'OK': ['12:28:11', '12:28:28'], 'Unavailable': ['12:28:28', '12:29:31']}
+20261101T123102Z-bad500 query {'200': 504, '500': 5, '503': 91} report {'OK': 60} span {'OK': ['12:30:58', '12:31:27']}
+20261101T123259Z-bad500 query {'200': 548, '500': 5, '503': 87} report {'OK': 64} span {'OK': ['12:32:55', '12:33:26']}

@@ -1,0 +1,40 @@
+{
+  "source_sha": "9d2b061b9488e44e688c824f8e4ba5c9cefbe13d",
+  "captured_utc": "2026-10-24T05:52:17Z",
+  "sites": {
+    "home": {
+      "neighbors": {
+        "10.255.0.1": {
+          "bgpState": "Established",
+          "local_GR_mode": "Helper*",
+          "remote_GR_mode": "Helper",
+          "hold_ms": 180000
+        },
+        "10.255.0.5": {
+          "bgpState": "Established",
+          "local_GR_mode": "Helper*",
+          "remote_GR_mode": "Helper",
+          "hold_ms": 180000
+        }
+      },
+      "GR_running_lines": []
+    },
+    "azure": {
+      "neighbors": {
+        "10.255.0.2": {
+          "bgpState": "Established",
+          "local_GR_mode": "Helper*",
+          "remote_GR_mode": "Helper",
+          "hold_ms": 180000
+        },
+        "10.255.0.6": {
+          "bgpState": "Established",
+          "local_GR_mode": "Helper*",
+          "remote_GR_mode": "Helper",
+          "hold_ms": 180000
+        }
+      },
+      "GR_running_lines": []
+    }
+  }
+}

@@ -1,0 +1,201 @@
+Real Azure network acceptance for francecentral; reviewed14creates then own-state cleanup
+=== RUN   TestNetworkAzure
+    network_test.go:37: network integration local state retained at /home/postedism/Desktop/PathWatch/.cache/azure-network-tests/pathwatch-it-4cb26c3889d0
+TestNetworkAzure 2026-10-23T20:48:42-07:00 retry.go:91: terraform [apply -input=false -auto-approve -no-color -lock=true -lock-timeout=60s /home/postedism/Desktop/PathWatch/.cache/azure-network-tests/pathwatch-it-4cb26c3889d0/infra/test/fixtures/azure/reviewed.tfplan]
+TestNetworkAzure 2026-10-23T20:48:42-07:00 logger.go:67: Running command terraform with args [apply -input=false -auto-approve -no-color -lock=true -lock-timeout=60s /home/postedism/Desktop/PathWatch/.cache/azure-network-tests/pathwatch-it-4cb26c3889d0/infra/test/fixtures/azure/reviewed.tfplan]
+TestNetworkAzure 2026-10-23T20:48:50-07:00 logger.go:67: module.network.azurerm_network_security_group.this: Creating...
+TestNetworkAzure 2026-10-23T20:48:50-07:00 logger.go:67: module.network.azurerm_route_table.this: Creating...
+TestNetworkAzure 2026-10-23T20:48:50-07:00 logger.go:67: module.network.azurerm_virtual_network.this: Creating...
+TestNetworkAzure 2026-10-23T20:48:53-07:00 logger.go:67: module.network.azurerm_network_security_group.this: Creation complete after 3s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0]
+TestNetworkAzure 2026-10-23T20:48:53-07:00 logger.go:67: module.network.azurerm_network_security_rule.private["metrics"]: Creating...
+TestNetworkAzure 2026-10-23T20:48:53-07:00 logger.go:67: module.network.azurerm_network_security_rule.deny_ingress: Creating...
+TestNetworkAzure 2026-10-23T20:48:53-07:00 logger.go:67: module.network.azurerm_network_security_rule.wireguard["<owner-peer-ip>/32"]: Creating...
+TestNetworkAzure 2026-10-23T20:48:54-07:00 logger.go:67: module.network.azurerm_route_table.this: Creation complete after 4s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/routeTables/rt-pathwatch-it-4cb26c3889d0]
+TestNetworkAzure 2026-10-23T20:48:55-07:00 logger.go:67: module.network.azurerm_virtual_network.this: Creation complete after 5s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0]
+TestNetworkAzure 2026-10-23T20:48:55-07:00 logger.go:67: module.network.azurerm_subnet.this["workloads"]: Creating...
+TestNetworkAzure 2026-10-23T20:48:55-07:00 logger.go:67: module.network.azurerm_subnet.this["nva"]: Creating...
+TestNetworkAzure 2026-10-23T20:48:55-07:00 logger.go:67: module.network.azurerm_subnet.this["aks_nodes"]: Creating...
+TestNetworkAzure 2026-10-23T20:48:56-07:00 logger.go:67: module.network.azurerm_network_security_rule.private["metrics"]: Creation complete after 2s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0/securityRules/allow-private-metrics]
+TestNetworkAzure 2026-10-23T20:48:56-07:00 logger.go:67: module.network.azurerm_network_security_rule.wireguard["<owner-peer-ip>/32"]: Creation complete after 2s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0/securityRules/allow-wireguard-0]
+TestNetworkAzure 2026-10-23T20:48:57-07:00 logger.go:67: module.network.azurerm_network_security_rule.deny_ingress: Creation complete after 3s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0/securityRules/deny-all-inbound]
+TestNetworkAzure 2026-10-23T20:49:01-07:00 logger.go:67: module.network.azurerm_subnet.this["workloads"]: Creation complete after 5s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-workloads]
+TestNetworkAzure 2026-10-23T20:49:05-07:00 logger.go:67: module.network.azurerm_subnet.this["nva"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:05-07:00 logger.go:67: module.network.azurerm_subnet.this["aks_nodes"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:06-07:00 logger.go:67: module.network.azurerm_subnet.this["aks_nodes"]: Creation complete after 10s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-aks_nodes]
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet.this["nva"]: Creation complete after 15s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-nva]
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["aks_nodes"]: Creating...
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["aks_nodes"]: Creating...
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["workloads"]: Creating...
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["nva"]: Creating...
+TestNetworkAzure 2026-10-23T20:49:10-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["workloads"]: Creating...
+TestNetworkAzure 2026-10-23T20:49:16-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["aks_nodes"]: Creation complete after 5s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-aks_nodes]
+TestNetworkAzure 2026-10-23T20:49:20-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["workloads"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:20-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["nva"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:20-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["aks_nodes"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:20-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["workloads"]: Still creating... [00m10s elapsed]
+TestNetworkAzure 2026-10-23T20:49:21-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["workloads"]: Creation complete after 11s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-workloads]
+TestNetworkAzure 2026-10-23T20:49:26-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["nva"]: Creation complete after 16s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-nva]
+TestNetworkAzure 2026-10-23T20:49:30-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["aks_nodes"]: Still creating... [00m20s elapsed]
+TestNetworkAzure 2026-10-23T20:49:30-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["workloads"]: Still creating... [00m20s elapsed]
+TestNetworkAzure 2026-10-23T20:49:32-07:00 logger.go:67: module.network.azurerm_subnet_route_table_association.this["aks_nodes"]: Creation complete after 21s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-aks_nodes]
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: module.network.azurerm_subnet_network_security_group_association.this["workloads"]: Creation complete after 26s [id=/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-workloads]
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: 
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: 
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: Outputs:
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: 
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: address_spaces = toset([
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "10.20.0.0/16",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: ])
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: location = "francecentral"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: nsg_id = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: nsg_name = "nsg-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: reserved_address_spaces = {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "aks_pods" = "10.20.64.0/18"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "aks_services" = "10.20.32.0/20"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "home" = "10.30.0.0/16"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "wireguard" = "10.255.0.0/24"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: resource_group_name = "rg-pathwatch-lab"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: route_table_id = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/routeTables/rt-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: route_table_name = "rt-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: subnet_ids = {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "aks_nodes" = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-aks_nodes"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "nva" = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-nva"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "workloads" = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-workloads"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: subnet_names = {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "aks_nodes" = "snet-aks_nodes"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "nva" = "snet-nva"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "workloads" = "snet-workloads"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: subnet_prefixes = {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "aks_nodes" = "10.20.16.0/20"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "nva" = "10.20.1.0/27"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "workloads" = "10.20.0.0/24"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: vnet_id = "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: vnet_name = "vnet-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 retry.go:91: terraform [output -no-color -json]
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: Running command terraform with args [output -no-color -json]
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "address_spaces": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "set",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "string"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ],
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "10.20.0.0/16"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ]
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "location": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "francecentral"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "nsg_id": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "nsg_name": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "nsg-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "reserved_address_spaces": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "object",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "aks_pods": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "aks_services": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "home": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "wireguard": "string"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ],
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "aks_pods": "10.20.64.0/18",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "aks_services": "10.20.32.0/20",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "home": "10.30.0.0/16",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "wireguard": "10.255.0.0/24"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "resource_group_name": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "rg-pathwatch-lab"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "route_table_id": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/routeTables/rt-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "route_table_name": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "rt-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "subnet_ids": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "object",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "aks_nodes": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "nva": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "workloads": "string"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ],
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "aks_nodes": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-aks_nodes",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "nva": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-nva",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "workloads": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0/subnets/snet-workloads"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "subnet_names": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "object",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "aks_nodes": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "nva": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "workloads": "string"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ],
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "aks_nodes": "snet-aks_nodes",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "nva": "snet-nva",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "workloads": "snet-workloads"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "subnet_prefixes": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": [
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "object",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "aks_nodes": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "nva": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:         "workloads": "string"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     ],
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "aks_nodes": "10.20.16.0/20",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "nva": "10.20.1.0/27",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:       "workloads": "10.20.0.0/24"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "vnet_id": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "/subscriptions/<subscription-id>/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   },
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   "vnet_name": {
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "sensitive": false,
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "type": "string",
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:     "value": "vnet-pathwatch-it-4cb26c3889d0"
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67:   }
+TestNetworkAzure 2026-10-23T20:49:37-07:00 logger.go:67: }
+--- PASS: TestNetworkAzure (153.27s)
+PASS
+ok  	pathwatch.local/pathwatch/infra/test	153.287s

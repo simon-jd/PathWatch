@@ -1,0 +1,69 @@
+{
+  "compiled_utc": "2026-10-24T20:40:44.738483+00:00",
+  "scope": "home-only N=1; no cloud or DoH or raw privilege deployment",
+  "baseline_utc": "2026-10-24T20:15:37Z",
+  "baseline_firing_pages": [],
+  "outage_final_sample_utc": "2026-10-24T20:35:38Z",
+  "paused_final_sample_elapsed_seconds": 1200.229,
+  "last_recovery_sample_utc": "2026-10-24T20:38:11Z",
+  "first_firing_page": {
+    "PathWatchReadinessBudgetBurn": {
+      "utc": "2026-10-24T20:16:08Z",
+      "elapsed_seconds": 30.436
+    },
+    "PathWatchFreshnessBudgetBurn": {
+      "utc": "2026-10-24T20:25:43Z",
+      "elapsed_seconds": 605.464
+    }
+  },
+  "backlog_results": 70,
+  "backlog_batches": {
+    "35994ab96d3eef63ca5e9e49f2e311f6": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "f8b6358844358ab408ce88d0b62e9cab": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "98bdadf23710d785217e527bba28a86b": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "9819beb53ebed0cd888e7fa3c98ffd20": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "23ca515c8c055c53c91ea631773fd89f": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "73501a6dae832165bfbe5ca289b8caa1": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "359cbd8edf2082daa7e10b55e19e8b45": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "b7bafc37deb768a61bb66415f53aa42a": {
+      "probe_id": "home",
+      "results": 2
+    },
+    "b7da9a8dba7a2baa51ec7ff53c164fb3": {
+      "probe_id": "home",
+      "results": 5
+    },
+    "5d6124cc8ac96fedeedc210e64426bc4": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "c35e3cb06d39ddf83c84e45d912ca606": {
+      "probe_id": "home",
+      "results": 7
+    }
+  },
+  "journal_owner_sha256_unchanged": true,
+  "final_sli_metrics_raw": "pathwatch_slo_windows_total 19\npathwatch_slo_windows_bad 15\npathwatch_slo_api_total 377\npathwatch_slo_api_bad 325\npathwatch_slo_expected_observers 1\npathwatch_slo_required_observers 1\npathwatch_slo_last_observation_seconds 1792874280\npathwatch_slo_observation_start_seconds 1792868625\npathwatch_slo_last_window_bad 1\npathwatch_slo_current_fresh_observers 0\npathwatch_journal_records 14\npathwatch_journal_bytes 15266\n",
+  "source_scope_correction": "result.scope retains a hardcoded fixture caveat; fixture=false plus healthy baseline and captured transition independently prove this real campaign transition. No source/result rewrite."
+}

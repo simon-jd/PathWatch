@@ -1,0 +1,10 @@
+---
+pathwatch_owned_probe_vm: false
+pathwatch_probe_user: pathwatch-probe
+pathwatch_probe_root: /opt/pathwatch-probe
+pathwatch_probe_state: /var/lib/pathwatch-probe
+pathwatch_probe_binary: ''
+pathwatch_probe_sha256: ''
+pathwatch_probe_config: {}
+pathwatch_probe_ca_file: ''
+pathwatch_probe_target_ca_file: ''

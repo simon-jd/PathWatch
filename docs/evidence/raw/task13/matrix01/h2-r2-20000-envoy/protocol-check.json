@@ -1,0 +1,19 @@
+[
+  {
+    "proxy": "envoy",
+    "tls": "TLSv1.3",
+    "alpn": "http/1.1",
+    "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+    "verified_trust": true,
+    "sni": "bench.pathwatch.test",
+    "body_sha256": "49abd65bbf7f7e40c7055093ed2e3fd75f2f602f2c5fcf955c213e3135eb03f7"
+  },
+  {
+    "proxy": "envoy",
+    "tls": "TLSv1.3",
+    "alpn": "h2",
+    "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+    "verified_trust": true,
+    "sni": "bench.pathwatch.test"
+  }
+]

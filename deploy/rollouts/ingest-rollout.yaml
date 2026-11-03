@@ -1,0 +1,223 @@
+# Rendered from deploy/charts/ingest by `make deploy-check UPDATE=1`; do not edit by hand.
+# Image tags are the check placeholders; real tags come from each desired-state revision.
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: frontend-error-rate
+  labels:
+    app.kubernetes.io/part-of: pathwatch
+    app.kubernetes.io/managed-by: argocd
+    project: pathwatch
+spec:
+  args:
+  - name: canary-hash
+  metrics:
+  - name: query-error-ratio
+    initialDelay: 20s
+    interval: 10s
+    count: 6
+    failureLimit: 0
+    successCondition: len(result) == 1 && result[0] <= 0.05
+    failureCondition: len(result) != 1 || result[0] > 0.05
+    provider:
+      prometheus:
+        address: http://prometheus.pathwatch-observe.svc:9090
+        query: |
+          (
+            sum(increase(pathwatch_query_requests_total{job="frontend",rollouts_pod_template_hash="{{args.canary-hash}}",outcome="failure"}[1m]))
+            /
+            sum(increase(pathwatch_query_requests_total{job="frontend",rollouts_pod_template_hash="{{args.canary-hash}}"}[1m]))
+          )
+          and on()
+          sum(increase(pathwatch_query_requests_total{job="frontend",rollouts_pod_template_hash="{{args.canary-hash}}"}[1m])) >= 5
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: frontend
+  labels:
+    app.kubernetes.io/part-of: pathwatch
+    app.kubernetes.io/managed-by: argocd
+    project: pathwatch
+spec:
+  replicas: 4
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frontend
+  strategy:
+    canary:
+      stableService: frontend-stable
+      canaryService: frontend-canary
+      maxSurge: 1
+      maxUnavailable: 0
+      steps:
+      - setWeight: 25
+      - analysis:
+          templates:
+          - templateName: frontend-error-rate
+          args:
+          - name: canary-hash
+            valueFrom:
+              podTemplateHashValue: Latest
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frontend
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/part-of: pathwatch
+        app.kubernetes.io/managed-by: argocd
+        project: pathwatch
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 90
+      securityContext:
+        fsGroup: 65532
+      initContainers:
+      - name: edge-proxy
+        image: pathwatch/edge-proxy:git-000000000000
+        imagePullPolicy: Never
+        restartPolicy: Always
+        args:
+        - /etc/edge-proxy/config.toml
+        ports:
+        - name: https
+          containerPort: 8443
+        readinessProbe:
+          tcpSocket:
+            port: https
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: 50m
+            memory: 32Mi
+          limits:
+            memory: 256Mi
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: edge-proxy-config
+          mountPath: /etc/edge-proxy
+          readOnly: true
+        - name: edge-tls
+          mountPath: /tls
+          readOnly: true
+      containers:
+      - name: frontend
+        image: pathwatch/ingest:git-000000000000
+        imagePullPolicy: Never
+        command:
+        - /ingest
+        args:
+        - -mode
+        - frontend
+        - -core-target
+        - core.pathwatch-app.svc:9444
+        - -core-ca
+        - /tls/ca.pem
+        - -core-cert
+        - /tls/frontend.pem
+        - -core-key
+        - /tls/frontend-key.pem
+        - -core-server-name
+        - core.pathwatch-app.svc
+        - -listen
+        - 127.0.0.1:9443
+        - -development-cleartext
+        - -query-listen
+        - 127.0.0.1:8081
+        - -metrics
+        - 127.0.0.1:9091
+        lifecycle:
+          preStop:
+            sleep:
+              seconds: 10
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            memory: 1Gi
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: frontend-tls
+          mountPath: /tls
+          readOnly: true
+      - name: adminbridge
+        image: pathwatch/ingest:git-000000000000
+        imagePullPolicy: Never
+        command:
+        - /adminbridge
+        args:
+        - serve
+        - -upstream
+        - 127.0.0.1:9091
+        - -listen
+        - 0.0.0.0:9445
+        - -ca
+        - /metrics-tls/ca.pem
+        - -cert
+        - /metrics-tls/metrics.pem
+        - -key
+        - /metrics-tls/metrics-key.pem
+        ports:
+        - name: metrics
+          containerPort: 9445
+        readinessProbe:
+          exec:
+            command:
+            - /adminbridge
+            - check-ready
+            - -upstream
+            - 127.0.0.1:9091
+            - -ready-format
+            - frontend
+          periodSeconds: 5
+          timeoutSeconds: 3
+        resources:
+          requests:
+            cpu: 10m
+            memory: 16Mi
+          limits:
+            memory: 64Mi
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 65532
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: metrics-tls
+          mountPath: /metrics-tls
+          readOnly: true
+      volumes:
+      - name: edge-proxy-config
+        configMap:
+          name: frontend-edge-proxy
+      - name: frontend-tls
+        secret:
+          secretName: pathwatch-frontend-tls
+          defaultMode: 288
+      - name: edge-tls
+        secret:
+          secretName: pathwatch-frontend-tls
+          defaultMode: 288
+      - name: metrics-tls
+        secret:
+          secretName: pathwatch-metrics-tls
+          defaultMode: 288

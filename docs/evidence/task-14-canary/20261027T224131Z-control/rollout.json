@@ -1,0 +1,341 @@
+{
+    "apiVersion": "argoproj.io/v1alpha1",
+    "kind": "Rollout",
+    "metadata": {
+        "annotations": {
+            "argocd.argoproj.io/tracking-id": "pathwatch-ingest:argoproj.io/Rollout:pathwatch-app/frontend",
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Rollout\",\"metadata\":{\"annotations\":{\"argocd.argoproj.io/tracking-id\":\"pathwatch-ingest:argoproj.io/Rollout:pathwatch-app/frontend\"},\"labels\":{\"app.kubernetes.io/managed-by\":\"argocd\",\"app.kubernetes.io/part-of\":\"pathwatch\",\"project\":\"pathwatch\"},\"name\":\"frontend\",\"namespace\":\"pathwatch-app\"},\"spec\":{\"replicas\":2,\"revisionHistoryLimit\":3,\"selector\":{\"matchLabels\":{\"app.kubernetes.io/name\":\"frontend\"}},\"strategy\":{\"canary\":{\"canaryService\":\"frontend-canary\",\"maxSurge\":1,\"maxUnavailable\":0,\"stableService\":\"frontend-stable\",\"steps\":[{\"setWeight\":50},{\"analysis\":{\"args\":[{\"name\":\"canary-hash\",\"valueFrom\":{\"podTemplateHashValue\":\"Latest\"}}],\"templates\":[{\"templateName\":\"frontend-error-rate\"}]}}]}},\"template\":{\"metadata\":{\"labels\":{\"app.kubernetes.io/component\":\"frontend\",\"app.kubernetes.io/managed-by\":\"argocd\",\"app.kubernetes.io/name\":\"frontend\",\"app.kubernetes.io/part-of\":\"pathwatch\",\"project\":\"pathwatch\"}},\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[\"-mode\",\"frontend\",\"-core-target\",\"core.pathwatch-app.svc:9444\",\"-core-ca\",\"/tls/ca.pem\",\"-core-cert\",\"/tls/frontend.pem\",\"-core-key\",\"/tls/frontend-key.pem\",\"-core-server-name\",\"core.pathwatch-app.svc\",\"-listen\",\"127.0.0.1:9443\",\"-development-cleartext\",\"-query-listen\",\"127.0.0.1:8081\",\"-metrics\",\"127.0.0.1:9091\"],\"command\":[\"/ingest\"],\"image\":\"pathwatch/ingest:git-e7f4721370ba-control\",\"imagePullPolicy\":\"Never\",\"name\":\"frontend\",\"resources\":{\"limits\":{\"memory\":\"1Gi\"},\"requests\":{\"cpu\":\"50m\",\"memory\":\"64Mi\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true,\"runAsNonRoot\":true,\"runAsUser\":65532},\"volumeMounts\":[{\"mountPath\":\"/tls\",\"name\":\"frontend-tls\",\"readOnly\":true}]},{\"args\":[\"serve\",\"-upstream\",\"127.0.0.1:9091\",\"-listen\",\"0.0.0.0:9445\",\"-ca\",\"/metrics-tls/ca.pem\",\"-cert\",\"/metrics-tls/metrics.pem\",\"-key\",\"/metrics-tls/metrics-key.pem\"],\"command\":[\"/adminbridge\"],\"image\":\"pathwatch/ingest:git-e7f4721370ba-control\",\"imagePullPolicy\":\"Never\",\"name\":\"adminbridge\",\"ports\":[{\"containerPort\":9445,\"name\":\"metrics\"}],\"readinessProbe\":{\"exec\":{\"command\":[\"/adminbridge\",\"check-ready\",\"-upstream\",\"127.0.0.1:9091\",\"-ready-format\",\"frontend\"]},\"periodSeconds\":5,\"timeoutSeconds\":3},\"resources\":{\"limits\":{\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"16Mi\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true,\"runAsNonRoot\":true,\"runAsUser\":65532},\"volumeMounts\":[{\"mountPath\":\"/metrics-tls\",\"name\":\"metrics-tls\",\"readOnly\":true}]}],\"initContainers\":[{\"args\":[\"/etc/edge-proxy/config.toml\"],\"image\":\"pathwatch/edge-proxy:git-e7f4721370ba\",\"imagePullPolicy\":\"Never\",\"name\":\"edge-proxy\",\"ports\":[{\"containerPort\":8443,\"name\":\"https\"}],\"readinessProbe\":{\"periodSeconds\":5,\"tcpSocket\":{\"port\":\"https\"}},\"resources\":{\"limits\":{\"memory\":\"256Mi\"},\"requests\":{\"cpu\":\"50m\",\"memory\":\"32Mi\"}},\"restartPolicy\":\"Always\",\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true,\"runAsNonRoot\":true,\"runAsUser\":65532},\"volumeMounts\":[{\"mountPath\":\"/etc/edge-proxy\",\"name\":\"edge-proxy-config\",\"readOnly\":true},{\"mountPath\":\"/tls\",\"name\":\"edge-tls\",\"readOnly\":true}]}],\"securityContext\":{\"fsGroup\":65532},\"terminationGracePeriodSeconds\":90,\"volumes\":[{\"configMap\":{\"name\":\"frontend-edge-proxy\"},\"name\":\"edge-proxy-config\"},{\"name\":\"frontend-tls\",\"secret\":{\"defaultMode\":288,\"secretName\":\"pathwatch-frontend-tls\"}},{\"name\":\"edge-tls\",\"secret\":{\"defaultMode\":288,\"secretName\":\"pathwatch-frontend-tls\"}},{\"name\":\"metrics-tls\",\"secret\":{\"defaultMode\":288,\"secretName\":\"pathwatch-metrics-tls\"}}]}}}}\n",
+            "rollout.argoproj.io/revision": "2"
+        },
+        "creationTimestamp": "2026-10-27T22:25:06Z",
+        "generation": 2,
+        "labels": {
+            "app.kubernetes.io/managed-by": "argocd",
+            "app.kubernetes.io/part-of": "pathwatch",
+            "project": "pathwatch"
+        },
+        "name": "frontend",
+        "namespace": "pathwatch-app",
+        "resourceVersion": "4063",
+        "uid": "50fac576-1efc-4174-8d33-4e057d859f28"
+    },
+    "spec": {
+        "replicas": 2,
+        "revisionHistoryLimit": 3,
+        "selector": {
+            "matchLabels": {
+                "app.kubernetes.io/name": "frontend"
+            }
+        },
+        "strategy": {
+            "canary": {
+                "canaryService": "frontend-canary",
+                "maxSurge": 1,
+                "maxUnavailable": 0,
+                "stableService": "frontend-stable",
+                "steps": [
+                    {
+                        "setWeight": 50
+                    },
+                    {
+                        "analysis": {
+                            "args": [
+                                {
+                                    "name": "canary-hash",
+                                    "valueFrom": {
+                                        "podTemplateHashValue": "Latest"
+                                    }
+                                }
+                            ],
+                            "templates": [
+                                {
+                                    "templateName": "frontend-error-rate"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/component": "frontend",
+                    "app.kubernetes.io/managed-by": "argocd",
+                    "app.kubernetes.io/name": "frontend",
+                    "app.kubernetes.io/part-of": "pathwatch",
+                    "project": "pathwatch"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "args": [
+                            "-mode",
+                            "frontend",
+                            "-core-target",
+                            "core.pathwatch-app.svc:9444",
+                            "-core-ca",
+                            "/tls/ca.pem",
+                            "-core-cert",
+                            "/tls/frontend.pem",
+                            "-core-key",
+                            "/tls/frontend-key.pem",
+                            "-core-server-name",
+                            "core.pathwatch-app.svc",
+                            "-listen",
+                            "127.0.0.1:9443",
+                            "-development-cleartext",
+                            "-query-listen",
+                            "127.0.0.1:8081",
+                            "-metrics",
+                            "127.0.0.1:9091"
+                        ],
+                        "command": [
+                            "/ingest"
+                        ],
+                        "image": "pathwatch/ingest:git-e7f4721370ba-control",
+                        "imagePullPolicy": "Never",
+                        "name": "frontend",
+                        "resources": {
+                            "limits": {
+                                "memory": "1Gi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65532
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/tls",
+                                "name": "frontend-tls",
+                                "readOnly": true
+                            }
+                        ]
+                    },
+                    {
+                        "args": [
+                            "serve",
+                            "-upstream",
+                            "127.0.0.1:9091",
+                            "-listen",
+                            "0.0.0.0:9445",
+                            "-ca",
+                            "/metrics-tls/ca.pem",
+                            "-cert",
+                            "/metrics-tls/metrics.pem",
+                            "-key",
+                            "/metrics-tls/metrics-key.pem"
+                        ],
+                        "command": [
+                            "/adminbridge"
+                        ],
+                        "image": "pathwatch/ingest:git-e7f4721370ba-control",
+                        "imagePullPolicy": "Never",
+                        "name": "adminbridge",
+                        "ports": [
+                            {
+                                "containerPort": 9445,
+                                "name": "metrics",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "exec": {
+                                "command": [
+                                    "/adminbridge",
+                                    "check-ready",
+                                    "-upstream",
+                                    "127.0.0.1:9091",
+                                    "-ready-format",
+                                    "frontend"
+                                ]
+                            },
+                            "periodSeconds": 5,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "16Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65532
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/metrics-tls",
+                                "name": "metrics-tls",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "initContainers": [
+                    {
+                        "args": [
+                            "/etc/edge-proxy/config.toml"
+                        ],
+                        "image": "pathwatch/edge-proxy:git-e7f4721370ba",
+                        "imagePullPolicy": "Never",
+                        "name": "edge-proxy",
+                        "ports": [
+                            {
+                                "containerPort": 8443,
+                                "name": "https",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "periodSeconds": 5,
+                            "tcpSocket": {
+                                "port": "https"
+                            }
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartPolicy": "Always",
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65532
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/edge-proxy",
+                                "name": "edge-proxy-config",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/tls",
+                                "name": "edge-tls",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "securityContext": {
+                    "fsGroup": 65532
+                },
+                "terminationGracePeriodSeconds": 90,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "name": "frontend-edge-proxy"
+                        },
+                        "name": "edge-proxy-config"
+                    },
+                    {
+                        "name": "frontend-tls",
+                        "secret": {
+                            "defaultMode": 288,
+                            "secretName": "pathwatch-frontend-tls"
+                        }
+                    },
+                    {
+                        "name": "edge-tls",
+                        "secret": {
+                            "defaultMode": 288,
+                            "secretName": "pathwatch-frontend-tls"
+                        }
+                    },
+                    {
+                        "name": "metrics-tls",
+                        "secret": {
+                            "defaultMode": 288,
+                            "secretName": "pathwatch-metrics-tls"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "HPAReplicas": 2,
+        "availableReplicas": 2,
+        "blueGreen": {},
+        "canary": {},
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-10-27T22:41:18Z",
+                "lastUpdateTime": "2026-10-27T22:41:18Z",
+                "message": "Rollout has minimum availability",
+                "reason": "AvailableReason",
+                "status": "True",
+                "type": "Available"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T22:43:27Z",
+                "lastUpdateTime": "2026-10-27T22:43:27Z",
+                "message": "RolloutCompleted",
+                "reason": "RolloutCompleted",
+                "status": "True",
+                "type": "Completed"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T22:43:27Z",
+                "lastUpdateTime": "2026-10-27T22:43:27Z",
+                "message": "Rollout is healthy",
+                "reason": "RolloutHealthy",
+                "status": "True",
+                "type": "Healthy"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T22:36:07Z",
+                "lastUpdateTime": "2026-10-27T22:43:27Z",
+                "message": "ReplicaSet \"frontend-8676b7667f\" has successfully progressed.",
+                "reason": "NewReplicaSetAvailable",
+                "status": "True",
+                "type": "Progressing"
+            }
+        ],
+        "currentPodHash": "8676b7667f",
+        "currentStepHash": "58cff99567",
+        "currentStepIndex": 2,
+        "observedGeneration": "2",
+        "phase": "Healthy",
+        "readyReplicas": 2,
+        "replicas": 2,
+        "selector": "app.kubernetes.io/name=frontend",
+        "stableRS": "8676b7667f",
+        "updatedReplicas": 2
+    }
+}

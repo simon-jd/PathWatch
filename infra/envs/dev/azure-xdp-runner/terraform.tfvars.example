@@ -1,0 +1,8 @@
+subscription_id    = "11111111-1111-1111-1111-111111111111"
+xdp_scope          = "xdp-runner"
+location           = "westus"
+run_id             = "example01"
+ttl                = "2026-10-25T02:00:00Z" # deliberately expired; never deployment authority
+operator_ipv4_cidr = "8.8.8.8/32"           # synthetic; replace with verified operator
+admin_public_key   = "REPLACE_WITH_REVIEWED_ED25519_PUBLIC_KEY"
+hourly             = { vm = "0.17", ip = "0.005", disk = "0.505" }

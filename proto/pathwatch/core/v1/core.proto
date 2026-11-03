@@ -1,0 +1,24 @@
+syntax = "proto3";
+package pathwatch.core.v1;
+option go_package = "pathwatch.local/pathwatch/proto/pathwatch/core/v1;corev1";
+import "google/protobuf/timestamp.proto";
+import "proto/pathwatch/v1/probe.proto";
+service Core {
+ rpc Report(pathwatch.v1.ReportRequest) returns (pathwatch.v1.ReportResponse);
+ rpc ReadRaw(QueryRequest) returns (RawResponse);
+ rpc ReadQuantiles(QueryRequest) returns (QuantilesResponse);
+ rpc ReadEvents(QueryRequest) returns (EventsResponse);
+ rpc Describe(DescribeRequest) returns (DescribeResponse);
+}
+message QueryRequest { string path_key=1; google.protobuf.Timestamp from=2; google.protobuf.Timestamp to=3; uint32 limit=4; }
+message RawResponse { repeated RawRow rows=1; }
+message QuantilesResponse { repeated QuantileRow rows=1; }
+message EventsResponse { repeated EventRow rows=1; }
+message RawRow {
+ string batch_key=1; uint32 result_index=2; string probe_id=3; string batch_id=4; string target_id=5; string kind=6; string family=7; string addr=8; string path_key=9;
+ google.protobuf.Timestamp started_at=10; map<string,int64> phases=11; string err=12; string protocol=13; repeated uint32 hop_ttls=14; repeated string hop_addrs=15; repeated int64 hop_rtts=16; uint32 tls_version=17; bool tls_resumed=18; optional double phase_ms=19; reserved 20;
+}
+message QuantileRow { string path_key=1; google.protobuf.Timestamp window_start=2; double p50=3; double p95=4; double p99=5; uint64 samples=6; }
+message EventRow { string event_id=1; string path_key=2; google.protobuf.Timestamp window_start=3; double p95=4; double baseline=5; double sigma=6; double k=7; double h=8; bool path_changed=9; uint32 first_divergent_ttl=10; string correlation_reason=11; }
+message DescribeRequest {}
+message DescribeResponse { uint32 major=1; uint32 minor=2; uint64 capabilities=3; uint32 max_report_bytes=4; uint32 max_query_bytes=5; uint32 max_reply_bytes=6; bool ready=7; }

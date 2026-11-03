@@ -1,0 +1,21 @@
+all:
+  vars:
+    ansible_user: pathwatch
+    # Ignored private paths only; public endpoint values come from Terraform output.
+    ansible_ssh_private_key_file: /absolute/project/.cache/hybrid/id_ed25519
+    # Ignore host/user SSH configs; trust only the verified project host keys.
+    ansible_ssh_common_args: >-
+      -F /dev/null -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=10
+      -o StrictHostKeyChecking=yes -o GlobalKnownHostsFile=/dev/null
+      -o UserKnownHostsFile=/absolute/project/.cache/hybrid/known_hosts
+    pathwatch_owned_vm: true
+  children:
+    azure_nva:
+      hosts:
+        pathwatch-nva:
+          ansible_host: REPLACE_NVA_PUBLIC_IP
+          pathwatch_rendered: /absolute/project/.cache/hybrid/azure
+    azure_workload:
+      hosts:
+        pathwatch-client:
+          ansible_host: REPLACE_CLIENT_PUBLIC_IP

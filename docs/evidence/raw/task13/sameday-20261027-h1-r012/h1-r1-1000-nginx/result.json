@@ -1,0 +1,181 @@
+{
+  "proxy": "nginx",
+  "protocol": "h1",
+  "rate": 1000,
+  "round": 1,
+  "duration_s": 120,
+  "warmup_s": 15,
+  "start_utc": "2026-10-28T03:32:53Z",
+  "offered_requests": 120000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    151242,
+    151243,
+    151244
+  ],
+  "proxy_identities": [
+    {
+      "pid": 151242,
+      "state": "S",
+      "ppid": 4067558,
+      "pgrp": 151242,
+      "session": 151242,
+      "starttime": 95612691
+    },
+    {
+      "pid": 151243,
+      "state": "S",
+      "ppid": 151242,
+      "pgrp": 151242,
+      "session": 151242,
+      "starttime": 95612691
+    },
+    {
+      "pid": 151244,
+      "state": "S",
+      "ppid": 151242,
+      "pgrp": 151242,
+      "session": 151242,
+      "starttime": 95612691
+    }
+  ],
+  "warmup_pid": 151263,
+  "warmup": {
+    "configured_s": 15,
+    "wall_elapsed_s": 15.091428468003869,
+    "reported_elapsed_s": 15.001666,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/wrk2-44a94c17d8e6a0bac8559b53da76848e430cb7a7/wrk",
+    "-t4",
+    "-c100",
+    "-d120s",
+    "-R1000",
+    "--timeout",
+    "10s",
+    "--latency",
+    "-s",
+    "bench/wrk.lua",
+    "https://bench.pathwatch.test:18443/"
+  ],
+  "generator_pid": 154935,
+  "collector_pid": null,
+  "wall_elapsed_s": 120.26784725894686,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 120,
+    "wall_elapsed_s": 120.26784725894686,
+    "reported_elapsed_s": 120.001702,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 0,
+    "connections": 0,
+    "requests": 119987
+  },
+  "cpu_pidstat_seconds": 5.787499999999982,
+  "cpu_proc_seconds": 5.79,
+  "cpu_boundary_delta_seconds": 0.0025000000000181544,
+  "counts": {
+    "completed": 119984,
+    "elapsed_s": 120.0,
+    "errors": {
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0,
+      "http": 0
+    },
+    "started": 119987
+  },
+  "latency": {
+    "p50_us": 770.0,
+    "p99_us": 1870.0,
+    "p999_us": 3770.0
+  },
+  "configured_window_rps": 999.8666666666667,
+  "achieved_rps": 999.8524854255818,
+  "cpu_us_per_completed": 48.235598079743816,
+  "upstream_requests_per_new_connection": null,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 119987,
+    "fifo_write_calls": 0,
+    "fifo_bytes": 0,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 0,
+    "fifo_max_write_ns": 0
+  },
+  "unfinished_at_end": 3,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 151242,
+      "state": "S",
+      "ppid": 4067558,
+      "pgrp": 151242,
+      "session": 151242,
+      "starttime": 95612691
+    },
+    "observed_identities": [
+      {
+        "pid": 151242,
+        "state": "S",
+        "ppid": 4067558,
+        "pgrp": 151242,
+        "session": 151242,
+        "starttime": 95612691
+      },
+      {
+        "pid": 151243,
+        "state": "S",
+        "ppid": 151242,
+        "pgrp": 151242,
+        "session": 151242,
+        "starttime": 95612691
+      },
+      {
+        "pid": 151244,
+        "state": "S",
+        "ppid": 151242,
+        "pgrp": 151242,
+        "session": 151242,
+        "starttime": 95612691
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 151242,
+          "state": "S",
+          "ppid": 4067558,
+          "pgrp": 151242,
+          "session": 151242,
+          "starttime": 95612691
+        },
+        "signal": 3
+      }
+    ]
+  },
+  "total_elapsed_s": 136.43146849400364,
+  "end_utc": "2026-10-28T03:35:10Z"
+}

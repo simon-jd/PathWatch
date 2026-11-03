@@ -1,0 +1,53 @@
+# Task 17 anycast / BGP policy lab, realized by lab/bgp/lab.py with plain
+# Docker bridge networks (containerlab needs sudo). One /29 per link; .1 is the
+# Docker bridge gateway and is never a BGP peer. Containers get only NET_ADMIN
+# (and Docker's default NET_RAW) inside their own network namespace.
+name: pathwatch-bgp
+anycast: 198.51.100.0/24        # service address 198.51.100.1 on every PoP
+roa: {prefix: 198.51.100.0/24, max_length: 24, asn: 64500}
+
+# Relationships drive both the routers' policies and the leak detector.
+asns:
+  64500: {role: anycast, providers: [64601, 64602]}
+  64601: {role: transit, peers: [64602]}
+  64602: {role: transit, peers: [64601]}
+  64701: {role: client, providers: [64601], prefix: 192.0.2.0/26}
+  64702: {role: client, providers: [64601, 64602], prefix: 192.0.2.64/26}
+  64703: {role: client, providers: [64602], prefix: 192.0.2.128/26}
+
+nodes:
+  pop1: {asn: 64500, loopback: 198.51.100.1/32}
+  pop2: {asn: 64500, loopback: 198.51.100.1/32}
+  pop3: {asn: 64500, loopback: 198.51.100.1/32}
+  t1a:  {asn: 64601}
+  t1b:  {asn: 64601}
+  t2:   {asn: 64602}
+  c1:   {asn: 64701, loopback: 192.0.2.1/32}
+  c2:   {asn: 64702, loopback: 192.0.2.65/32}
+  c3:   {asn: 64703, loopback: 192.0.2.129/32}
+
+# Expected nearest PoP and why:
+#  c1 -> t1a -> pop1: t1a prefers its eBGP route over pop2 learned via iBGP (hot potato).
+#  c2 -> t1b -> pop2: same at t1b; c2 gives its primary provider AS64601 local-pref 200.
+#  c3 -> t2 -> pop3: pop2 prepends twice toward t2, so t2 keeps pop3.
+expected_nearest: {c1: pop1, c2: pop2, c3: pop3}
+
+links:   # [a, a_ip, b, b_ip]; network 10.117.<n>.0/29
+  1:  [pop1, 10.117.1.2, t1a, 10.117.1.3]
+  2:  [pop2, 10.117.2.2, t1b, 10.117.2.3]
+  3:  [pop2, 10.117.3.2, t2, 10.117.3.3]
+  4:  [pop3, 10.117.4.2, t2, 10.117.4.3]
+  5:  [t1a, 10.117.5.2, t1b, 10.117.5.3]
+  6:  [c1, 10.117.6.2, t1a, 10.117.6.3]
+  7:  [c2, 10.117.7.2, t1b, 10.117.7.3]
+  8:  [c2, 10.117.8.2, t2, 10.117.8.3]
+  9:  [c3, 10.117.9.2, t2, 10.117.9.3]
+  10: [t1a, 10.117.10.2, t2, 10.117.10.3]
+
+# Route collector and RPKI on one shared network 10.117.100.0/28.
+monitor:
+  network: 10.117.100.0/28
+  members: {collector: 10.117.100.2, t1a: 10.117.100.3, t1b: 10.117.100.4, t2: 10.117.100.5, c2: 10.117.100.6,
+            krill: 10.117.100.8, routinator: 10.117.100.9}
+  collector_asn: 65000
+  feeds: [t1a, t1b, t2, c2]

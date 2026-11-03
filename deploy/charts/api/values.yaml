@@ -1,0 +1,9 @@
+images:
+  querygen: ""   # pathwatch/querygen:git-<sha>, written by deploy/kind/publish.py
+
+apiHost: api.pathwatch.local
+querygen:
+  rps: 20
+  # Report traffic through the edge-proxy route the query drill previously skipped.
+  reportRps: 2
+  pathKey: "home→owned/tcp/v4"

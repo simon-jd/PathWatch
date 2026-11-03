@@ -1,0 +1,105 @@
+---
+- name: Require the explicitly owned remote Ubuntu Azure probe guest
+  ansible.builtin.assert:
+    that:
+      - pathwatch_owned_probe_vm | bool
+      - inventory_hostname != 'localhost'
+      - ansible_connection | default('ssh') == 'ssh'
+      - ansible_distribution == 'Ubuntu'
+      - ansible_distribution_version == '24.04'
+      - pathwatch_echo_site in ['azure-a', 'azure-b']
+      - pathwatch_probe_config.probe_id == pathwatch_echo_site
+      - pathwatch_echo_architecture in ['x86_64', 'aarch64']
+      - pathwatch_echo_architecture == ansible_architecture
+      - pathwatch_echo_user == 'pathwatch-echo'
+      - pathwatch_echo_root == '/opt/pathwatch-echo'
+      - pathwatch_echo_sha256 is match('^[0-9a-f]{64}$')
+      - pathwatch_echo_cert | length > 0
+      - pathwatch_echo_key | length > 0
+      - pathwatch_echo_ca | length > 0
+      - "({'azure-a': '10.10.1.4', 'azure-b': '10.20.1.4'}[pathwatch_echo_site]) in ansible_all_ipv4_addresses"
+- name: Verify reviewed local architecture-matched echo artifact
+  ansible.builtin.stat:
+    path: '{{ pathwatch_echo_binary }}'
+    checksum_algorithm: sha256
+  delegate_to: localhost
+  become: false
+  register: echo_binary
+- name: Require reviewed artifact hash
+  ansible.builtin.assert:
+    that: echo_binary.stat.checksum == pathwatch_echo_sha256
+- name: Create restricted echo account
+  ansible.builtin.user:
+    name: '{{ pathwatch_echo_user }}'
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
+- name: Create read-only application directory
+  ansible.builtin.file:
+    path: '{{ pathwatch_echo_root }}'
+    state: directory
+    owner: root
+    mode: '0755'
+- name: Create bounded service log directory
+  ansible.builtin.file:
+    path: /var/log/pathwatch-echo
+    state: directory
+    owner: '{{ pathwatch_echo_user }}'
+    mode: '0750'
+- name: Install exact reviewed echo executable
+  ansible.builtin.copy:
+    src: '{{ pathwatch_echo_binary }}'
+    dest: '{{ pathwatch_echo_root }}/echo'
+    owner: root
+    mode: '0755'
+  notify: Restart private echo
+- name: Install only public CA and server leaf
+  ansible.builtin.copy:
+    src: '{{ item.src }}'
+    dest: '{{ pathwatch_echo_root }}/{{ item.dest }}'
+    owner: root
+    mode: '0644'
+  loop:
+    - {src: '{{ pathwatch_echo_ca }}', dest: ca.pem}
+    - {src: '{{ pathwatch_echo_cert }}', dest: server.pem}
+  notify: Restart private echo
+- name: Install only the private server leaf key
+  ansible.builtin.copy:
+    src: '{{ pathwatch_echo_key }}'
+    dest: '{{ pathwatch_echo_root }}/server.key'
+    owner: '{{ pathwatch_echo_user }}'
+    mode: '0600'
+  no_log: true
+  notify: Restart private echo
+- name: Verify key, trust, actual IP SAN and 35-day deployment horizon
+  ansible.builtin.command:
+    argv:
+      - '{{ pathwatch_echo_root }}/echo'
+      - -mode
+      - check
+      - -site
+      - '{{ pathwatch_echo_site }}'
+      - -listen
+      - "{{ {'azure-a': '10.10.1.4', 'azure-b': '10.20.1.4'}[pathwatch_echo_site] }}:18443"
+      - -cert
+      - '{{ pathwatch_echo_root }}/server.pem'
+      - -key
+      - '{{ pathwatch_echo_root }}/server.key'
+      - -ca
+      - '{{ pathwatch_echo_root }}/ca.pem'
+  changed_when: false
+- name: Install bounded private echo unit and log rotation
+  ansible.builtin.template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '0644'
+  loop:
+    - {src: echo.service.j2, dest: /etc/systemd/system/pathwatch-echo.service}
+    - {src: logrotate.j2, dest: /etc/logrotate.d/pathwatch-echo}
+  notify: Restart private echo
+- name: Enable private echo
+  ansible.builtin.systemd:
+    name: pathwatch-echo
+    daemon_reload: true
+    enabled: true
+    state: started

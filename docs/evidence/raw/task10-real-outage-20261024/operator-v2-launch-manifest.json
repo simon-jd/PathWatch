@@ -1,0 +1,22 @@
+{
+  "prepared_utc": "2026-10-24T20:11:39.348421+00:00",
+  "scope": "same retained campaign and history; CH config fix; original pending already recovered; no new cloud resources",
+  "archived_old_fixture_certificate_hashes": {
+    "echo-cert.pem": "ea0aa3f3685a1c321cfe87822193f85a49605066c90c4c4de6761f97e6a40058",
+    "echo-key.pem": "1572cc6b2ed59c49c2dee121277293c3ae94fb829ed296115d12296809e6f604"
+  },
+  "files": {
+    "infra/modules/clickhouse/home.py": "54b894c61830d3eb0e2d7a69cd5f0e5f4b950a80e9af0bc934d8f44cbc6f13db",
+    "infra/modules/clickhouse/clickhouse.xml": "061c8c10a5adb09541b06ea5eeaa4f8f350b087f7f729d8c989453bb12a47295",
+    "slo/observe.py": "418ae1cde91b4c62afccdb3746ad9ebcf61e7773792b7a8f96572fd717451fbf",
+    "slo/generated.rules.yaml": "8b437fdcf56f39b4f5b00fb1cb5bc72a2c067daa12cc6f0797c7ee2c5f121f19",
+    "drills/outage.py": "5091139a12a7c8079025a4a085cd2969211323a61eeb436136a28e6ebe56fe56",
+    "drills/ingest_outage.sh": "df6b277521bcf07e3c78fff6b3a8df2f5353b558dd13c66eaae88adec6d62dbb",
+    ".cache/task10-bin/ingest": "73c0a44e60b875c49a0623a3873ad8b5cbbff63df1d2da01df60b574b78aee5d",
+    ".cache/task10-bin/probe": "135d423ed9384bf607fc3a6843cc999671c0177cf9c32f38ed0850bc62291f61",
+    ".cache/task10-bin/echo": "c4e26527c3415e4718bb6bfbb508c241406f7df6314b2d149d2ed1dc3122c347"
+  },
+  "journal_owner_sha256": "f111ca66ffb2ab0aecd8134102481bbe1753ea46380958ff54d7edffa4812a86",
+  "sli_state_before_sha256": "b45f0ad7b9e5b50c8a463f5b7214d14b70669ae3115ee69571400fea9b076051",
+  "spool_manifest_before_sha256": "4b8c1255d6091c83b1bd47981810f4b98b28c7a5baa827f72950e63256818f92"
+}

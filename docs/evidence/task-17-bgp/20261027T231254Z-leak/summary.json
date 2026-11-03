@@ -1,0 +1,318 @@
+{
+  "run": "20261027T231254Z-leak",
+  "results": [
+    {
+      "repetition": 1,
+      "incident": "leak",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "4.33",
+          "3.99",
+          "4.18"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142780.3840802,
+      "apply_seconds": 0.057,
+      "detected": true,
+      "detection_seconds": 0.415,
+      "first_alert": {
+        "at": 1793142780.7990813,
+        "kind": "route-leak",
+        "feed": "t2",
+        "prefix": "192.0.2.0/26",
+        "as_path": [
+          64602,
+          64702,
+          64601,
+          64701
+        ],
+        "why": "valley: AS64702 re-exported a route learned from AS64601"
+      },
+      "alert_kinds": [
+        [
+          "route-leak",
+          "c2"
+        ],
+        [
+          "route-leak",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "Local",
+        "c2": "64601 64701",
+        "c3": "64602 64702 64601 64701"
+      },
+      "t2_best_path_to_c1_during": "64702 64601 64701",
+      "restore_seconds_after_withdraw": 1.0,
+      "restored": true
+    },
+    {
+      "repetition": 2,
+      "incident": "leak",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "4.80",
+          "4.11",
+          "4.21"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142796.1614823,
+      "apply_seconds": 0.064,
+      "detected": true,
+      "detection_seconds": 0.167,
+      "first_alert": {
+        "at": 1793142796.328154,
+        "kind": "route-leak",
+        "feed": "c2",
+        "prefix": "192.0.2.0/26",
+        "as_path": [
+          64702,
+          64601,
+          64701
+        ],
+        "why": "stub AS64702 announced 192.0.2.0/26 outside its cone"
+      },
+      "alert_kinds": [
+        [
+          "route-leak",
+          "c2"
+        ],
+        [
+          "route-leak",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "Local",
+        "c2": "64601 64701",
+        "c3": "64602 64702 64601 64701"
+      },
+      "t2_best_path_to_c1_during": "64702 64601 64701",
+      "restore_seconds_after_withdraw": 1.0,
+      "restored": true
+    },
+    {
+      "repetition": 3,
+      "incident": "leak",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "4.45",
+          "4.07",
+          "4.20"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142811.7512167,
+      "apply_seconds": 0.048,
+      "detected": true,
+      "detection_seconds": 0.176,
+      "first_alert": {
+        "at": 1793142811.9271922,
+        "kind": "route-leak",
+        "feed": "c2",
+        "prefix": "192.0.2.0/26",
+        "as_path": [
+          64702,
+          64601,
+          64701
+        ],
+        "why": "stub AS64702 announced 192.0.2.0/26 outside its cone"
+      },
+      "alert_kinds": [
+        [
+          "route-leak",
+          "c2"
+        ],
+        [
+          "route-leak",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "Local",
+        "c2": "64601 64701",
+        "c3": "64602 64702 64601 64701"
+      },
+      "t2_best_path_to_c1_during": "64702 64601 64701",
+      "restore_seconds_after_withdraw": 0.9,
+      "restored": true
+    },
+    {
+      "repetition": 4,
+      "incident": "leak",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "3.91",
+          "3.96",
+          "4.16"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142827.1844265,
+      "apply_seconds": 0.06,
+      "detected": true,
+      "detection_seconds": 0.178,
+      "first_alert": {
+        "at": 1793142827.3620334,
+        "kind": "route-leak",
+        "feed": "c2",
+        "prefix": "192.0.2.0/26",
+        "as_path": [
+          64702,
+          64601,
+          64701
+        ],
+        "why": "stub AS64702 announced 192.0.2.0/26 outside its cone"
+      },
+      "alert_kinds": [
+        [
+          "route-leak",
+          "c2"
+        ],
+        [
+          "route-leak",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "Local",
+        "c2": "64601 64701",
+        "c3": "64602 64702 64601 64701"
+      },
+      "t2_best_path_to_c1_during": "64702 64601 64701",
+      "restore_seconds_after_withdraw": 1.0,
+      "restored": true
+    },
+    {
+      "repetition": 5,
+      "incident": "leak",
+      "load": {
+        "nproc": 32,
+        "loadavg": [
+          "4.10",
+          "4.00",
+          "4.17"
+        ]
+      },
+      "baseline_alerts": [],
+      "injected_at": 1793142842.7953103,
+      "apply_seconds": 0.06,
+      "detected": true,
+      "detection_seconds": 0.183,
+      "first_alert": {
+        "at": 1793142842.9786088,
+        "kind": "route-leak",
+        "feed": "c2",
+        "prefix": "192.0.2.0/26",
+        "as_path": [
+          64702,
+          64601,
+          64701
+        ],
+        "why": "stub AS64702 announced 192.0.2.0/26 outside its cone"
+      },
+      "alert_kinds": [
+        [
+          "route-leak",
+          "c2"
+        ],
+        [
+          "route-leak",
+          "t2"
+        ]
+      ],
+      "nearest_before": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_during": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "nearest_after": {
+        "c1": "pop1",
+        "c2": "pop2",
+        "c3": "pop3"
+      },
+      "best_paths_during": {
+        "c1": "Local",
+        "c2": "64601 64701",
+        "c3": "64602 64702 64601 64701"
+      },
+      "t2_best_path_to_c1_during": "64702 64601 64701",
+      "restore_seconds_after_withdraw": 1.0,
+      "restored": true
+    }
+  ],
+  "rpki": "Network            Maxlen AS         Server\n198.51.100.0/24    24     64500      10.117.100.9:3323\n",
+  "environment": "FRR 10.7.1 containers on Docker bridge networks; GoBGP 4.10.0 collector; Krill 0.16.0 test TA + Routinator 0.15.3; host shared with other projects"
+}

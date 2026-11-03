@@ -1,0 +1,6 @@
+---
+- name: Restart probe
+  ansible.builtin.systemd:
+    name: pathwatch-probe
+    state: restarted
+    daemon_reload: true

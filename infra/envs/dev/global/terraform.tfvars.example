@@ -1,0 +1,8 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+# Current subscription policy allows westus; recheck before planning.
+# Capture fresh matching westus prices; westus2 captures are historical only.
+location = "westus"
+ttl = "2026-10-24T00:00:00Z"
+est_usd_per_hour = 0.001
+github_repository = "REPLACE/REPLACE"
+state_storage_account_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Storage/storageAccounts/pwreplaceunique"

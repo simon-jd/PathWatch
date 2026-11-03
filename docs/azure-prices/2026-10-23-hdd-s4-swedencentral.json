@@ -1,0 +1,57 @@
+{
+  "captured_at": "2026-10-24T05:27:54Z",
+  "url": "https://prices.azure.com/api/retail/prices?%24filter=serviceName+eq+%27Storage%27+and+armRegionName+eq+%27swedencentral%27+and+productName+eq+%27Standard+HDD+Managed+Disks%27+and+skuName+eq+%27S4+LRS%27+and+priceType+eq+%27Consumption%27&currencyCode=%27USD%27",
+  "response": {
+    "BillingCurrency": "USD",
+    "CustomerEntityId": "Default",
+    "CustomerEntityType": "Retail",
+    "Items": [
+      {
+        "currencyCode": "USD",
+        "tierMinimumUnits": 0.0,
+        "retailPrice": 1.536,
+        "unitPrice": 1.536,
+        "armRegionName": "swedencentral",
+        "location": "SE Central",
+        "effectiveStartDate": "2021-06-08T00:00:00Z",
+        "meterId": "e4718bb4-2c5d-5a46-b7d6-66447a0784f1",
+        "meterName": "S4 LRS Disk",
+        "productId": "DZH318Z0BP0L",
+        "skuId": "DZH318Z0BP0L/01PF",
+        "productName": "Standard HDD Managed Disks",
+        "skuName": "S4 LRS",
+        "serviceName": "Storage",
+        "serviceId": "DZH317F1HKN0",
+        "serviceFamily": "Storage",
+        "unitOfMeasure": "1/Month",
+        "type": "Consumption",
+        "isPrimaryMeterRegion": true,
+        "armSkuName": ""
+      },
+      {
+        "currencyCode": "USD",
+        "tierMinimumUnits": 0.0,
+        "retailPrice": 0.0005,
+        "unitPrice": 0.0005,
+        "armRegionName": "swedencentral",
+        "location": "SE Central",
+        "effectiveStartDate": "2021-06-08T00:00:00Z",
+        "meterId": "82cd70ab-1aee-4b30-bc04-8b71e1204dbc",
+        "meterName": "S4 LRS Disk Operations",
+        "productId": "DZH318Z0BP0L",
+        "skuId": "DZH318Z0BP0L/01PF",
+        "productName": "Standard HDD Managed Disks",
+        "skuName": "S4 LRS",
+        "serviceName": "Storage",
+        "serviceId": "DZH317F1HKN0",
+        "serviceFamily": "Storage",
+        "unitOfMeasure": "10K",
+        "type": "Consumption",
+        "isPrimaryMeterRegion": false,
+        "armSkuName": ""
+      }
+    ],
+    "NextPageLink": null,
+    "Count": 2
+  }
+}

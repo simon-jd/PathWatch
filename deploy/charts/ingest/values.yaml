@@ -1,0 +1,33 @@
+# Image tags are required and written per desired-state revision by
+# deploy/kind/publish.py (values-kind.yaml); there is no default or :latest.
+images:
+  ingest: ""        # core image: pathwatch/ingest:git-<sha>
+  frontend: ""      # frontend image; the canary drill swaps this one only
+  edgeProxy: ""     # pathwatch/edge-proxy:git-<sha>
+  clickhouse: clickhouse/clickhouse-server:26.3.32.14
+
+core:
+  serverName: core.pathwatch-app.svc
+  frontendIdentity: spiffe://pathwatch.local/frontend/kind
+  journalMaxBytes: 33554432
+  storage: { data: 2Gi, journal: 256Mi }
+
+frontend:
+  # With maxSurge 1 the first step adds one canary pod next to these: 1/5 of the pods.
+  replicas: 4
+  canaryWeight: 25
+  apiHost: api.pathwatch.local
+  # SIGTERM waits this long after the pod is deleted, so kube-proxy has dropped the
+  # pod from the api Service before the frontend closes its listeners.
+  preStopSleepSeconds: 10
+
+analysis:
+  prometheus: http://prometheus.pathwatch-observe.svc:9090
+  # Fail the canary when more than 5% of its query requests fail (outcome
+  # "failure" = any 5xx from the query API) over the last minute.
+  maxErrorRatio: 0.05
+  minRequests: 5
+  # Phase 3 used 40s/15s at 50% weight: 44-46% of client requests failed for ~41 s.
+  initialDelay: 20s
+  interval: 10s
+  count: 6

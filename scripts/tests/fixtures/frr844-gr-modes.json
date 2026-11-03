@@ -1,0 +1,68 @@
+{
+  "disabled": {
+    "raw_sha256": "5b53cf973896c98d8a7aaa0ea3b56e9c9655e6a4ab1d20ee1e41725fef34113e",
+    "sites": {
+      "home": {
+        "10.255.0.1": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Disable*"
+          }
+        },
+        "10.255.0.5": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Disable*"
+          }
+        }
+      },
+      "azure": {
+        "10.255.0.2": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Disable*"
+          }
+        },
+        "10.255.0.6": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Disable*"
+          }
+        }
+      }
+    }
+  },
+  "helper": {
+    "raw_sha256": "4a83f3c26bc53859afe6d4365678f6127eadff6c26eb841b3182e4eec53282e8",
+    "sites": {
+      "home": {
+        "10.255.0.1": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Helper*"
+          }
+        },
+        "10.255.0.5": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Helper*"
+          }
+        }
+      },
+      "azure": {
+        "10.255.0.2": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Helper*"
+          }
+        },
+        "10.255.0.6": {
+          "bgpState": "Established",
+          "gracefulRestartInfo": {
+            "localGrMode": "Helper*"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "proxy": "pathwatch",
+  "protocol": "h2",
+  "rate": 10000,
+  "round": 4,
+  "duration_s": 120,
+  "warmup_s": 15,
+  "start_utc": "2026-10-25T13:54:56Z",
+  "offered_requests": 1200000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    2240
+  ],
+  "proxy_identities": [
+    {
+      "pid": 2240,
+      "state": "S",
+      "ppid": 3,
+      "pgrp": 2240,
+      "session": 2240,
+      "starttime": 73424961
+    }
+  ],
+  "warmup_pid": 2243,
+  "warmup": {
+    "configured_s": 15,
+    "wall_elapsed_s": 15.191876469063573,
+    "reported_elapsed_s": 15.0,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/nghttp2-build/src/h2load",
+    "-t4",
+    "-c100",
+    "-m16",
+    "-D120",
+    "--rps=100.0",
+    "--connect-to=127.0.0.1:18443",
+    "--connection-active-timeout=130",
+    "--connection-inactivity-timeout=10",
+    "https://bench.pathwatch.test:18443/",
+    "--log-file=/home/postedism/Desktop/PathWatch/.cache/task13/runtime/requests.fifo"
+  ],
+  "generator_pid": 2250,
+  "collector_pid": 2248,
+  "wall_elapsed_s": 120.25222013704479,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 120,
+    "wall_elapsed_s": 120.25222013704479,
+    "reported_elapsed_s": 120.0,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 0,
+    "connections": 68,
+    "requests": 1199969
+  },
+  "cpu_pidstat_seconds": 87.5221,
+  "cpu_proc_seconds": 87.54,
+  "cpu_boundary_delta_seconds": 0.017900000000011573,
+  "counts": {
+    "total": 1199869,
+    "started": 1199969,
+    "done": 1199869,
+    "succeeded": 1199869,
+    "failed": 0,
+    "errored": 0,
+    "timeout": 0
+  },
+  "latency": {
+    "p50_us_bounds": [
+      10232,
+      10239
+    ],
+    "p99_us_bounds": [
+      12200,
+      12207
+    ],
+    "p999_us_bounds": [
+      20656,
+      20671
+    ]
+  },
+  "received_body_bytes": 1228665856,
+  "completed_success_body_bytes_expected": 1228665856,
+  "body_bytes_delta": 0,
+  "h2_count_reconciliation": "matched",
+  "configured_window_rps": 9998.908333333333,
+  "achieved_rps": 9998.908333333333,
+  "cpu_us_per_completed": 72.94304628255252,
+  "upstream_requests_per_new_connection": 17646.602941176472,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 0,
+    "fifo_write_calls": 1199869,
+    "fifo_bytes": 32128257,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 3516652290,
+    "fifo_max_write_ns": 3015466
+  },
+  "unfinished_at_end": 100,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 2240,
+      "state": "R",
+      "ppid": 3,
+      "pgrp": 2240,
+      "session": 2240,
+      "starttime": 73424961
+    },
+    "observed_identities": [
+      {
+        "pid": 2240,
+        "state": "R",
+        "ppid": 3,
+        "pgrp": 2240,
+        "session": 2240,
+        "starttime": 73424961
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 2240,
+          "state": "S",
+          "ppid": 3,
+          "pgrp": 2240,
+          "session": 2240,
+          "starttime": 73424961
+        },
+        "signal": 2
+      }
+    ]
+  },
+  "total_elapsed_s": 135.916713204002,
+  "end_utc": "2026-10-25T13:57:12Z"
+}

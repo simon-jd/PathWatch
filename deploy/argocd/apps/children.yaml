@@ -1,0 +1,55 @@
+# Child applications. values-kind.yaml exists only in the desired-state repo:
+# deploy/kind/publish.py writes the exact image tags of that revision into it.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pathwatch-observability
+  namespace: argocd
+  labels: { project: pathwatch }
+  annotations: { argocd.argoproj.io/sync-wave: "0" }
+spec:
+  project: pathwatch
+  source:
+    repoURL: git://127.0.0.1:9418/pathwatch-deploy
+    targetRevision: main
+    path: deploy/charts/observability
+    helm: { valueFiles: [values.yaml] }
+  destination: { server: https://kubernetes.default.svc, namespace: pathwatch-observe }
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pathwatch-ingest
+  namespace: argocd
+  labels: { project: pathwatch }
+  annotations: { argocd.argoproj.io/sync-wave: "1" }
+spec:
+  project: pathwatch
+  source:
+    repoURL: git://127.0.0.1:9418/pathwatch-deploy
+    targetRevision: main
+    path: deploy/charts/ingest
+    helm: { valueFiles: [values.yaml, values-kind.yaml] }
+  destination: { server: https://kubernetes.default.svc, namespace: pathwatch-app }
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pathwatch-api
+  namespace: argocd
+  labels: { project: pathwatch }
+  annotations: { argocd.argoproj.io/sync-wave: "2" }
+spec:
+  project: pathwatch
+  source:
+    repoURL: git://127.0.0.1:9418/pathwatch-deploy
+    targetRevision: main
+    path: deploy/charts/api
+    helm: { valueFiles: [values.yaml, values-kind.yaml] }
+  destination: { server: https://kubernetes.default.svc, namespace: pathwatch-app }
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }

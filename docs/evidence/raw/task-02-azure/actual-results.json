@@ -1,0 +1,34 @@
+[
+  {
+    "region": "westus",
+    "source": "2a2d9cf",
+    "module_source": "90eb682",
+    "real_test": "PASS",
+    "duration_seconds": 134.19,
+    "created_resources": 14,
+    "destroy_plan_delete_resources": 14,
+    "destroy_plan_create_or_update_resources": 0,
+    "destroy_plan_sha256": "fe4ad80934d18811cb0a1b0d9498baa13275af4d5c73964cb9a4f3ed3c8dd021",
+    "managed_state_after_cleanup": 0,
+    "arm_parents_confirmed_absent_by_test": true,
+    "shared_rg_confirmed_survived_by_test": true,
+    "deletion_confirmed_utc": "2026-10-24T03:53:08Z",
+    "new_estimate_usd": 0
+  },
+  {
+    "region": "francecentral",
+    "source": "2a2d9cf",
+    "module_source": "90eb682",
+    "real_test": "PASS",
+    "duration_seconds": 153.27,
+    "created_resources": 14,
+    "destroy_plan_delete_resources": 14,
+    "destroy_plan_create_or_update_resources": 0,
+    "destroy_plan_sha256": "684d94a92636cf051c3410e64e87d6df572171fca237105289e60297a6a76bb2",
+    "managed_state_after_cleanup": 0,
+    "arm_parents_confirmed_absent_by_test": true,
+    "shared_rg_confirmed_survived_by_test": true,
+    "deletion_confirmed_utc": "2026-10-24T03:53:08Z",
+    "new_estimate_usd": 0
+  }
+]

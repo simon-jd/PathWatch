@@ -1,0 +1,22 @@
+gpg: keybox '/home/postedism/Desktop/PathWatch/.cache/task13/gnupg/pubring.kbx' created
+gpg: key A0EA981B66B0D967: 10 signatures not checked due to missing keys
+gpg: /home/postedism/Desktop/PathWatch/.cache/task13/gnupg/trustdb.gpg: trustdb created
+gpg: key A0EA981B66B0D967: public key "Konstantin Pavlov <thresh@nginx.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
+gpg: Signature made Fri Oct  2 07:40:20 2026 PDT
+gpg:                using RSA key D6786CE303D9A9022998DC6CC8464D549AF75C0A
+gpg:                issuer "s.kandaurov@f5.com"
+gpg: Can't check signature: No public key
+gpg: key C8464D549AF75C0A: public key "Sergey Kandaurov <s.kandaurov@f5.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: Signature made Fri Oct  2 07:40:20 2026 PDT
+gpg:                using RSA key D6786CE303D9A9022998DC6CC8464D549AF75C0A
+gpg:                issuer "s.kandaurov@f5.com"
+gpg: Good signature from "Sergey Kandaurov <s.kandaurov@f5.com>" [unknown]
+gpg:                 aka "Sergey Kandaurov <pluknet@nginx.com>" [unknown]
+gpg: WARNING: The key's User ID is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: D678 6CE3 03D9 A902 2998  DC6C C846 4D54 9AF7 5C0A

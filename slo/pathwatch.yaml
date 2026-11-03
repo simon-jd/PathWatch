@@ -1,0 +1,46 @@
+version: prometheus/v1
+service: pathwatch
+labels:
+  owner: codex-pathwatch
+slos:
+  - name: ingestion-freshness
+    objective: 99
+    description: Closed UTC 5m windows with at least max(1,N-1) configured physical observers measured and durably committed inside that window.
+    sli:
+      raw:
+        error_ratio_query: |
+          ((((sum(rate(pathwatch_slo_windows_bad[{{.window}}])) / sum(rate(pathwatch_slo_windows_total[{{.window}}])))
+          and on() (sum(rate(pathwatch_slo_windows_total[{{.window}}])) > 0))
+          or on() max(pathwatch_slo_last_window_bad))
+          and on() (time() - max(pathwatch_slo_last_observation_seconds) < 45)) or on() vector(1)
+    alerting:
+      name: PathWatchFreshnessBudgetBurn
+      labels:
+        scope: configured-physical-roster
+      annotations:
+        summary: Ingestion freshness error budget is burning
+      page_alert:
+        labels:
+          severity: page
+      ticket_alert:
+        labels:
+          severity: ticket
+  - name: ingest-readiness
+    objective: 99.5
+    description: Independent 15s GET /readyz to current loopback ingest API; checks stable Store and ClickHouse epoch. Not future query API or all Report RPCs.
+    sli:
+      raw:
+        error_ratio_query: |
+          ((sum(rate(pathwatch_slo_api_bad[{{.window}}])) / sum(rate(pathwatch_slo_api_total[{{.window}}])))
+          and on() (sum(rate(pathwatch_slo_api_total[{{.window}}])) > 0)
+          and on() (time() - max(pathwatch_slo_last_observation_seconds) < 45)) or on() vector(1)
+    alerting:
+      name: PathWatchReadinessBudgetBurn
+      annotations:
+        summary: Ingest readiness API error budget is burning
+      page_alert:
+        labels:
+          severity: page
+      ticket_alert:
+        labels:
+          severity: ticket

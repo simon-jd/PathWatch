@@ -1,0 +1,71 @@
+networkpolicy.networking.k8s.io "default-deny-ingress" deleted from pathwatch-app namespace
+networkpolicy.networking.k8s.io "core-from-frontend" deleted from pathwatch-app namespace
+networkpolicy.networking.k8s.io "frontend-https-from-clients" deleted from pathwatch-app namespace
+networkpolicy.networking.k8s.io "metrics-from-prometheus" deleted from pathwatch-app namespace
+application.argoproj.io/pathwatch-ingest annotated
+application.argoproj.io/pathwatch-ingest patched
+{
+  "at": "2026-10-28T13:26:37.536593+00:00",
+  "without_policies": [
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "frontend",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "frontend",
+      "port": 8443,
+      "expected_open": true,
+      "open": false
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "core",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "core",
+      "port": 9444,
+      "expected_open": true,
+      "open": false
+    }
+  ],
+  "restored_at": "2026-10-28T13:26:47.019199+00:00",
+  "with_policies": [
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "frontend",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "frontend",
+      "port": 8443,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "core",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus",
+      "to": "core",
+      "port": 9444,
+      "expected_open": false,
+      "open": false
+    }
+  ],
+  "enforced": false
+}

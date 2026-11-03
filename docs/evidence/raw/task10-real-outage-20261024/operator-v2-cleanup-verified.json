@@ -1,0 +1,32 @@
+{
+  "verified_utc": "2026-10-24T20:39:02.225747+00:00",
+  "supervisor_exec_session": 54414,
+  "supervisor_exit_code": 0,
+  "watcher_exec_session": 29785,
+  "watcher_exit_code": 0,
+  "control_socket_removed": true,
+  "owner_lock_released": true,
+  "tcp_ports_closed": {
+    "18123": true,
+    "19443": true,
+    "19091": true,
+    "19464": true,
+    "19465": true,
+    "18443": true,
+    "19090": true
+  },
+  "container_inspect": {
+    "argv": [
+      "docker",
+      "inspect",
+      "523a5cfe54f25e1481d583cacca4c4fef88a26ba58fc26c11d751636a65ab34d"
+    ],
+    "exit": 1,
+    "stdout": "[]\n",
+    "stderr": "error: no such object: 523a5cfe54f25e1481d583cacca4c4fef88a26ba58fc26c11d751636a65ab34d\n"
+  },
+  "exact_container_absent": true,
+  "owned_task10_container_ids": [],
+  "native_process_matches": [],
+  "passed": true
+}

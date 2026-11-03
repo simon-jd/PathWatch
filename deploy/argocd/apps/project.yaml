@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: pathwatch
+  namespace: argocd
+  labels: { project: pathwatch }
+  annotations: { argocd.argoproj.io/sync-wave: "-1" }
+spec:
+  description: PathWatch workloads; only the local desired-state repo and the two PathWatch namespaces.
+  sourceRepos: [git://127.0.0.1:9418/pathwatch-deploy]
+  destinations:
+    - { server: https://kubernetes.default.svc, namespace: pathwatch-app }
+    - { server: https://kubernetes.default.svc, namespace: pathwatch-observe }
+  # Namespaces themselves are created by the bootstrap (with their Secrets).
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - { group: "", kind: ConfigMap }
+    - { group: "", kind: Service }
+    - { group: "", kind: ServiceAccount }
+    - { group: apps, kind: Deployment }
+    - { group: apps, kind: StatefulSet }
+    - { group: rbac.authorization.k8s.io, kind: Role }
+    - { group: rbac.authorization.k8s.io, kind: RoleBinding }
+    - { group: argoproj.io, kind: Rollout }
+    - { group: argoproj.io, kind: AnalysisTemplate }
+    - { group: networking.k8s.io, kind: NetworkPolicy }

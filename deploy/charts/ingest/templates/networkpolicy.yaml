@@ -1,0 +1,125 @@
+{{- /*
+Ingress allow-list for the app namespace: deny everything, then only the paths
+the lab uses. kind's kindnet enforces NetworkPolicy (checked live, see
+docs/evidence/canary-rollback.md). Ports are numeric: with the named port "https"
+(declared on the edge-proxy native sidecar, an initContainer) kindnet admitted
+nothing and every querygen request failed.
+*/}}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: core-from-frontend
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels: { app.kubernetes.io/name: core }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: { app.kubernetes.io/name: frontend }
+      ports:
+        - { protocol: TCP, port: 9444 }  # core-rpc
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-https-from-clients
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels: { app.kubernetes.io/name: frontend }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: { app.kubernetes.io/name: querygen }
+      ports:
+        - { protocol: TCP, port: 8443 }  # https
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: metrics-from-prometheus
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchExpressions:
+      - { key: app.kubernetes.io/name, operator: In, values: [core, frontend] }
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: pathwatch-observe }
+          podSelector:
+            matchLabels: { app.kubernetes.io/name: prometheus }
+      ports:
+        - { protocol: TCP, port: 9445 }  # metrics
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-egress
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dns-egress
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: kube-system }
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-egress-to-core
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels: { app.kubernetes.io/name: frontend }
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: { app.kubernetes.io/name: core }
+      ports:
+        - { protocol: TCP, port: 9444 }  # core-rpc
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: querygen-egress-to-frontend
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels: { app.kubernetes.io/name: querygen }
+  policyTypes: [Egress]
+  egress:
+    # 443 is the Service port querygen dials; 8443 is the pod port after DNAT.
+    - to:
+        - podSelector:
+            matchLabels: { app.kubernetes.io/name: frontend }
+      ports:
+        - { protocol: TCP, port: 443 }
+        - { protocol: TCP, port: 8443 }

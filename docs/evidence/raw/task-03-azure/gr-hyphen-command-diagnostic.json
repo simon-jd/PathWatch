@@ -1,0 +1,29 @@
+{
+  "captured_utc": "2026-10-24T05:56:34Z",
+  "claim": "Version-pinned CLI semantic diagnostic, not source acceptance or convergence",
+  "command_source": "https://github.com/FRRouting/frr/blob/frr-8.4.4/bgpd/bgp_vty.c#L3026",
+  "sites": {
+    "home": {
+      "command_stdout": "Graceful restart configuration changed, reset all peers to take effect\n",
+      "command_stderr": "",
+      "actual_local_GR_modes": {
+        "10.255.0.1": "Disable*",
+        "10.255.0.5": "Disable*"
+      },
+      "running_GR_lines": [
+        " bgp graceful-restart-disable"
+      ]
+    },
+    "azure": {
+      "command_stdout": "Graceful restart configuration changed, reset all peers to take effect\n",
+      "command_stderr": "",
+      "actual_local_GR_modes": {
+        "10.255.0.2": "Disable*",
+        "10.255.0.6": "Disable*"
+      },
+      "running_GR_lines": [
+        " bgp graceful-restart-disable"
+      ]
+    }
+  }
+}

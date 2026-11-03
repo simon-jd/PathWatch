@@ -1,0 +1,89 @@
+{
+  "run": "20261028T133129Z-control",
+  "variant": "control",
+  "source_commit": "f645b121a94d",
+  "desired_state_commit": "7dad02efcbe06ba9d757a89fba22f50b4a1fd4bc",
+  "started": "2026-10-28T13:31:29.892293+00:00",
+  "completed": true,
+  "events_seconds_after_commit": {
+    "argo_synced_new_revision": 1.6,
+    "canary_pod_ready": 1.6,
+    "analysisrun_created": 1.6,
+    "analysisrun_successful": 71.6,
+    "promoted": 75.4
+  },
+  "client_impact": {
+    "sent": 1560,
+    "non_200": 17,
+    "non_200_fraction": 0.0109,
+    "seconds_with_non_200": 4,
+    "first_non_200": "2026-10-28T13:31:31.610840328Z",
+    "last_non_200": "2026-10-28T13:32:45.610843946Z"
+  },
+  "stable_hash_before": "8997f4886",
+  "final": {
+    "rollout": {
+      "phase": "Healthy",
+      "message": null,
+      "abort": false,
+      "current": "5dd4c96546",
+      "stable": "5dd4c96546",
+      "step": 2,
+      "replicas": 4,
+      "pods": {
+        "5dd4c96546": [
+          4,
+          4
+        ]
+      },
+      "analysisruns": {
+        "frontend-5dd4c96546-2-1": "Successful"
+      },
+      "images": [
+        "pathwatch/ingest:git-bbc66daca5d7-control"
+      ]
+    },
+    "apps": {
+      "pathwatch-api": [
+        "Synced",
+        "Healthy",
+        "7dad02efcbe06ba9d757a89fba22f50b4a1fd4bc"
+      ],
+      "pathwatch-ingest": [
+        "Synced",
+        "Healthy",
+        "7dad02efcbe06ba9d757a89fba22f50b4a1fd4bc"
+      ],
+      "pathwatch-observability": [
+        "Synced",
+        "Healthy",
+        "7dad02efcbe06ba9d757a89fba22f50b4a1fd4bc"
+      ],
+      "pathwatch-root": [
+        "Synced",
+        "Healthy",
+        "7dad02efcbe06ba9d757a89fba22f50b4a1fd4bc"
+      ]
+    }
+  },
+  "recovery": null,
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "14.34",
+      "7.98",
+      "6.46"
+    ],
+    "at": "2026-10-28T13:32:46.723705+00:00"
+  },
+  "machine_load_start": {
+    "nproc": 32,
+    "loadavg": [
+      "4.37",
+      "5.73",
+      "5.70"
+    ],
+    "at": "2026-10-28T13:31:29.741320+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"
+}

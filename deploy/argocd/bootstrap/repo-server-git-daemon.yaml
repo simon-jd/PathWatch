@@ -1,0 +1,32 @@
+# Strategic-merge patch for argocd-repo-server (Argo CD v3.5.6 core-install).
+# Adds a read-only git daemon in the repo-server pod network namespace, on
+# 127.0.0.1:9418 only, serving the host directory that kind mounts at
+# /pathwatch-gitops (deploy/kind/cluster.yaml). No Service exposes it.
+spec:
+  template:
+    spec:
+      containers:
+        - name: git-daemon
+          image: quay.io/argoproj/argocd:v3.5.6
+          imagePullPolicy: IfNotPresent
+          command: ["git", "daemon", "--reuseaddr", "--listen=127.0.0.1", "--port=9418",
+                    "--base-path=/git-source", "--export-all",
+                    "--disable=receive-pack", "--disable=upload-archive", "/git-source"]
+          env:
+            # The mounted repo is owned by the host user, not the argocd uid.
+            - { name: GIT_CONFIG_COUNT, value: "1" }
+            - { name: GIT_CONFIG_KEY_0, value: safe.directory }
+            - { name: GIT_CONFIG_VALUE_0, value: "*" }
+          resources:
+            requests: { cpu: 5m, memory: 16Mi }
+            limits: { memory: 128Mi }
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: pathwatch-gitops, mountPath: /git-source, readOnly: true }
+      volumes:
+        - name: pathwatch-gitops
+          hostPath: { path: /pathwatch-gitops, type: Directory }

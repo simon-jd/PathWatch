@@ -1,0 +1,10 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+location = "westus"
+ttl = "2026-10-25T02:00:00Z"
+# Replace with actual owner address; documentation ranges are rejected.
+owner_peer_cidrs = ["203.0.113.10/32"]
+admin_public_key = "ssh-ed25519 REPLACE_WITH_ACTUAL_PUBLIC_KEY"
+home_routes_confirmed_no_overlap = false
+include_client = true
+# Example only. Refresh exact paid meters and bound requests/egress before plan.
+hourly = {vm="0.02",ip="0.01",disk="0.001"}

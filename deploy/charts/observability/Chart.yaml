@@ -1,0 +1,5 @@
+apiVersion: v2
+name: observability
+description: Prometheus scraping PathWatch metrics bridges over mTLS; the canary analysis provider.
+type: application
+version: 0.1.0

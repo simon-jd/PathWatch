@@ -1,0 +1,16 @@
+{
+  "probe_id": "owned-lab",
+  "ingest": "ingest.internal:8443",
+  "development_cleartext": false,
+  "interval": "60s",
+  "probe_timeout": "5s",
+  "rpc_timeout": "10s",
+  "shutdown_timeout": "5s",
+  "spool_dir": ".state/probe-spool",
+  "spool_max_bytes": 1073741824,
+  "batch_size": 128,
+  "metrics_addr": "127.0.0.1:9464",
+  "targets": [
+    {"id": "owned-loopback", "host": "127.0.0.1", "port": 443, "public": false, "kinds": ["tcp"]}
+  ]
+}

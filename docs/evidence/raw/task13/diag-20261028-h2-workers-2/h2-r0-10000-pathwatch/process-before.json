@@ -1,0 +1,18 @@
+{
+  "2862707": {
+    "syscr": 28,
+    "syscw": 57235,
+    "ctx_switches": 12213,
+    "cpu_ticks": 252,
+    "starttime": 99049329,
+    "session": 2862707,
+    "pgrp": 2862707,
+    "threads": 3,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 19247104,
+    "command": "/home/postedism/Desktop/PathWatch/.cache/cargo-target/release/edge-proxy bench/pathwatch-proxy.toml "
+  }
+}

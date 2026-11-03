@@ -1,0 +1,38 @@
+test_clients_and_pops_export_only_their_own_prefix (test_lab.ConfigMatchesTopology.test_clients_and_pops_export_only_their_own_prefix) ... ok
+test_collector_feeds_peer_with_the_collector_and_nothing_else_does (test_lab.ConfigMatchesTopology.test_collector_feeds_peer_with_the_collector_and_nothing_else_does) ... ok
+test_every_ebgp_neighbor_has_policy_both_ways (test_lab.ConfigMatchesTopology.test_every_ebgp_neighbor_has_policy_both_ways) ... ok
+test_every_link_is_a_bgp_session_with_the_right_asns (test_lab.ConfigMatchesTopology.test_every_link_is_a_bgp_session_with_the_right_asns) ... ok
+test_stub_feed_announcing_foreign_prefix (test_lab.LeakDetector.test_stub_feed_announcing_foreign_prefix) ... ok
+test_valley_free_paths (test_lab.LeakDetector.test_valley_free_paths) ... ok
+test_anycast_nearest_pop (test_lab.LiveLab.test_anycast_nearest_pop) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.523s
+
+OK
+{
+  "c1": {
+    "traceroute_hops": [
+      "10.117.6.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop1",
+    "as_path": "64601 64500"
+  },
+  "c2": {
+    "traceroute_hops": [
+      "10.117.7.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop2",
+    "as_path": "64601 64500"
+  },
+  "c3": {
+    "traceroute_hops": [
+      "10.117.9.3",
+      "198.51.100.1"
+    ],
+    "answered_by": "pop3",
+    "as_path": "64602 64500"
+  }
+}

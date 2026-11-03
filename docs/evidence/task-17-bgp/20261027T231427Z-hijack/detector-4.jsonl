@@ -1,0 +1,4 @@
+{"detector": "started", "at": 1793142971.1623003, "feeds": ["c2", "t1a", "t1b", "t2"]}
+{"at": 1793142976.2909558, "kind": "rpki-invalid", "feed": "t2", "prefix": "198.51.100.0/25", "as_path": [64602, 64703], "why": "origin AS64703 not authorized for 198.51.100.0/25"}
+{"at": 1793142976.5587254, "kind": "rpki-invalid", "feed": "t1a", "prefix": "198.51.100.0/25", "as_path": [64601, 64602, 64703], "why": "origin AS64703 not authorized for 198.51.100.0/25"}
+{"at": 1793142976.568002, "kind": "rpki-invalid", "feed": "t1b", "prefix": "198.51.100.0/25", "as_path": [64601, 64602, 64703], "why": "origin AS64703 not authorized for 198.51.100.0/25"}

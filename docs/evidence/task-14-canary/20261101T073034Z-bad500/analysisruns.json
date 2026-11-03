@@ -1,0 +1,219 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "AnalysisRun",
+            "metadata": {
+                "annotations": {
+                    "rollout.argoproj.io/revision": "2"
+                },
+                "creationTimestamp": "2026-11-01T07:29:20Z",
+                "generation": 8,
+                "labels": {
+                    "app.kubernetes.io/name": "frontend",
+                    "rollout-type": "Step",
+                    "rollouts-pod-template-hash": "66ff5957bf",
+                    "step-index": "1"
+                },
+                "name": "frontend-66ff5957bf-2-1",
+                "namespace": "pathwatch-app",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "argoproj.io/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Rollout",
+                        "name": "frontend",
+                        "uid": "2d2ef82b-f963-45c1-8765-2ae71465c843"
+                    }
+                ],
+                "resourceVersion": "35796",
+                "uid": "48f47873-3e36-48ce-b259-cf3f54fb5534"
+            },
+            "spec": {
+                "args": [
+                    {
+                        "name": "canary-hash",
+                        "value": "66ff5957bf"
+                    }
+                ],
+                "metrics": [
+                    {
+                        "count": 6,
+                        "failureCondition": "len(result) != 1 || result[0] \u003e 0.05",
+                        "failureLimit": 0,
+                        "initialDelay": "20s",
+                        "interval": "10s",
+                        "name": "query-error-ratio",
+                        "provider": {
+                            "prometheus": {
+                                "address": "http://prometheus.pathwatch-observe.svc:9090",
+                                "authentication": {
+                                    "oauth2": {},
+                                    "sigv4": {}
+                                },
+                                "query": "(\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\",outcome=\"failure\"}[1m]))\n  /\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\"}[1m]))\n)\nand on()\nsum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\"}[1m])) \u003e= 5\n"
+                            }
+                        },
+                        "successCondition": "len(result) == 1 \u0026\u0026 result[0] \u003c= 0.05"
+                    }
+                ]
+            },
+            "status": {
+                "completedAt": "2026-11-01T07:30:30Z",
+                "dryRunSummary": {},
+                "metricResults": [
+                    {
+                        "consecutiveSuccess": 6,
+                        "count": 6,
+                        "measurements": [
+                            {
+                                "finishedAt": "2026-11-01T07:29:40Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:29:40Z",
+                                "value": "[0]"
+                            },
+                            {
+                                "finishedAt": "2026-11-01T07:29:50Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:29:50Z",
+                                "value": "[0]"
+                            },
+                            {
+                                "finishedAt": "2026-11-01T07:30:00Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:30:00Z",
+                                "value": "[0]"
+                            },
+                            {
+                                "finishedAt": "2026-11-01T07:30:10Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:30:10Z",
+                                "value": "[0]"
+                            },
+                            {
+                                "finishedAt": "2026-11-01T07:30:20Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:30:20Z",
+                                "value": "[0]"
+                            },
+                            {
+                                "finishedAt": "2026-11-01T07:30:30Z",
+                                "phase": "Successful",
+                                "startedAt": "2026-11-01T07:30:30Z",
+                                "value": "[0]"
+                            }
+                        ],
+                        "metadata": {
+                            "ResolvedPrometheusQuery": "(\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"66ff5957bf\",outcome=\"failure\"}[1m]))\n  /\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"66ff5957bf\"}[1m]))\n)\nand on()\nsum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"66ff5957bf\"}[1m])) \u003e= 5\n"
+                        },
+                        "name": "query-error-ratio",
+                        "phase": "Successful",
+                        "successful": 6
+                    }
+                ],
+                "phase": "Successful",
+                "runSummary": {
+                    "count": 1,
+                    "successful": 1
+                },
+                "startedAt": "2026-11-01T07:29:20Z"
+            }
+        },
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "AnalysisRun",
+            "metadata": {
+                "annotations": {
+                    "rollout.argoproj.io/revision": "3"
+                },
+                "creationTimestamp": "2026-11-01T07:30:36Z",
+                "generation": 3,
+                "labels": {
+                    "app.kubernetes.io/name": "frontend",
+                    "rollout-type": "Step",
+                    "rollouts-pod-template-hash": "77c9c8f9d7",
+                    "step-index": "1"
+                },
+                "name": "frontend-77c9c8f9d7-3-1",
+                "namespace": "pathwatch-app",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "argoproj.io/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Rollout",
+                        "name": "frontend",
+                        "uid": "2d2ef82b-f963-45c1-8765-2ae71465c843"
+                    }
+                ],
+                "resourceVersion": "36118",
+                "uid": "d0db8b7a-db10-4d47-9508-91d5c98ce263"
+            },
+            "spec": {
+                "args": [
+                    {
+                        "name": "canary-hash",
+                        "value": "77c9c8f9d7"
+                    }
+                ],
+                "metrics": [
+                    {
+                        "count": 6,
+                        "failureCondition": "len(result) != 1 || result[0] \u003e 0.05",
+                        "failureLimit": 0,
+                        "initialDelay": "20s",
+                        "interval": "10s",
+                        "name": "query-error-ratio",
+                        "provider": {
+                            "prometheus": {
+                                "address": "http://prometheus.pathwatch-observe.svc:9090",
+                                "authentication": {
+                                    "oauth2": {},
+                                    "sigv4": {}
+                                },
+                                "query": "(\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\",outcome=\"failure\"}[1m]))\n  /\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\"}[1m]))\n)\nand on()\nsum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\"}[1m])) \u003e= 5\n"
+                            }
+                        },
+                        "successCondition": "len(result) == 1 \u0026\u0026 result[0] \u003c= 0.05"
+                    }
+                ]
+            },
+            "status": {
+                "completedAt": "2026-11-01T07:30:56Z",
+                "dryRunSummary": {},
+                "message": "Metric \"query-error-ratio\" assessed Failed due to failed (1) \u003e failureLimit (0)",
+                "metricResults": [
+                    {
+                        "count": 1,
+                        "failed": 1,
+                        "measurements": [
+                            {
+                                "finishedAt": "2026-11-01T07:30:56Z",
+                                "phase": "Failed",
+                                "startedAt": "2026-11-01T07:30:56Z",
+                                "value": "[]"
+                            }
+                        ],
+                        "metadata": {
+                            "ResolvedPrometheusQuery": "(\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"77c9c8f9d7\",outcome=\"failure\"}[1m]))\n  /\n  sum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"77c9c8f9d7\"}[1m]))\n)\nand on()\nsum(increase(pathwatch_query_requests_total{job=\"frontend\",rollouts_pod_template_hash=\"77c9c8f9d7\"}[1m])) \u003e= 5\n"
+                        },
+                        "name": "query-error-ratio",
+                        "phase": "Failed"
+                    }
+                ],
+                "phase": "Failed",
+                "runSummary": {
+                    "count": 1,
+                    "failed": 1
+                },
+                "startedAt": "2026-11-01T07:30:36Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

@@ -1,0 +1,178 @@
+{
+  "acceptance": "PASS: independently checked all15 real raw sequences, timestamps, two-site route switch and recovery before restore",
+  "run_id": "run-b2ui6wy4",
+  "trials": [
+    {
+      "profile": "baseline",
+      "trial": 1,
+      "route_convergence_ms": 174997.865308,
+      "lost_packets": 1750,
+      "maximum_continuous_loss_ms": 174837.350207,
+      "terminal_successes_before_restore": 52,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "baseline",
+      "trial": 2,
+      "route_convergence_ms": 174560.877908,
+      "lost_packets": 1743,
+      "maximum_continuous_loss_ms": 174240.703843,
+      "terminal_successes_before_restore": 52,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "baseline",
+      "trial": 3,
+      "route_convergence_ms": 171482.413589,
+      "lost_packets": 1712,
+      "maximum_continuous_loss_ms": 171040.667626,
+      "terminal_successes_before_restore": 31,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "baseline",
+      "trial": 4,
+      "route_convergence_ms": 172455.802747,
+      "lost_packets": 1722,
+      "maximum_continuous_loss_ms": 172034.557413,
+      "terminal_successes_before_restore": 15,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "baseline",
+      "trial": 5,
+      "route_convergence_ms": 171198.659145,
+      "lost_packets": 1710,
+      "maximum_continuous_loss_ms": 170943.371768,
+      "terminal_successes_before_restore": 51,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "tuned",
+      "trial": 1,
+      "route_convergence_ms": 8534.232345,
+      "lost_packets": 83,
+      "maximum_continuous_loss_ms": 8250.762936,
+      "terminal_successes_before_restore": 53,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "tuned",
+      "trial": 2,
+      "route_convergence_ms": 8608.099406,
+      "lost_packets": 86,
+      "maximum_continuous_loss_ms": 8485.561027,
+      "terminal_successes_before_restore": 29,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "tuned",
+      "trial": 3,
+      "route_convergence_ms": 8809.480836,
+      "lost_packets": 86,
+      "maximum_continuous_loss_ms": 8537.304005,
+      "terminal_successes_before_restore": 51,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "tuned",
+      "trial": 4,
+      "route_convergence_ms": 8336.950201,
+      "lost_packets": 81,
+      "maximum_continuous_loss_ms": 7941.338702,
+      "terminal_successes_before_restore": 29,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "tuned",
+      "trial": 5,
+      "route_convergence_ms": 7997.403759,
+      "lost_packets": 78,
+      "maximum_continuous_loss_ms": 7737.772828,
+      "terminal_successes_before_restore": 54,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "bfd",
+      "trial": 1,
+      "route_convergence_ms": 1216.662031,
+      "lost_packets": 10,
+      "maximum_continuous_loss_ms": 940.390182,
+      "terminal_successes_before_restore": 52,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "bfd",
+      "trial": 2,
+      "route_convergence_ms": 1200.797972,
+      "lost_packets": 9,
+      "maximum_continuous_loss_ms": 847.243202,
+      "terminal_successes_before_restore": 51,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "bfd",
+      "trial": 3,
+      "route_convergence_ms": 1178.173967,
+      "lost_packets": 10,
+      "maximum_continuous_loss_ms": 836.996712,
+      "terminal_successes_before_restore": 50,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "bfd",
+      "trial": 4,
+      "route_convergence_ms": 1337.224214,
+      "lost_packets": 10,
+      "maximum_continuous_loss_ms": 838.829201,
+      "terminal_successes_before_restore": 41,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    },
+    {
+      "profile": "bfd",
+      "trial": 5,
+      "route_convergence_ms": 1168.824549,
+      "lost_packets": 8,
+      "maximum_continuous_loss_ms": 748.24052,
+      "terminal_successes_before_restore": 51,
+      "restore_after_capture": true,
+      "both_sites_alternate_route": true
+    }
+  ],
+  "medians_route_convergence_ms": {
+    "baseline": 172455.802747,
+    "tuned": 8534.232345,
+    "bfd": 1200.797972
+  },
+  "medians_maximum_continuous_loss_ms": {
+    "baseline": 172034.557413,
+    "tuned": 8250.762936,
+    "bfd": 838.829201
+  },
+  "absolute_guest_usage_peaks": {
+    "azure": {
+      "disk_transactions": 261036,
+      "egress_bytes": 174876262
+    },
+    "azure-client": {
+      "disk_transactions": 386241,
+      "egress_bytes": 86894016
+    }
+  },
+  "scope": "same NVA/physical underlay, private owned workloads; not regional HA",
+  "cleanup": "not yet credited by this validator"
+}

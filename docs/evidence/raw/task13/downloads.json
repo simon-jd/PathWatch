@@ -1,0 +1,32 @@
+[
+  {
+    "name": "envoy",
+    "url": "https://github.com/envoyproxy/envoy/releases/download/v1.39.5/envoy-1.39.5-linux-x86_64",
+    "sha256": "2057b6e3c2e18738eee1e42edd35dfbdfc615e873a2d060677ff178c5d1238f5",
+    "bytes": 105105368
+  },
+  {
+    "name": "nghttp2.tar.xz",
+    "url": "https://github.com/nghttp2/nghttp2/releases/download/v1.70.0/nghttp2-1.70.0.tar.xz",
+    "sha256": "e05cb1388eaca3830aded4ccf20044b6e1ac1a61411dcca11b0437c4285c8bc2",
+    "bytes": 2018996
+  },
+  {
+    "name": "wrk2.tar.gz",
+    "url": "https://codeload.github.com/giltene/wrk2/tar.gz/44a94c17d8e6a0bac8559b53da76848e430cb7a7",
+    "sha256": "40fb577303ae83bfc211855880696b6e14daf1eaea2a684fe8cf2252c735b47e",
+    "bytes": 1026220
+  },
+  {
+    "name": "nginx.tar.gz",
+    "url": "https://nginx.org/download/nginx-1.30.6.tar.gz",
+    "sha256": "3cf46f5ed7504d460125866b7bea99fb357f31d887e2e63b35503310e9b8b6c8",
+    "bytes": 1331698
+  },
+  {
+    "name": "nginx.tar.gz.asc",
+    "url": "https://nginx.org/download/nginx-1.30.6.tar.gz.asc",
+    "sha256": "42a21739576b5c01a7329667858a5da987672c8cb16a0e5122e5da4aa5238500",
+    "bytes": 862
+  }
+]

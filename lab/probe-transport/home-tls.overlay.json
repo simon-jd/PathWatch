@@ -1,0 +1,6 @@
+{
+  "listen": "10.30.0.1:19443",
+  "development_cleartext": false,
+  "tls_cert": ".cache/task10-transport/tls/ingest.pem",
+  "tls_key": ".cache/task10-transport/tls/ingest-key.pem"
+}

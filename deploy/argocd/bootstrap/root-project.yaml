@@ -1,0 +1,17 @@
+# Project of the root application only. Argo CD Core does not create the
+# "default" project, and the root may only manage Applications/AppProjects.
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: pathwatch-root
+  namespace: argocd
+  labels: { project: pathwatch }
+spec:
+  description: Bootstrap owner of the PathWatch app-of-apps.
+  sourceRepos: [git://127.0.0.1:9418/pathwatch-deploy]
+  destinations:
+    - { server: https://kubernetes.default.svc, namespace: argocd }
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - { group: argoproj.io, kind: Application }
+    - { group: argoproj.io, kind: AppProject }

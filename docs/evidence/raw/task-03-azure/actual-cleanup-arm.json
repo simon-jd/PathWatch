@@ -1,0 +1,77 @@
+{
+  "claim": "Task3 real managed resources absent, shared RG/backend preserved, hybrid remote state empty",
+  "checks": [
+    {
+      "resource": "vm-pathwatch-hybrid-nva",
+      "type": "Microsoft.Compute/virtualMachines",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:37Z"
+    },
+    {
+      "resource": "os-pathwatch-hybrid-nva",
+      "type": "Microsoft.Compute/disks",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:37Z"
+    },
+    {
+      "resource": "nic-pathwatch-hybrid-nva",
+      "type": "Microsoft.Network/networkInterfaces",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:37Z"
+    },
+    {
+      "resource": "pip-pathwatch-hybrid-nva",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:38Z"
+    },
+    {
+      "resource": "vm-pathwatch-hybrid-client",
+      "type": "Microsoft.Compute/virtualMachines",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:38Z"
+    },
+    {
+      "resource": "os-pathwatch-hybrid-client",
+      "type": "Microsoft.Compute/disks",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:38Z"
+    },
+    {
+      "resource": "nic-pathwatch-hybrid-client",
+      "type": "Microsoft.Network/networkInterfaces",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:40Z"
+    },
+    {
+      "resource": "pip-pathwatch-hybrid-client",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:40Z"
+    },
+    {
+      "resource": "vnet-pathwatch-azure-a",
+      "type": "Microsoft.Network/virtualNetworks",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:40Z"
+    },
+    {
+      "resource": "nsg-pathwatch-azure-a",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:42Z"
+    },
+    {
+      "resource": "rt-pathwatch-azure-a",
+      "type": "Microsoft.Network/routeTables",
+      "actual_arm_resource_not_found": true,
+      "checked_utc": "2026-10-24T06:38:41Z"
+    }
+  ],
+  "managed_arm_parent_or_leaf_absence_checks": 11,
+  "shared_rg_preserved": true,
+  "shared_backend_preserved": true,
+  "hybrid_state_resource_count": 0,
+  "checked_utc": "2026-10-24T06:38:44Z",
+  "historical_estimate_not_released": true
+}

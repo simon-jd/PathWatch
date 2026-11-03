@@ -1,0 +1,10 @@
+/var/log/pathwatch-probe/*.log {
+  daily
+  maxsize 4M
+  rotate 2
+  compress
+  missingok
+  notifempty
+  copytruncate
+  su {{ pathwatch_probe_user }} {{ pathwatch_probe_user }}
+}

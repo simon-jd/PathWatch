@@ -1,0 +1,27 @@
+{
+  "records": 120000,
+  "success": 120000,
+  "http_failed": 0,
+  "stream_failed": 0,
+  "statuses": {
+    "200": 120000
+  },
+  "max_completion_lag_us": 4036,
+  "format": "65536 little-endian uint64 counts, success responses only",
+  "units": "us",
+  "collector_elapsed_s": 120.1914629819803,
+  "quantiles": {
+    "p50_us_bounds": [
+      627,
+      627
+    ],
+    "p99_us_bounds": [
+      6592,
+      6595
+    ],
+    "p999_us_bounds": [
+      11248,
+      11255
+    ]
+  }
+}

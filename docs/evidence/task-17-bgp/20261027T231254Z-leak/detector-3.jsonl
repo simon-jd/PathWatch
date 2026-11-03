@@ -1,0 +1,5 @@
+{"detector": "started", "at": 1793142806.7991042, "feeds": ["c2", "t1a", "t1b", "t2"]}
+{"at": 1793142811.9271922, "kind": "route-leak", "feed": "c2", "prefix": "192.0.2.0/26", "as_path": [64702, 64601, 64701], "why": "stub AS64702 announced 192.0.2.0/26 outside its cone"}
+{"at": 1793142811.9272406, "kind": "route-leak", "feed": "c2", "prefix": "192.0.2.128/26", "as_path": [64702, 64601, 64602, 64703], "why": "stub AS64702 announced 192.0.2.128/26 outside its cone"}
+{"at": 1793142811.9272678, "kind": "route-leak", "feed": "c2", "prefix": "198.51.100.0/24", "as_path": [64702, 64601, 64500], "why": "stub AS64702 announced 198.51.100.0/24 outside its cone"}
+{"at": 1793142812.2005038, "kind": "route-leak", "feed": "t2", "prefix": "192.0.2.0/26", "as_path": [64602, 64702, 64601, 64701], "why": "valley: AS64702 re-exported a route learned from AS64601"}

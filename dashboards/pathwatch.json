@@ -1,0 +1,241 @@
+{
+  "uid": "pathwatch-task10",
+  "title": "PathWatch \u2014 observed paths and SLOs",
+  "schemaVersion": 40,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timezone": "utc",
+  "tags": [
+    "pathwatch",
+    "task10"
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "path",
+        "label": "Path",
+        "type": "query",
+        "datasource": {
+          "type": "grafana-clickhouse-datasource",
+          "uid": "pathwatch-clickhouse"
+        },
+        "query": "SELECT DISTINCT path_key FROM probe_results ORDER BY path_key LIMIT 1024",
+        "refresh": 1,
+        "multi": true,
+        "includeAll": true,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Path latency distribution (10 ms buckets, measured time)",
+      "type": "heatmap",
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "pathwatch-clickhouse"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "pathwatch-clickhouse"
+          },
+          "queryType": "timeseries",
+          "rawSql": "SELECT $__timeInterval(started_at) AS time, toString((floor(phase_ms / 10) + 1) * 10) AS bucket, count() AS Value FROM probe_results WHERE $__timeFilter(started_at) AND phase_present = 1 AND path_key IN (${path:singlequote}) GROUP BY time, bucket ORDER BY time, toFloat64(bucket)",
+          "format": 0,
+          "editorType": "sql",
+          "pluginVersion": "4.23.2"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "calculate": false,
+        "yAxis": {
+          "unit": "ms",
+          "axisPlacement": "left"
+        },
+        "legend": {
+          "show": true
+        },
+        "tooltip": {
+          "show": true,
+          "mode": "single"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "5 minute p50 / p95 / p99 \u2014 merged across all batches",
+      "type": "timeseries",
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "pathwatch-clickhouse"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "pathwatch-clickhouse"
+          },
+          "queryType": "timeseries",
+          "rawSql": "SELECT window_start AS time, path_key, quantilesMerge(0.5,0.95,0.99)(phase_ms)[1] AS p50_ms, quantilesMerge(0.5,0.95,0.99)(phase_ms)[2] AS p95_ms, quantilesMerge(0.5,0.95,0.99)(phase_ms)[3] AS p99_ms, countMerge(samples) AS samples FROM path_quantiles_5m WHERE $__timeFilter(window_start) AND path_key IN (${path:singlequote}) GROUP BY window_start,path_key ORDER BY time",
+          "format": 0,
+          "editorType": "sql",
+          "pluginVersion": "4.23.2"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "samples"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "title": "Stage durations (nanoseconds converted to ms; overlapping stages are not additive)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "pathwatch-clickhouse"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "pathwatch-clickhouse"
+          },
+          "queryType": "timeseries",
+          "rawSql": "SELECT $__timeInterval(started_at) AS time, phase, avg(phases_nanoseconds[phase]) / 1000000 AS duration_ms FROM probe_results ARRAY JOIN mapKeys(phases_nanoseconds) AS phase WHERE $__timeFilter(started_at) AND path_key IN (${path:singlequote}) GROUP BY time,phase ORDER BY time",
+          "format": 0,
+          "editorType": "sql",
+          "pluginVersion": "4.23.2"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "title": "Detected path events (FINAL deduplicated)",
+      "type": "table",
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "pathwatch-clickhouse"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "pathwatch-clickhouse"
+          },
+          "queryType": "table",
+          "rawSql": "SELECT window_start, path_key, p95_ms, baseline_ms, path_changed, first_divergent_ttl, correlation_reason FROM path_events FINAL WHERE $__timeFilter(window_start) AND path_key IN (${path:singlequote}) ORDER BY window_start DESC LIMIT 500",
+          "format": 1,
+          "editorType": "sql",
+          "pluginVersion": "4.23.2"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 5,
+      "title": "Closed-window freshness and readiness API error ratios (missing telemetry fails closed)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 24,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "pathwatch-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "slo:sli_error:ratio_rate1h{sloth_service=\"pathwatch\"}",
+          "legendFormat": "{{sloth_slo}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

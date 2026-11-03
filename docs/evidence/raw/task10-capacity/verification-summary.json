@@ -1,0 +1,187 @@
+{
+  "source_commit": "df63e5b",
+  "scope": "synthetic capacity, not actual35day/SLO",
+  "prometheus": {
+    "days": 35,
+    "series": 128,
+    "expected_samples": 25804800,
+    "accepted_samples": 25804800,
+    "count_before_restart": 25804800,
+    "count_after_restart": 25804800,
+    "http_responses": {
+      "204": 1680
+    },
+    "elapsed_seconds": 128.6962342200568,
+    "request_stream_sha256": "7c37e288ffa73faef800d6a81fd91da782a37f5117475d8ee7d5c7f2e27b9c48",
+    "process_absent": true,
+    "synthetic_directory_removed": true,
+    "ports_closed": [
+      true,
+      true
+    ]
+  },
+  "prometheus_peak": {
+    "allocated": 226959360,
+    "project_allocated": 3230634750,
+    "native_rss": 388964352,
+    "wal": 6270976,
+    "chunks_head": 667648,
+    "wbl": 0
+  },
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/modules/clickhouse",
+        "-p",
+        "test*.py",
+        "-v"
+      ],
+      "exit": 0,
+      "output": "final-python.txt"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-p",
+        "test_probe_home_observer.py",
+        "-v"
+      ],
+      "environment": {
+        "PYTHONPATH": "scripts"
+      },
+      "exit": 0,
+      "output": "final-helper-python-round2.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/modules/clickhouse",
+        "-p",
+        "test_capacity*.py",
+        "-v"
+      ],
+      "exit": 0,
+      "output": "spool-admission-final.txt",
+      "tests": 21
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/modules/clickhouse",
+        "-p",
+        "test_capacity*.py",
+        "-v"
+      ],
+      "exit": 0,
+      "output": "spool-allocated-green.txt",
+      "tests": 22
+    }
+  ],
+  "source_commits": [
+    "df63e5b",
+    "c8e936b",
+    "40b629e"
+  ],
+  "final_prometheus": {
+    "days": 35,
+    "series": 128,
+    "expected_samples": 25804800,
+    "accepted_samples": 25804800,
+    "count_before_restart": 25804800,
+    "count_after_restart": 25804800,
+    "http_responses": {
+      "204": 1680
+    },
+    "elapsed_seconds": 124.17358499998227,
+    "request_stream_sha256": "2733f0ac598b5138104441c23fe62c4349ec494dac50f494cdb62eb98ef49e40",
+    "process_absent": true,
+    "synthetic_directory_removed": true,
+    "ports_closed": [
+      true,
+      true
+    ]
+  },
+  "final_prometheus_peak": {
+    "allocated": 225435648,
+    "project_allocated": 3233821438,
+    "native_rss": 389001216,
+    "wal": 6238208,
+    "chunks_head": 667648,
+    "wbl": 0
+  },
+  "final_prometheus_file": "prometheus-full-round3.json",
+  "status": "DONE_WITH_CONCERNS",
+  "full_capacity_acceptance": "UNMET",
+  "long_deployment_ready": false,
+  "final_source": "40b629e",
+  "final_ch": {
+    "exit": 1,
+    "error": "RuntimeError: fixture stage failed: seed",
+    "elapsed_seconds": 658.8234737450257,
+    "container_id": "58a477ceafd292d15b8a579aa6a99a6658db7a4d03a40ca62046eac5c185b957",
+    "container_absent": true,
+    "synthetic_directory_removed": true,
+    "port_closed": true,
+    "initial_project_bytes": 3005559550,
+    "final_project_bytes": 3005846270,
+    "binary_sha256": "63f6d7dd4f89812640837ccb599586c156553a43138a3da8e61d43f9ca013c01",
+    "source_sha256": {
+      "probe/cmd/probe/main.go": "f2f42eec76b47887a1455f2de04fc58755e0e97ff033fe6f007c122e0cd36125",
+      "probe/cmd/probe/capacity.go": "021df04e26075e9a1dee5991419fbbd04b3e4cc71bcbaa967f8051dd99f4c58a",
+      "ingest/cmd/ingest/main.go": "406a1fa13c01d17a93e90b7283673d142c142b895ccd5d9de5f36b08b78f31a3",
+      "scripts/probe_home_observer.py": "ffb02572c10bf03f63426dadf8923b827df92621830dd452a0acdb75a22effa5",
+      "slo/observe.py": "418ae1cde91b4c62afccdb3746ad9ebcf61e7773792b7a8f96572fd717451fbf",
+      "ingest/internal/server/server.go": "7c4f6d8b19434211465b14f0ad2d67440b2ef1a181b7dadfefb5a36c04ea3ec4",
+      "docs/evidence/raw/task10-real-outage-20261024/operator-v2-healthy-baseline.json": "a4994d5c29336a16ef2ecf0834dda75d19c08c8f735ebb50a3468790ca599972",
+      "ingest/internal/store/store.go": "ec0869d3f461954b15ab475e7aa4090d1f6e872c06a0fe82fa3b1666234da9e1",
+      "ingest/internal/store/capacity_fixture_test.go": "3fadda01a1d2172e3f77beba5b90d63d9f4bb80dc52e9b28095b5da9ea45a863",
+      "infra/modules/clickhouse/clickhouse.xml": "061c8c10a5adb09541b06ea5eeaa4f8f350b087f7f729d8c989453bb12a47295",
+      "infra/modules/clickhouse/capacity_fixture.py": "4209e7ed123fe69931cd41d302992251802890e7402ac3fae542202d2c527d99",
+      "infra/modules/clickhouse/home.py": "221a31d5cf3ae217205f024184591f3cecec6167ef2a4aaf8e68310ede8efca2",
+      "infra/modules/clickhouse/capacity.py": "fd24e6c21adf727756e95fecf4aefa8f610741205791f96709eebcd2d1196e47",
+      "infra/modules/clickhouse/capacity_campaign.py": "7bb596ef9123b380ce49bba8dfdbbd806c0d76236f0a79ca3411b443eb57b2a4",
+      "infra/modules/clickhouse/capacity_prometheus_fixture.py": "45ab8e9deaa763273e99e3cc6ea8c1f9d93247bf56370cc3ac5761aceb4609ab",
+      "slo/prometheus.yaml": "43a7614cb8ff03f92afd8967165c880433cea7b94cfcbc37225411682691a10e",
+      "slo/generated.rules.yaml": "8b437fdcf56f39b4f5b00fb1cb5bc72a2c067daa12cc6f0797c7ee2c5f121f19"
+    },
+    "runtime_binary_sha256": {
+      "probe": "a68606e356311adfcb53813ecaf039e6e1131d90260e2785d42bb0645b91e638",
+      "ingest": "6f8e7090f13964c9a894eff06b8546148dcb070fd73d6a2c1cced24f3fbf8360"
+    },
+    "seed_failure": "original480s part GC did not settle within600s",
+    "complete_volume_open_recovery_paths_verified": false
+  },
+  "final_ch_peak": {
+    "data_allocated": 237432832,
+    "project_allocated": 3398968062,
+    "native_rss": 25759744
+  },
+  "operator_refusal": "operator-final-refusal.json",
+  "remaining": "C3b controlled full-volume fixture/validation, potentially fixture source changes; C4 Grafana; C5 live anomaly/events; physical35day/SLO"
+}

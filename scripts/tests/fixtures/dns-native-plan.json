@@ -1,0 +1,2079 @@
+{
+  "_fixture": "Native Terraform 1.17.0 mocked resource_changes from tests/dns.tftest.hcl bounded_dns. Variables and mocked parent are supplied explicitly because test_plan output omits them. No cloud receipt.",
+  "variables": {
+    "subscription_id": {
+      "value": "11111111-1111-1111-1111-111111111111"
+    },
+    "ttl": {
+      "value": "2026-10-24T08:00:00Z"
+    },
+    "owner_cidr": {
+      "value": "8.8.8.8/32"
+    },
+    "campaign_id": {
+      "value": "11111111-2222-3333-4444-555555555555"
+    },
+    "admin_public_key": {
+      "value": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGU1tU6KxrPjsnIB9dI9Zut3zjS9gKVT9ngP3gYOdr1p pathwatch"
+    },
+    "task3_cleanup_confirmed": {
+      "value": true
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "module.dns.azapi_update_resource.disk_tags[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azapi_update_resource",
+      "name": "disk_tags",
+      "index": "a",
+      "provider_name": "registry.terraform.io/azure/azapi",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "body": {
+            "tags": {
+              "est_usd_per_hour": "0.05",
+              "owner": "codex-pathwatch",
+              "project": "pathwatch",
+              "ttl": "2026-10-24T08:00:00Z"
+            }
+          },
+          "locks": null,
+          "read_headers": null,
+          "read_query_parameters": null,
+          "resource_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Compute/disks/os-pathwatch-dns-a",
+          "response_export_values": null,
+          "retry": null,
+          "sensitive_body": null,
+          "sensitive_body_version": null,
+          "timeouts": null,
+          "type": "Microsoft.Compute/disks@2024-03-02",
+          "update_headers": null,
+          "update_query_parameters": null
+        },
+        "after_unknown": {
+          "body": {
+            "tags": {}
+          },
+          "id": true,
+          "ignore_casing": true,
+          "ignore_missing_property": true,
+          "name": true,
+          "output": true,
+          "parent_id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "body": {
+            "tags": {}
+          }
+        }
+      }
+    },
+    {
+      "address": "module.dns.azapi_update_resource.disk_tags[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azapi_update_resource",
+      "name": "disk_tags",
+      "index": "b",
+      "provider_name": "registry.terraform.io/azure/azapi",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "body": {
+            "tags": {
+              "est_usd_per_hour": "0.05",
+              "owner": "codex-pathwatch",
+              "project": "pathwatch",
+              "ttl": "2026-10-24T08:00:00Z"
+            }
+          },
+          "locks": null,
+          "read_headers": null,
+          "read_query_parameters": null,
+          "resource_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Compute/disks/os-pathwatch-dns-b",
+          "response_export_values": null,
+          "retry": null,
+          "sensitive_body": null,
+          "sensitive_body_version": null,
+          "timeouts": null,
+          "type": "Microsoft.Compute/disks@2024-03-02",
+          "update_headers": null,
+          "update_query_parameters": null
+        },
+        "after_unknown": {
+          "body": {
+            "tags": {}
+          },
+          "id": true,
+          "ignore_casing": true,
+          "ignore_missing_property": true,
+          "name": true,
+          "output": true,
+          "parent_id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "body": {
+            "tags": {}
+          }
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_linux_virtual_machine.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_linux_virtual_machine",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "additional_capabilities": [],
+          "admin_password": null,
+          "admin_ssh_key": [
+            {
+              "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGU1tU6KxrPjsnIB9dI9Zut3zjS9gKVT9ngP3gYOdr1p pathwatch",
+              "username": "pathwatch"
+            }
+          ],
+          "admin_username": "pathwatch",
+          "allow_extension_operations": false,
+          "availability_set_id": null,
+          "boot_diagnostics": [],
+          "bypass_platform_safety_checks_on_user_schedule_enabled": null,
+          "capacity_reservation_group_id": null,
+          "custom_data": null,
+          "dedicated_host_group_id": null,
+          "dedicated_host_id": null,
+          "disable_password_authentication": true,
+          "edge_zone": null,
+          "encryption_at_host_enabled": null,
+          "eviction_policy": null,
+          "extensions_time_budget": null,
+          "gallery_application": [],
+          "identity": [],
+          "license_type": null,
+          "location": "westus",
+          "max_bid_price": null,
+          "name": "vm-pathwatch-dns-a",
+          "network_interface_ids": [
+            "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkInterfaces/nic-pathwatch-dns-a"
+          ],
+          "os_disk": [
+            {
+              "caching": "ReadWrite",
+              "diff_disk_settings": [],
+              "disk_encryption_set_id": null,
+              "disk_size_gb": 30,
+              "name": "os-pathwatch-dns-a",
+              "secure_vm_disk_encryption_set_id": null,
+              "security_encryption_type": null,
+              "storage_account_type": "Standard_LRS",
+              "write_accelerator_enabled": null
+            }
+          ],
+          "os_image_notification": [],
+          "patch_mode": "ImageDefault",
+          "plan": [],
+          "platform_fault_domain": null,
+          "priority": "Regular",
+          "provision_vm_agent": true,
+          "proximity_placement_group_id": null,
+          "reboot_setting": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "secret": [],
+          "secure_boot_enabled": null,
+          "size": "Standard_B2pts_v2",
+          "source_image_id": null,
+          "source_image_reference": [
+            {
+              "offer": "ubuntu-24_04-lts",
+              "publisher": "Canonical",
+              "sku": "server-arm64",
+              "version": "24.04.202610210"
+            }
+          ],
+          "tags": {
+            "est_usd_per_hour": "0.1",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "termination_notification": [],
+          "timeouts": null,
+          "user_data": null,
+          "virtual_machine_scale_set_id": null,
+          "vtpm_enabled": null,
+          "zone": null
+        },
+        "after_unknown": {
+          "additional_capabilities": [],
+          "admin_ssh_key": [
+            {}
+          ],
+          "boot_diagnostics": [],
+          "computer_name": true,
+          "disk_controller_type": true,
+          "gallery_application": [],
+          "id": true,
+          "identity": [],
+          "network_interface_ids": [
+            false
+          ],
+          "os_disk": [
+            {
+              "diff_disk_settings": [],
+              "id": true
+            }
+          ],
+          "os_image_notification": [],
+          "os_managed_disk_id": true,
+          "patch_assessment_mode": true,
+          "plan": [],
+          "private_ip_address": true,
+          "private_ip_addresses": true,
+          "public_ip_address": true,
+          "public_ip_addresses": true,
+          "secret": [],
+          "source_image_reference": [
+            {}
+          ],
+          "tags": {},
+          "termination_notification": [],
+          "virtual_machine_id": true,
+          "vm_agent_platform_updates_enabled": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "additional_capabilities": [],
+          "admin_password": true,
+          "admin_ssh_key": [
+            {}
+          ],
+          "boot_diagnostics": [],
+          "custom_data": true,
+          "gallery_application": [],
+          "identity": [],
+          "network_interface_ids": [
+            false
+          ],
+          "os_disk": [
+            {
+              "diff_disk_settings": []
+            }
+          ],
+          "os_image_notification": [],
+          "plan": [],
+          "private_ip_addresses": [],
+          "public_ip_addresses": [],
+          "secret": [],
+          "source_image_reference": [
+            {}
+          ],
+          "tags": {},
+          "termination_notification": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_linux_virtual_machine.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_linux_virtual_machine",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "additional_capabilities": [],
+          "admin_password": null,
+          "admin_ssh_key": [
+            {
+              "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGU1tU6KxrPjsnIB9dI9Zut3zjS9gKVT9ngP3gYOdr1p pathwatch",
+              "username": "pathwatch"
+            }
+          ],
+          "admin_username": "pathwatch",
+          "allow_extension_operations": false,
+          "availability_set_id": null,
+          "boot_diagnostics": [],
+          "bypass_platform_safety_checks_on_user_schedule_enabled": null,
+          "capacity_reservation_group_id": null,
+          "custom_data": null,
+          "dedicated_host_group_id": null,
+          "dedicated_host_id": null,
+          "disable_password_authentication": true,
+          "edge_zone": null,
+          "encryption_at_host_enabled": null,
+          "eviction_policy": null,
+          "extensions_time_budget": null,
+          "gallery_application": [],
+          "identity": [],
+          "license_type": null,
+          "location": "swedencentral",
+          "max_bid_price": null,
+          "name": "vm-pathwatch-dns-b",
+          "network_interface_ids": [
+            "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkInterfaces/nic-pathwatch-dns-b"
+          ],
+          "os_disk": [
+            {
+              "caching": "ReadWrite",
+              "diff_disk_settings": [],
+              "disk_encryption_set_id": null,
+              "disk_size_gb": 30,
+              "name": "os-pathwatch-dns-b",
+              "secure_vm_disk_encryption_set_id": null,
+              "security_encryption_type": null,
+              "storage_account_type": "Standard_LRS",
+              "write_accelerator_enabled": null
+            }
+          ],
+          "os_image_notification": [],
+          "patch_mode": "ImageDefault",
+          "plan": [],
+          "platform_fault_domain": null,
+          "priority": "Regular",
+          "provision_vm_agent": true,
+          "proximity_placement_group_id": null,
+          "reboot_setting": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "secret": [],
+          "secure_boot_enabled": null,
+          "size": "Standard_B2pts_v2",
+          "source_image_id": null,
+          "source_image_reference": [
+            {
+              "offer": "ubuntu-24_04-lts",
+              "publisher": "Canonical",
+              "sku": "server-arm64",
+              "version": "24.04.202610210"
+            }
+          ],
+          "tags": {
+            "est_usd_per_hour": "0.1",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "termination_notification": [],
+          "timeouts": null,
+          "user_data": null,
+          "virtual_machine_scale_set_id": null,
+          "vtpm_enabled": null,
+          "zone": null
+        },
+        "after_unknown": {
+          "additional_capabilities": [],
+          "admin_ssh_key": [
+            {}
+          ],
+          "boot_diagnostics": [],
+          "computer_name": true,
+          "disk_controller_type": true,
+          "gallery_application": [],
+          "id": true,
+          "identity": [],
+          "network_interface_ids": [
+            false
+          ],
+          "os_disk": [
+            {
+              "diff_disk_settings": [],
+              "id": true
+            }
+          ],
+          "os_image_notification": [],
+          "os_managed_disk_id": true,
+          "patch_assessment_mode": true,
+          "plan": [],
+          "private_ip_address": true,
+          "private_ip_addresses": true,
+          "public_ip_address": true,
+          "public_ip_addresses": true,
+          "secret": [],
+          "source_image_reference": [
+            {}
+          ],
+          "tags": {},
+          "termination_notification": [],
+          "virtual_machine_id": true,
+          "vm_agent_platform_updates_enabled": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "additional_capabilities": [],
+          "admin_password": true,
+          "admin_ssh_key": [
+            {}
+          ],
+          "boot_diagnostics": [],
+          "custom_data": true,
+          "gallery_application": [],
+          "identity": [],
+          "network_interface_ids": [
+            false
+          ],
+          "os_disk": [
+            {
+              "diff_disk_settings": []
+            }
+          ],
+          "os_image_notification": [],
+          "plan": [],
+          "private_ip_addresses": [],
+          "public_ip_addresses": [],
+          "secret": [],
+          "source_image_reference": [
+            {}
+          ],
+          "tags": {},
+          "termination_notification": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_interface.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_interface",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "accelerated_networking_enabled": false,
+          "auxiliary_mode": null,
+          "auxiliary_sku": null,
+          "dns_servers": [],
+          "edge_zone": null,
+          "internal_dns_name_label": null,
+          "ip_configuration": [
+            {
+              "name": "primary",
+              "primary": true,
+              "private_ip_address": "10.10.0.4",
+              "private_ip_address_allocation": "Static",
+              "private_ip_address_version": null,
+              "public_ip_address_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/publicIPAddresses/pip-pathwatch-dns-a",
+              "subnet_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-a/subnets/snet-dns"
+            }
+          ],
+          "ip_forwarding_enabled": false,
+          "location": "westus",
+          "name": "nic-pathwatch-dns-a",
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "applied_dns_servers": true,
+          "dns_servers": [],
+          "id": true,
+          "internal_domain_name_suffix": true,
+          "ip_configuration": [
+            {
+              "gateway_load_balancer_frontend_ip_configuration_id": true
+            }
+          ],
+          "mac_address": true,
+          "private_ip_address": true,
+          "private_ip_addresses": true,
+          "tags": {},
+          "virtual_machine_id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "applied_dns_servers": [],
+          "dns_servers": [],
+          "ip_configuration": [
+            {}
+          ],
+          "private_ip_addresses": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_interface.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_interface",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "accelerated_networking_enabled": false,
+          "auxiliary_mode": null,
+          "auxiliary_sku": null,
+          "dns_servers": [],
+          "edge_zone": null,
+          "internal_dns_name_label": null,
+          "ip_configuration": [
+            {
+              "name": "primary",
+              "primary": true,
+              "private_ip_address": "10.20.0.4",
+              "private_ip_address_allocation": "Static",
+              "private_ip_address_version": null,
+              "public_ip_address_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/publicIPAddresses/pip-pathwatch-dns-b",
+              "subnet_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-b/subnets/snet-dns"
+            }
+          ],
+          "ip_forwarding_enabled": false,
+          "location": "swedencentral",
+          "name": "nic-pathwatch-dns-b",
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "applied_dns_servers": true,
+          "dns_servers": [],
+          "id": true,
+          "internal_domain_name_suffix": true,
+          "ip_configuration": [
+            {
+              "gateway_load_balancer_frontend_ip_configuration_id": true
+            }
+          ],
+          "mac_address": true,
+          "private_ip_address": true,
+          "private_ip_addresses": true,
+          "tags": {},
+          "virtual_machine_id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "applied_dns_servers": [],
+          "dns_servers": [],
+          "ip_configuration": [
+            {}
+          ],
+          "private_ip_addresses": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_group.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "location": "westus",
+          "name": "nsg-pathwatch-dns-a",
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "security_rule": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "security_rule": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_group.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "location": "swedencentral",
+          "name": "nsg-pathwatch-dns-b",
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "security_rule": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "security_rule": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-deny\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-deny",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Deny",
+          "description": null,
+          "destination_address_prefix": "*",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "*",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "deny",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 4096,
+          "protocol": "*",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "*",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-dns_tcp\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-dns_tcp",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "53",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "dns_tcp",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 140,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "10.30.0.10/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-dns_udp\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-dns_udp",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "53",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "dns_udp",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 150,
+          "protocol": "Udp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "10.30.0.10/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-managed_http\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-managed_http",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "80",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "managed_http",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 130,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "AzureTrafficManager",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-owner_http\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-owner_http",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "80",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "owner_http",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 120,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-ssh\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-ssh",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "22",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "ssh",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 100,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"a-wg\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "a-wg",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.10.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "51824",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "wg",
+          "network_security_group_name": "nsg-pathwatch-dns-a",
+          "priority": 110,
+          "protocol": "Udp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-deny\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-deny",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Deny",
+          "description": null,
+          "destination_address_prefix": "*",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "*",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "deny",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 4096,
+          "protocol": "*",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "*",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-dns_tcp\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-dns_tcp",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "53",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "dns_tcp",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 140,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "10.30.0.10/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-dns_udp\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-dns_udp",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "53",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "dns_udp",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 150,
+          "protocol": "Udp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "10.30.0.10/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-managed_http\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-managed_http",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "80",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "managed_http",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 130,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "AzureTrafficManager",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-owner_http\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-owner_http",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "80",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "owner_http",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 120,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-ssh\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-ssh",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "22",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "ssh",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 100,
+          "protocol": "Tcp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_network_security_rule.this[\"b-wg\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_network_security_rule",
+      "name": "this",
+      "index": "b-wg",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "access": "Allow",
+          "description": null,
+          "destination_address_prefix": "10.20.0.4/32",
+          "destination_address_prefixes": null,
+          "destination_application_security_group_ids": null,
+          "destination_port_range": "51824",
+          "destination_port_ranges": null,
+          "direction": "Inbound",
+          "name": "wg",
+          "network_security_group_name": "nsg-pathwatch-dns-b",
+          "priority": 110,
+          "protocol": "Udp",
+          "resource_group_name": "rg-pathwatch-lab",
+          "source_address_prefix": "8.8.8.8/32",
+          "source_address_prefixes": null,
+          "source_application_security_group_ids": null,
+          "source_port_range": "*",
+          "source_port_ranges": null,
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_a_record.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_a_record",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "a",
+          "records": [
+            "10.10.0.4"
+          ],
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "ttl": 30,
+          "zone_name": "dns.pathwatch.internal"
+        },
+        "after_unknown": {
+          "fqdn": true,
+          "id": true,
+          "records": [
+            false
+          ],
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "records": [
+            false
+          ],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_a_record.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_a_record",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "b",
+          "records": [
+            "10.20.0.4"
+          ],
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "ttl": 30,
+          "zone_name": "dns.pathwatch.internal"
+        },
+        "after_unknown": {
+          "fqdn": true,
+          "id": true,
+          "records": [
+            false
+          ],
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "records": [
+            false
+          ],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_a_record.this[\"home\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_a_record",
+      "name": "this",
+      "index": "home",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "home",
+          "records": [
+            "10.30.0.10"
+          ],
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "ttl": 30,
+          "zone_name": "dns.pathwatch.internal"
+        },
+        "after_unknown": {
+          "fqdn": true,
+          "id": true,
+          "records": [
+            false
+          ],
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "records": [
+            false
+          ],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_zone.this",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone",
+      "name": "this",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "dns.pathwatch.internal",
+          "resource_group_name": "rg-pathwatch-lab",
+          "soa_record": [],
+          "tags": {
+            "est_usd_per_hour": "0.1",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true,
+          "max_number_of_record_sets": true,
+          "max_number_of_virtual_network_links": true,
+          "max_number_of_virtual_network_links_with_registration": true,
+          "number_of_record_sets": true,
+          "soa_record": [],
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "soa_record": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_zone_virtual_network_link.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone_virtual_network_link",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "link-pathwatch-dns-a",
+          "private_dns_zone_name": "dns.pathwatch.internal",
+          "registration_enabled": false,
+          "resolution_policy": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "virtual_network_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-a"
+        },
+        "after_unknown": {
+          "id": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_private_dns_zone_virtual_network_link.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone_virtual_network_link",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "link-pathwatch-dns-b",
+          "private_dns_zone_name": "dns.pathwatch.internal",
+          "registration_enabled": false,
+          "resolution_policy": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "virtual_network_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-b"
+        },
+        "after_unknown": {
+          "id": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_public_ip.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_public_ip",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "allocation_method": "Static",
+          "ddos_protection_mode": "VirtualNetworkInherited",
+          "ddos_protection_plan_id": null,
+          "domain_name_label": "pathwatch-bafde89c04-dns-a",
+          "domain_name_label_scope": null,
+          "edge_zone": null,
+          "idle_timeout_in_minutes": null,
+          "ip_tags": null,
+          "ip_version": "IPv4",
+          "location": "westus",
+          "name": "pip-pathwatch-dns-a",
+          "public_ip_prefix_id": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "reverse_fqdn": null,
+          "sku": "Standard",
+          "sku_tier": "Regional",
+          "tags": {
+            "est_usd_per_hour": "0.005",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "zones": null
+        },
+        "after_unknown": {
+          "fqdn": true,
+          "id": true,
+          "ip_address": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_public_ip.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_public_ip",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "allocation_method": "Static",
+          "ddos_protection_mode": "VirtualNetworkInherited",
+          "ddos_protection_plan_id": null,
+          "domain_name_label": "pathwatch-bafde89c04-dns-b",
+          "domain_name_label_scope": null,
+          "edge_zone": null,
+          "idle_timeout_in_minutes": null,
+          "ip_tags": null,
+          "ip_version": "IPv4",
+          "location": "swedencentral",
+          "name": "pip-pathwatch-dns-b",
+          "public_ip_prefix_id": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "reverse_fqdn": null,
+          "sku": "Standard",
+          "sku_tier": "Regional",
+          "tags": {
+            "est_usd_per_hour": "0.005",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "zones": null
+        },
+        "after_unknown": {
+          "fqdn": true,
+          "id": true,
+          "ip_address": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_subnet.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "address_prefixes": [
+            "10.10.0.0/24"
+          ],
+          "default_outbound_access_enabled": false,
+          "delegation": [],
+          "ip_address_pool": [],
+          "name": "snet-dns",
+          "private_endpoint_network_policies": null,
+          "private_link_service_network_policies_enabled": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "service_endpoint_policy_ids": null,
+          "service_endpoints": null,
+          "sharing_scope": null,
+          "timeouts": null,
+          "virtual_network_name": "vnet-pathwatch-dns-a"
+        },
+        "after_unknown": {
+          "address_prefixes": [
+            false
+          ],
+          "delegation": [],
+          "id": true,
+          "ip_address_pool": []
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "address_prefixes": [
+            false
+          ],
+          "delegation": [],
+          "ip_address_pool": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_subnet.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "address_prefixes": [
+            "10.20.0.0/24"
+          ],
+          "default_outbound_access_enabled": false,
+          "delegation": [],
+          "ip_address_pool": [],
+          "name": "snet-dns",
+          "private_endpoint_network_policies": null,
+          "private_link_service_network_policies_enabled": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "service_endpoint_policy_ids": null,
+          "service_endpoints": null,
+          "sharing_scope": null,
+          "timeouts": null,
+          "virtual_network_name": "vnet-pathwatch-dns-b"
+        },
+        "after_unknown": {
+          "address_prefixes": [
+            false
+          ],
+          "delegation": [],
+          "id": true,
+          "ip_address_pool": []
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "address_prefixes": [
+            false
+          ],
+          "delegation": [],
+          "ip_address_pool": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_subnet_network_security_group_association.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "network_security_group_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-dns-a",
+          "subnet_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-a/subnets/snet-dns",
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_subnet_network_security_group_association.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "network_security_group_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/networkSecurityGroups/nsg-pathwatch-dns-b",
+          "subnet_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/virtualNetworks/vnet-pathwatch-dns-b/subnets/snet-dns",
+          "timeouts": null
+        },
+        "after_unknown": {
+          "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {}
+      }
+    },
+    {
+      "address": "module.dns.azurerm_traffic_manager_azure_endpoint.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_traffic_manager_azure_endpoint",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "always_serve_enabled": false,
+          "custom_header": [],
+          "enabled": true,
+          "geo_mappings": null,
+          "name": "a",
+          "priority": 1,
+          "profile_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/trafficManagerProfiles/pathwatch-bafde89c04-dns",
+          "subnet": [],
+          "target_resource_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/publicIPAddresses/pip-pathwatch-dns-a",
+          "timeouts": null,
+          "weight": null
+        },
+        "after_unknown": {
+          "custom_header": [],
+          "id": true,
+          "subnet": []
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "custom_header": [],
+          "subnet": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_traffic_manager_azure_endpoint.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_traffic_manager_azure_endpoint",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "always_serve_enabled": false,
+          "custom_header": [],
+          "enabled": true,
+          "geo_mappings": null,
+          "name": "b",
+          "priority": 2,
+          "profile_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/trafficManagerProfiles/pathwatch-bafde89c04-dns",
+          "subnet": [],
+          "target_resource_id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab/providers/Microsoft.Network/publicIPAddresses/pip-pathwatch-dns-b",
+          "timeouts": null,
+          "weight": null
+        },
+        "after_unknown": {
+          "custom_header": [],
+          "id": true,
+          "subnet": []
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "custom_header": [],
+          "subnet": []
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_traffic_manager_profile.this",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_traffic_manager_profile",
+      "name": "this",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "dns_config": [
+            {
+              "relative_name": "pathwatch-bafde89c04-dns",
+              "ttl": 30
+            }
+          ],
+          "max_return": null,
+          "monitor_config": [
+            {
+              "custom_header": [],
+              "expected_status_code_ranges": null,
+              "interval_in_seconds": 30,
+              "path": "/healthz",
+              "port": 80,
+              "protocol": "HTTP",
+              "timeout_in_seconds": 5,
+              "tolerated_number_of_failures": 2
+            }
+          ],
+          "name": "pathwatch-bafde89c04-dns",
+          "profile_status": "Enabled",
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "1",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null,
+          "traffic_routing_method": "Priority",
+          "traffic_view_enabled": false
+        },
+        "after_unknown": {
+          "dns_config": [
+            {}
+          ],
+          "fqdn": true,
+          "id": true,
+          "monitor_config": [
+            {
+              "custom_header": []
+            }
+          ],
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "dns_config": [
+            {}
+          ],
+          "monitor_config": [
+            {
+              "custom_header": []
+            }
+          ],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_virtual_network.this[\"a\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "this",
+      "index": "a",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "address_space": [
+            "10.10.0.0/16"
+          ],
+          "bgp_community": null,
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "edge_zone": null,
+          "encryption": [],
+          "flow_timeout_in_minutes": null,
+          "ip_address_pool": [],
+          "location": "westus",
+          "name": "vnet-pathwatch-dns-a",
+          "private_endpoint_vnet_policies": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "address_space": [
+            false
+          ],
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "encryption": [],
+          "guid": true,
+          "id": true,
+          "ip_address_pool": [],
+          "subnet": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "address_space": [
+            false
+          ],
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "encryption": [],
+          "ip_address_pool": [],
+          "subnet": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.azurerm_virtual_network.this[\"b\"]",
+      "module_address": "module.dns",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "this",
+      "index": "b",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "address_space": [
+            "10.20.0.0/16"
+          ],
+          "bgp_community": null,
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "edge_zone": null,
+          "encryption": [],
+          "flow_timeout_in_minutes": null,
+          "ip_address_pool": [],
+          "location": "swedencentral",
+          "name": "vnet-pathwatch-dns-b",
+          "private_endpoint_vnet_policies": null,
+          "resource_group_name": "rg-pathwatch-lab",
+          "tags": {
+            "est_usd_per_hour": "0",
+            "owner": "codex-pathwatch",
+            "project": "pathwatch",
+            "ttl": "2026-10-24T08:00:00Z"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "address_space": [
+            false
+          ],
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "encryption": [],
+          "guid": true,
+          "id": true,
+          "ip_address_pool": [],
+          "subnet": true,
+          "tags": {}
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "address_space": [
+            false
+          ],
+          "ddos_protection_plan": [],
+          "dns_servers": [],
+          "encryption": [],
+          "ip_address_pool": [],
+          "subnet": [],
+          "tags": {}
+        }
+      }
+    },
+    {
+      "address": "module.dns.data.azurerm_resource_group.project",
+      "type": "azurerm_resource_group",
+      "mode": "data",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "after": {
+          "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-pathwatch-lab",
+          "tags": {
+            "project": "pathwatch",
+            "owner": "codex-pathwatch",
+            "ttl": "2026-10-25T03:03:27Z"
+          }
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "root_module": {
+      "module_calls": {
+        "dns": {
+          "module": {
+            "resources": [
+              {
+                "address": "azurerm_virtual_network.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_network_security_group.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_linux_virtual_machine.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_private_dns_zone.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_network_interface.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_traffic_manager_profile.this",
+                "expressions": {}
+              },
+              {
+                "address": "azurerm_private_dns_zone_virtual_network_link.this",
+                "expressions": {}
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

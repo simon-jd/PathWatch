@@ -1,0 +1,8 @@
+=== RUN   TestClusters
+    k8s_test.go:62: pathwatch-api Synced/Healthy
+    k8s_test.go:62: pathwatch-ingest Synced/Healthy
+    k8s_test.go:62: pathwatch-observability Synced/Healthy
+    k8s_test.go:62: pathwatch-root Synced/Healthy
+--- PASS: TestClusters (0.09s)
+PASS
+ok  	pathwatch.local/pathwatch/infra/test	0.116s

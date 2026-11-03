@@ -1,0 +1,422 @@
+[
+  {
+    "protocol": "h1",
+    "rate": 1000,
+    "proxy": "pathwatch",
+    "completed": 598212,
+    "achieved_rps_mean": 997.0012796393061,
+    "cpu_us_per_completed": 64.80411626647403,
+    "unfinished_at_end": 91,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      940.0,
+      940.0
+    ],
+    "p99_us_bounds": [
+      2590.0,
+      2590.0
+    ],
+    "p999_us_bounds": [
+      4630.0,
+      4630.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 1000,
+    "proxy": "envoy",
+    "completed": 598454,
+    "achieved_rps_mean": 997.4062959714543,
+    "cpu_us_per_completed": 117.2078388648082,
+    "unfinished_at_end": 47,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1140.0,
+      1140.0
+    ],
+    "p99_us_bounds": [
+      3340.0,
+      3340.0
+    ],
+    "p999_us_bounds": [
+      6080.0,
+      6080.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 1000,
+    "proxy": "nginx",
+    "completed": 598451,
+    "achieved_rps_mean": 997.4028021093666,
+    "cpu_us_per_completed": 49.57548738326099,
+    "unfinished_at_end": 49,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      900.0,
+      900.0
+    ],
+    "p99_us_bounds": [
+      2230.0,
+      2230.0
+    ],
+    "p999_us_bounds": [
+      4030.0000000000005,
+      4030.0000000000005
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 5000,
+    "proxy": "pathwatch",
+    "completed": 2992788,
+    "achieved_rps_mean": 4987.915065659037,
+    "cpu_us_per_completed": 46.531662115726206,
+    "unfinished_at_end": 107,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      990.0,
+      990.0
+    ],
+    "p99_us_bounds": [
+      2960.0,
+      2960.0
+    ],
+    "p999_us_bounds": [
+      7200.0,
+      7200.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 5000,
+    "proxy": "envoy",
+    "completed": 2990421,
+    "achieved_rps_mean": 4983.924041237761,
+    "cpu_us_per_completed": 89.25977312224599,
+    "unfinished_at_end": 125,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1410.0,
+      1410.0
+    ],
+    "p99_us_bounds": [
+      5740.0,
+      5740.0
+    ],
+    "p999_us_bounds": [
+      21100.0,
+      21100.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 5000,
+    "proxy": "nginx",
+    "completed": 2988012,
+    "achieved_rps_mean": 4979.973088653504,
+    "cpu_us_per_completed": 38.57551442229811,
+    "unfinished_at_end": 147,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1040.0,
+      1040.0
+    ],
+    "p99_us_bounds": [
+      2700.0,
+      2700.0
+    ],
+    "p999_us_bounds": [
+      7680.0,
+      7680.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 10000,
+    "proxy": "pathwatch",
+    "completed": 5978243,
+    "achieved_rps_mean": 9963.506748224814,
+    "cpu_us_per_completed": 40.21537766196522,
+    "unfinished_at_end": 200,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1070.0,
+      1070.0
+    ],
+    "p99_us_bounds": [
+      3170.0,
+      3170.0
+    ],
+    "p999_us_bounds": [
+      13070.0,
+      13070.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 10000,
+    "proxy": "envoy",
+    "completed": 5975889,
+    "achieved_rps_mean": 9959.616753828515,
+    "cpu_us_per_completed": 80.04445865711362,
+    "unfinished_at_end": 250,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1750.0,
+      1750.0
+    ],
+    "p99_us_bounds": [
+      10020.0,
+      10020.0
+    ],
+    "p999_us_bounds": [
+      60420.0,
+      60420.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 10000,
+    "proxy": "nginx",
+    "completed": 5980667,
+    "achieved_rps_mean": 9967.64207566616,
+    "cpu_us_per_completed": 32.81944973696076,
+    "unfinished_at_end": 162,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      980.0,
+      980.0
+    ],
+    "p99_us_bounds": [
+      3190.0,
+      3190.0
+    ],
+    "p999_us_bounds": [
+      6100.0,
+      6100.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 20000,
+    "proxy": "pathwatch",
+    "completed": 11970519,
+    "achieved_rps_mean": 19950.601286301997,
+    "cpu_us_per_completed": 36.767871134075314,
+    "unfinished_at_end": 262,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1350.0,
+      1350.0
+    ],
+    "p99_us_bounds": [
+      5140.0,
+      5140.0
+    ],
+    "p999_us_bounds": [
+      33820.0,
+      33820.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 20000,
+    "proxy": "envoy",
+    "completed": 11933710,
+    "achieved_rps_mean": 19889.31608291397,
+    "cpu_us_per_completed": 74.79539891617947,
+    "unfinished_at_end": 302,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      3420.0,
+      3420.0
+    ],
+    "p99_us_bounds": [
+      948220.0,
+      948220.0
+    ],
+    "p999_us_bounds": [
+      1440000.0,
+      1440000.0
+    ]
+  },
+  {
+    "protocol": "h1",
+    "rate": 20000,
+    "proxy": "nginx",
+    "completed": 11951631,
+    "achieved_rps_mean": 19919.05958896318,
+    "cpu_us_per_completed": 29.840697056326473,
+    "unfinished_at_end": 186,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "http": 0,
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      1160.0,
+      1160.0
+    ],
+    "p99_us_bounds": [
+      7260.0,
+      7260.0
+    ],
+    "p999_us_bounds": [
+      49500.0,
+      49500.0
+    ]
+  }
+]

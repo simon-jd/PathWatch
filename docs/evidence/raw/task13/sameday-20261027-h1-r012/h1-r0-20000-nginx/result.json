@@ -1,0 +1,181 @@
+{
+  "proxy": "nginx",
+  "protocol": "h1",
+  "rate": 20000,
+  "round": 0,
+  "duration_s": 120,
+  "warmup_s": 15,
+  "start_utc": "2026-10-28T03:28:19Z",
+  "offered_requests": 2400000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    126356,
+    126357,
+    126358
+  ],
+  "proxy_identities": [
+    {
+      "pid": 126356,
+      "state": "S",
+      "ppid": 4067558,
+      "pgrp": 126356,
+      "session": 126356,
+      "starttime": 95585306
+    },
+    {
+      "pid": 126357,
+      "state": "S",
+      "ppid": 126356,
+      "pgrp": 126356,
+      "session": 126356,
+      "starttime": 95585307
+    },
+    {
+      "pid": 126358,
+      "state": "S",
+      "ppid": 126356,
+      "pgrp": 126356,
+      "session": 126356,
+      "starttime": 95585307
+    }
+  ],
+  "warmup_pid": 126359,
+  "warmup": {
+    "configured_s": 15,
+    "wall_elapsed_s": 15.167399952071719,
+    "reported_elapsed_s": 15.001274,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/wrk2-44a94c17d8e6a0bac8559b53da76848e430cb7a7/wrk",
+    "-t4",
+    "-c100",
+    "-d120s",
+    "-R20000",
+    "--timeout",
+    "10s",
+    "--latency",
+    "-s",
+    "bench/wrk.lua",
+    "https://bench.pathwatch.test:18443/"
+  ],
+  "generator_pid": 127352,
+  "collector_pid": null,
+  "wall_elapsed_s": 120.34326739795506,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 120,
+    "wall_elapsed_s": 120.34326739795506,
+    "reported_elapsed_s": 120.002742,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 0,
+    "connections": 0,
+    "requests": 2389359
+  },
+  "cpu_pidstat_seconds": 70.9765000000001,
+  "cpu_proc_seconds": 71.04,
+  "cpu_boundary_delta_seconds": 0.0634999999999053,
+  "counts": {
+    "completed": 2389327,
+    "elapsed_s": 120.0,
+    "errors": {
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0,
+      "http": 0
+    },
+    "started": 2389359
+  },
+  "latency": {
+    "p50_us": 1070.0,
+    "p99_us": 2680.0,
+    "p999_us": 4010.0
+  },
+  "configured_window_rps": 19911.058333333334,
+  "achieved_rps": 19910.60337604619,
+  "cpu_us_per_completed": 29.705645146101855,
+  "upstream_requests_per_new_connection": null,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 2389359,
+    "fifo_write_calls": 0,
+    "fifo_bytes": 0,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 0,
+    "fifo_max_write_ns": 0
+  },
+  "unfinished_at_end": 32,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 126356,
+      "state": "S",
+      "ppid": 4067558,
+      "pgrp": 126356,
+      "session": 126356,
+      "starttime": 95585306
+    },
+    "observed_identities": [
+      {
+        "pid": 126356,
+        "state": "S",
+        "ppid": 4067558,
+        "pgrp": 126356,
+        "session": 126356,
+        "starttime": 95585306
+      },
+      {
+        "pid": 126357,
+        "state": "S",
+        "ppid": 126356,
+        "pgrp": 126356,
+        "session": 126356,
+        "starttime": 95585307
+      },
+      {
+        "pid": 126358,
+        "state": "S",
+        "ppid": 126356,
+        "pgrp": 126356,
+        "session": 126356,
+        "starttime": 95585307
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 126356,
+          "state": "S",
+          "ppid": 4067558,
+          "pgrp": 126356,
+          "session": 126356,
+          "starttime": 95585306
+        },
+        "signal": 3
+      }
+    ]
+  },
+  "total_elapsed_s": 136.61578394996468,
+  "end_utc": "2026-10-28T03:30:36Z"
+}

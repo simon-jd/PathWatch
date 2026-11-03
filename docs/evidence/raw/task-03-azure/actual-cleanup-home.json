@@ -1,0 +1,21 @@
+{
+  "checked_utc": "2026-10-24T06:38:31Z",
+  "checks": [
+    {
+      "kind": "container",
+      "name": "pathwatch-hybrid-home-router",
+      "absent": true
+    },
+    {
+      "kind": "container",
+      "name": "pathwatch-hybrid-home-client",
+      "absent": true
+    },
+    {
+      "kind": "network",
+      "name": "pathwatch-hybrid-home",
+      "absent": true
+    }
+  ],
+  "claim": "Only exact owned project containers/network removed; no global prune"
+}

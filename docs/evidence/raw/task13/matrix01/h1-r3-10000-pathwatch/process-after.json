@@ -1,0 +1,15 @@
+{
+  "849": {
+    "cpu_ticks": 10228,
+    "starttime": 72418033,
+    "session": 849,
+    "pgrp": 849,
+    "threads": 3,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 14237696,
+    "command": "/home/postedism/Desktop/PathWatch/proxy/target/release/edge-proxy bench/pathwatch-proxy.toml "
+  }
+}

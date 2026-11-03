@@ -1,0 +1,2117 @@
+{
+  "utc": "2026-10-25T14:12:35.607761+00:00",
+  "source_commit": "24f13eddaf2235beebb65bcb5ae05e9de80b2280",
+  "run_head": "4db893d9633fb0523b57dc10794b367a83c4be58",
+  "accepted_summary_rows": 24,
+  "checks_passed": "120 unique ordered cells; native/wall durations; all original input hashes; same certificate; worker identity/CPU PID coverage; pidstat and proc tick sums; raw load/observer counts and H1 HDR; all60 H2 binary histogram totals/quantiles/counts/200statuses/bodybytes; all reported error categories zero; all cleanup records",
+  "first_cell_start_utc": "2026-10-25T09:31:54Z",
+  "last_cell_end_utc": "2026-10-25T14:04:00Z",
+  "measurement_reported_sum_s": 14400.309319,
+  "measurement_wall_sum_s": 14421.867297702935,
+  "warmup_reported_sum_s": 1800.577735,
+  "warmup_wall_sum_s": 1817.837974164402,
+  "measurement_reported_range_s": [
+    119.999768,
+    120.011012
+  ],
+  "warmup_reported_range_s": [
+    14.998787,
+    15.01
+  ],
+  "groups": [
+    {
+      "protocol": "h1",
+      "proxy": "pathwatch",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21512952,
+      "completed": 21512455,
+      "unfinished_at_end": 497,
+      "backend_requests": 21512952,
+      "backend_new_connections": 180,
+      "backend_closed_connections": 0,
+      "cells_without_new_backend_connections": 9,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 1427.0754000000002,
+      "cpu_proc_seconds": 1427.32,
+      "max_absolute_cpu_boundary_delta_seconds": 0.028699999999986403,
+      "owned_peak_rss_bytes": 55762944,
+      "proxy_rss_boundary_max_bytes": 15470592
+    },
+    {
+      "protocol": "h1",
+      "proxy": "envoy",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21528903,
+      "completed": 21528367,
+      "unfinished_at_end": 536,
+      "backend_requests": 21528903,
+      "backend_new_connections": 112,
+      "backend_closed_connections": 0,
+      "cells_without_new_backend_connections": 8,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 2000.5806999999995,
+      "cpu_proc_seconds": 2000.96,
+      "max_absolute_cpu_boundary_delta_seconds": 0.036400000000071486,
+      "owned_peak_rss_bytes": 117919744,
+      "proxy_rss_boundary_max_bytes": 77168640
+    },
+    {
+      "protocol": "h1",
+      "proxy": "nginx",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21541106,
+      "completed": 21540756,
+      "unfinished_at_end": 350,
+      "backend_requests": 21541106,
+      "backend_new_connections": 161,
+      "backend_closed_connections": 0,
+      "cells_without_new_backend_connections": 6,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 1320.3262,
+      "cpu_proc_seconds": 1320.52,
+      "max_absolute_cpu_boundary_delta_seconds": 0.02689999999995507,
+      "owned_peak_rss_bytes": 74412032,
+      "proxy_rss_boundary_max_bytes": 34066432
+    },
+    {
+      "protocol": "h2",
+      "proxy": "pathwatch",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21599276,
+      "completed": 21597444,
+      "unfinished_at_end": 1832,
+      "backend_requests": 21599271,
+      "backend_new_connections": 560,
+      "backend_closed_connections": 18,
+      "cells_without_new_backend_connections": 6,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 1450.2254,
+      "cpu_proc_seconds": 1450.77,
+      "max_absolute_cpu_boundary_delta_seconds": 0.04889999999996064,
+      "owned_peak_rss_bytes": 130187264,
+      "proxy_rss_boundary_max_bytes": 25432064,
+      "fifo_write_calls": 21597444,
+      "fifo_write_total_ns": 62144741690,
+      "fifo_max_write_ns": 15939458,
+      "fifo_blocked_samples": 0,
+      "fifo_max_blocked_threads": 0,
+      "collector_max_completion_lag_us": 15971
+    },
+    {
+      "protocol": "h2",
+      "proxy": "envoy",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21599374,
+      "completed": 21598913,
+      "unfinished_at_end": 461,
+      "backend_requests": 21599349,
+      "backend_new_connections": 523,
+      "backend_closed_connections": 97,
+      "cells_without_new_backend_connections": 4,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 2027.7118999999998,
+      "cpu_proc_seconds": 2028.43,
+      "max_absolute_cpu_boundary_delta_seconds": 0.07429999999993697,
+      "owned_peak_rss_bytes": 224641024,
+      "proxy_rss_boundary_max_bytes": 117493760,
+      "fifo_write_calls": 21598913,
+      "fifo_write_total_ns": 44732367731,
+      "fifo_max_write_ns": 8188496,
+      "fifo_blocked_samples": 0,
+      "fifo_max_blocked_threads": 0,
+      "collector_max_completion_lag_us": 8209
+    },
+    {
+      "protocol": "h2",
+      "proxy": "nginx",
+      "cells": 20,
+      "offered": 21600000,
+      "started": 21599084,
+      "completed": 21598987,
+      "unfinished_at_end": 97,
+      "backend_requests": 21599032,
+      "backend_new_connections": 607,
+      "backend_closed_connections": 21,
+      "cells_without_new_backend_connections": 12,
+      "tls_handshakes": 2000,
+      "cpu_pidstat_seconds": 1378.2437,
+      "cpu_proc_seconds": 1378.82,
+      "max_absolute_cpu_boundary_delta_seconds": 0.04779999999996676,
+      "owned_peak_rss_bytes": 145018880,
+      "proxy_rss_boundary_max_bytes": 37269504,
+      "fifo_write_calls": 21598987,
+      "fifo_write_total_ns": 62655545789,
+      "fifo_max_write_ns": 18229807,
+      "fifo_blocked_samples": 0,
+      "fifo_max_blocked_threads": 0,
+      "collector_max_completion_lag_us": 18317
+    }
+  ],
+  "cell_audit": [
+    {
+      "cell": "h1-r0-1000-pathwatch",
+      "owned_peak_rss_bytes": 50741248,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "89"
+      ],
+      "proxy_threads_before": {
+        "89": 3
+      },
+      "proxy_rss_boundary_max_bytes": 12480512,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-1000-envoy",
+      "owned_peak_rss_bytes": 115044352,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "106"
+      ],
+      "proxy_threads_before": {
+        "106": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76398592,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-1000-nginx",
+      "owned_peak_rss_bytes": 70975488,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "128",
+        "129",
+        "130"
+      ],
+      "proxy_threads_before": {
+        "128": 1,
+        "129": 1,
+        "130": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32776192,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-5000-pathwatch",
+      "owned_peak_rss_bytes": 52469760,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "145"
+      ],
+      "proxy_threads_before": {
+        "145": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13062144,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-5000-envoy",
+      "owned_peak_rss_bytes": 116293632,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "161"
+      ],
+      "proxy_threads_before": {
+        "161": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76279808,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-5000-nginx",
+      "owned_peak_rss_bytes": 71950336,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "183",
+        "184",
+        "185"
+      ],
+      "proxy_threads_before": {
+        "183": 1,
+        "184": 1,
+        "185": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32866304,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-10000-pathwatch",
+      "owned_peak_rss_bytes": 53661696,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "199"
+      ],
+      "proxy_threads_before": {
+        "199": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13832192,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-10000-envoy",
+      "owned_peak_rss_bytes": 115359744,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "215"
+      ],
+      "proxy_threads_before": {
+        "215": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76414976,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-10000-nginx",
+      "owned_peak_rss_bytes": 72933376,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "237",
+        "238",
+        "239"
+      ],
+      "proxy_threads_before": {
+        "237": 1,
+        "238": 1,
+        "239": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32915456,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-20000-pathwatch",
+      "owned_peak_rss_bytes": 55762944,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "254"
+      ],
+      "proxy_threads_before": {
+        "254": 3
+      },
+      "proxy_rss_boundary_max_bytes": 15265792,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-20000-envoy",
+      "owned_peak_rss_bytes": 117919744,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "270"
+      ],
+      "proxy_threads_before": {
+        "270": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76988416,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r0-20000-nginx",
+      "owned_peak_rss_bytes": 73490432,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "292",
+        "293",
+        "294"
+      ],
+      "proxy_threads_before": {
+        "292": 1,
+        "293": 1,
+        "294": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33308672,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-1000-envoy",
+      "owned_peak_rss_bytes": 112558080,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "308"
+      ],
+      "proxy_threads_before": {
+        "308": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74149888,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-1000-nginx",
+      "owned_peak_rss_bytes": 70275072,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "330",
+        "331",
+        "332"
+      ],
+      "proxy_threads_before": {
+        "330": 1,
+        "331": 1,
+        "332": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32133120,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-1000-pathwatch",
+      "owned_peak_rss_bytes": 52146176,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "346"
+      ],
+      "proxy_threads_before": {
+        "346": 3
+      },
+      "proxy_rss_boundary_max_bytes": 12554240,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-5000-envoy",
+      "owned_peak_rss_bytes": 115200000,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "362"
+      ],
+      "proxy_threads_before": {
+        "362": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75780096,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-5000-nginx",
+      "owned_peak_rss_bytes": 72138752,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "384",
+        "385",
+        "386"
+      ],
+      "proxy_threads_before": {
+        "384": 1,
+        "385": 1,
+        "386": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32743424,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-5000-pathwatch",
+      "owned_peak_rss_bytes": 51892224,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "400"
+      ],
+      "proxy_threads_before": {
+        "400": 3
+      },
+      "proxy_rss_boundary_max_bytes": 12742656,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-10000-envoy",
+      "owned_peak_rss_bytes": 116703232,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "416"
+      ],
+      "proxy_threads_before": {
+        "416": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76759040,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-10000-nginx",
+      "owned_peak_rss_bytes": 72269824,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "438",
+        "439",
+        "440"
+      ],
+      "proxy_threads_before": {
+        "438": 1,
+        "439": 1,
+        "440": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32890880,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-10000-pathwatch",
+      "owned_peak_rss_bytes": 54497280,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "454"
+      ],
+      "proxy_threads_before": {
+        "454": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14487552,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-20000-envoy",
+      "owned_peak_rss_bytes": 116113408,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "470"
+      ],
+      "proxy_threads_before": {
+        "470": 9
+      },
+      "proxy_rss_boundary_max_bytes": 77131776,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-20000-nginx",
+      "owned_peak_rss_bytes": 74412032,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "493",
+        "494",
+        "495"
+      ],
+      "proxy_threads_before": {
+        "493": 1,
+        "494": 1,
+        "495": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33812480,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r1-20000-pathwatch",
+      "owned_peak_rss_bytes": 54968320,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "509"
+      ],
+      "proxy_threads_before": {
+        "509": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14929920,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-1000-nginx",
+      "owned_peak_rss_bytes": 71897088,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "525",
+        "526",
+        "527"
+      ],
+      "proxy_threads_before": {
+        "525": 1,
+        "526": 1,
+        "527": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32669696,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-1000-pathwatch",
+      "owned_peak_rss_bytes": 54812672,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "541"
+      ],
+      "proxy_threads_before": {
+        "541": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14479360,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-1000-envoy",
+      "owned_peak_rss_bytes": 116125696,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "557"
+      ],
+      "proxy_threads_before": {
+        "557": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75599872,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-5000-nginx",
+      "owned_peak_rss_bytes": 71835648,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "579",
+        "580",
+        "581"
+      ],
+      "proxy_threads_before": {
+        "579": 1,
+        "580": 1,
+        "581": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32354304,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-5000-pathwatch",
+      "owned_peak_rss_bytes": 53805056,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "595"
+      ],
+      "proxy_threads_before": {
+        "595": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13778944,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-5000-envoy",
+      "owned_peak_rss_bytes": 115171328,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "611"
+      ],
+      "proxy_threads_before": {
+        "611": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75325440,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-10000-nginx",
+      "owned_peak_rss_bytes": 74035200,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "633",
+        "634",
+        "635"
+      ],
+      "proxy_threads_before": {
+        "633": 1,
+        "634": 1,
+        "635": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33546240,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-10000-pathwatch",
+      "owned_peak_rss_bytes": 54231040,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "649"
+      ],
+      "proxy_threads_before": {
+        "649": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13901824,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-10000-envoy",
+      "owned_peak_rss_bytes": 116576256,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "665"
+      ],
+      "proxy_threads_before": {
+        "665": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76689408,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-20000-nginx",
+      "owned_peak_rss_bytes": 73199616,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "687",
+        "688",
+        "689"
+      ],
+      "proxy_threads_before": {
+        "687": 1,
+        "688": 1,
+        "689": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33718272,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-20000-pathwatch",
+      "owned_peak_rss_bytes": 55713792,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "703"
+      ],
+      "proxy_threads_before": {
+        "703": 3
+      },
+      "proxy_rss_boundary_max_bytes": 15392768,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r2-20000-envoy",
+      "owned_peak_rss_bytes": 116940800,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "719"
+      ],
+      "proxy_threads_before": {
+        "719": 9
+      },
+      "proxy_rss_boundary_max_bytes": 77168640,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-1000-pathwatch",
+      "owned_peak_rss_bytes": 53452800,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "741"
+      ],
+      "proxy_threads_before": {
+        "741": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13340672,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-1000-envoy",
+      "owned_peak_rss_bytes": 113868800,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "757"
+      ],
+      "proxy_threads_before": {
+        "757": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74924032,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-1000-nginx",
+      "owned_peak_rss_bytes": 70762496,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "779",
+        "780",
+        "781"
+      ],
+      "proxy_threads_before": {
+        "779": 1,
+        "780": 1,
+        "781": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32108544,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-5000-pathwatch",
+      "owned_peak_rss_bytes": 53297152,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "795"
+      ],
+      "proxy_threads_before": {
+        "795": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13549568,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-5000-envoy",
+      "owned_peak_rss_bytes": 115154944,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "811"
+      ],
+      "proxy_threads_before": {
+        "811": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75825152,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-5000-nginx",
+      "owned_peak_rss_bytes": 71208960,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "833",
+        "834",
+        "835"
+      ],
+      "proxy_threads_before": {
+        "833": 1,
+        "834": 1,
+        "835": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32206848,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-10000-pathwatch",
+      "owned_peak_rss_bytes": 53719040,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "849"
+      ],
+      "proxy_threads_before": {
+        "849": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14237696,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-10000-envoy",
+      "owned_peak_rss_bytes": 113119232,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "865"
+      ],
+      "proxy_threads_before": {
+        "865": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74260480,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-10000-nginx",
+      "owned_peak_rss_bytes": 72749056,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "887",
+        "888",
+        "889"
+      ],
+      "proxy_threads_before": {
+        "887": 1,
+        "888": 1,
+        "889": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32968704,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-20000-pathwatch",
+      "owned_peak_rss_bytes": 55685120,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "903"
+      ],
+      "proxy_threads_before": {
+        "903": 3
+      },
+      "proxy_rss_boundary_max_bytes": 15286272,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-20000-envoy",
+      "owned_peak_rss_bytes": 115261440,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "919"
+      ],
+      "proxy_threads_before": {
+        "919": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75010048,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r3-20000-nginx",
+      "owned_peak_rss_bytes": 73015296,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "941",
+        "942",
+        "943"
+      ],
+      "proxy_threads_before": {
+        "941": 1,
+        "942": 1,
+        "943": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33779712,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-1000-envoy",
+      "owned_peak_rss_bytes": 113721344,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "957"
+      ],
+      "proxy_threads_before": {
+        "957": 9
+      },
+      "proxy_rss_boundary_max_bytes": 73953280,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-1000-nginx",
+      "owned_peak_rss_bytes": 70766592,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "979",
+        "980",
+        "981"
+      ],
+      "proxy_threads_before": {
+        "979": 1,
+        "980": 1,
+        "981": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32083968,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-1000-pathwatch",
+      "owned_peak_rss_bytes": 54038528,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "995"
+      ],
+      "proxy_threads_before": {
+        "995": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14241792,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-5000-envoy",
+      "owned_peak_rss_bytes": 113549312,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1011"
+      ],
+      "proxy_threads_before": {
+        "1011": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74342400,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-5000-nginx",
+      "owned_peak_rss_bytes": 73826304,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1033",
+        "1034",
+        "1035"
+      ],
+      "proxy_threads_before": {
+        "1033": 1,
+        "1034": 1,
+        "1035": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34066432,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-5000-pathwatch",
+      "owned_peak_rss_bytes": 52813824,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1049"
+      ],
+      "proxy_threads_before": {
+        "1049": 3
+      },
+      "proxy_rss_boundary_max_bytes": 13414400,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-10000-envoy",
+      "owned_peak_rss_bytes": 114323456,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1065"
+      ],
+      "proxy_threads_before": {
+        "1065": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74579968,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-10000-nginx",
+      "owned_peak_rss_bytes": 70668288,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1087",
+        "1088",
+        "1089"
+      ],
+      "proxy_threads_before": {
+        "1087": 1,
+        "1088": 1,
+        "1089": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32047104,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-10000-pathwatch",
+      "owned_peak_rss_bytes": 53747712,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1103"
+      ],
+      "proxy_threads_before": {
+        "1103": 3
+      },
+      "proxy_rss_boundary_max_bytes": 14057472,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-20000-envoy",
+      "owned_peak_rss_bytes": 114552832,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1119"
+      ],
+      "proxy_threads_before": {
+        "1119": 9
+      },
+      "proxy_rss_boundary_max_bytes": 74817536,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-20000-nginx",
+      "owned_peak_rss_bytes": 72818688,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1141",
+        "1142",
+        "1143"
+      ],
+      "proxy_threads_before": {
+        "1141": 1,
+        "1142": 1,
+        "1143": 1
+      },
+      "proxy_rss_boundary_max_bytes": 32813056,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h1-r4-20000-pathwatch",
+      "owned_peak_rss_bytes": 55492608,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1157"
+      ],
+      "proxy_threads_before": {
+        "1157": 3
+      },
+      "proxy_rss_boundary_max_bytes": 15470592,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3"
+    },
+    {
+      "cell": "h2-r0-1000-pathwatch",
+      "owned_peak_rss_bytes": 74625024,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1173"
+      ],
+      "proxy_threads_before": {
+        "1173": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17039360,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3491,
+      "histogram_sha256": "b5e077c8d88b92e413f1d23c3ed39907c14a83bc61ae2ad21eb5efc8535a80b1"
+    },
+    {
+      "cell": "h2-r0-1000-envoy",
+      "owned_peak_rss_bytes": 133988352,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1190"
+      ],
+      "proxy_threads_before": {
+        "1190": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75988992,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3449,
+      "histogram_sha256": "7d4168dd19de9516414a5e198b5178e1f5dabce972ee7cd9c6af4246b59ca3e3"
+    },
+    {
+      "cell": "h2-r0-1000-nginx",
+      "owned_peak_rss_bytes": 93143040,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1213",
+        "1214",
+        "1215"
+      ],
+      "proxy_threads_before": {
+        "1213": 1,
+        "1214": 1,
+        "1215": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34299904,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3981,
+      "histogram_sha256": "5787770847312bbd47cd426167e114ddc8f568b36889ceb82f67b172991d4827"
+    },
+    {
+      "cell": "h2-r0-5000-pathwatch",
+      "owned_peak_rss_bytes": 94429184,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1230"
+      ],
+      "proxy_threads_before": {
+        "1230": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17649664,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 6001,
+      "histogram_sha256": "71efdb5294709192175531281cac6c262759d74ef1f9c2c93671e5eed735e314"
+    },
+    {
+      "cell": "h2-r0-5000-envoy",
+      "owned_peak_rss_bytes": 153124864,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1247"
+      ],
+      "proxy_threads_before": {
+        "1247": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76292096,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3818,
+      "histogram_sha256": "48b47bb1b9b76a550e4469b13fae3c44c0e01b752ef4fd9f46d2ce87f5512e56"
+    },
+    {
+      "cell": "h2-r0-5000-nginx",
+      "owned_peak_rss_bytes": 111878144,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1270",
+        "1271",
+        "1272"
+      ],
+      "proxy_threads_before": {
+        "1270": 1,
+        "1271": 1,
+        "1272": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33554432,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4849,
+      "histogram_sha256": "237837c700fd8f3099a772b28c9100a59f16c52bf8a890e2e30fa79bcbd54107"
+    },
+    {
+      "cell": "h2-r0-10000-pathwatch",
+      "owned_peak_rss_bytes": 113844224,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1287"
+      ],
+      "proxy_threads_before": {
+        "1287": 3
+      },
+      "proxy_rss_boundary_max_bytes": 20111360,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3662,
+      "histogram_sha256": "99e5595d03fb5b2be2a922077bfe0c064e82c888a3568fc04c3bac264f8e92ca"
+    },
+    {
+      "cell": "h2-r0-10000-envoy",
+      "owned_peak_rss_bytes": 171687936,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1304"
+      ],
+      "proxy_threads_before": {
+        "1304": 9
+      },
+      "proxy_rss_boundary_max_bytes": 78008320,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3827,
+      "histogram_sha256": "5effd59eae21de044c01643e9a451635894aee297859fb7642493b2ff4ca25ff"
+    },
+    {
+      "cell": "h2-r0-10000-nginx",
+      "owned_peak_rss_bytes": 128917504,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1327",
+        "1328",
+        "1329"
+      ],
+      "proxy_threads_before": {
+        "1327": 1,
+        "1328": 1,
+        "1329": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34078720,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4377,
+      "histogram_sha256": "72d2b293004189658f0835b44c09da6f1ad839d8a828f97e4c668b162350a238"
+    },
+    {
+      "cell": "h2-r0-20000-pathwatch",
+      "owned_peak_rss_bytes": 124923904,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1344"
+      ],
+      "proxy_threads_before": {
+        "1344": 3
+      },
+      "proxy_rss_boundary_max_bytes": 22769664,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4317,
+      "histogram_sha256": "2afc02528b6f61fe16c7659acd6fc3e745da6ccbdbb10e95e4c1c48c936ee92e"
+    },
+    {
+      "cell": "h2-r0-20000-envoy",
+      "owned_peak_rss_bytes": 217530368,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1361"
+      ],
+      "proxy_threads_before": {
+        "1361": 9
+      },
+      "proxy_rss_boundary_max_bytes": 111300608,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 8209,
+      "histogram_sha256": "47e6b8100a8c49d5046cbc12538d56e1a35a4caf2b7d7ef23f5933aea00b0fd3"
+    },
+    {
+      "cell": "h2-r0-20000-nginx",
+      "owned_peak_rss_bytes": 141271040,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1384",
+        "1385",
+        "1386"
+      ],
+      "proxy_threads_before": {
+        "1384": 1,
+        "1385": 1,
+        "1386": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34467840,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 18317,
+      "histogram_sha256": "830bffc2cf30a6c145592106b9a1c7caffea3de5ab5c1ec000aeb37730286ed1"
+    },
+    {
+      "cell": "h2-r1-1000-envoy",
+      "owned_peak_rss_bytes": 134684672,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1401"
+      ],
+      "proxy_threads_before": {
+        "1401": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76230656,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4558,
+      "histogram_sha256": "f76991948e4e816dc50fe1da9b38da5e36ee2de8e2c75af65398a8e17b2922cc"
+    },
+    {
+      "cell": "h2-r1-1000-nginx",
+      "owned_peak_rss_bytes": 93696000,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1424",
+        "1425",
+        "1426"
+      ],
+      "proxy_threads_before": {
+        "1424": 1,
+        "1425": 1,
+        "1426": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34009088,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3795,
+      "histogram_sha256": "d650973e100bc50d51dc2dbfe9c1dbec7e51d6dd0c4ffcc0a62c076e3c033228"
+    },
+    {
+      "cell": "h2-r1-1000-pathwatch",
+      "owned_peak_rss_bytes": 75300864,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1441"
+      ],
+      "proxy_threads_before": {
+        "1441": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17059840,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3919,
+      "histogram_sha256": "24429b3b14bd7a5b589c8d4b3d6c17378c6197b62394ce462a9b3c76270b0568"
+    },
+    {
+      "cell": "h2-r1-5000-envoy",
+      "owned_peak_rss_bytes": 152711168,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1458"
+      ],
+      "proxy_threads_before": {
+        "1458": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75083776,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3700,
+      "histogram_sha256": "089c814ce5ffc66e3270757562da422822bfcde9e80eb6cecc26488e857ed70c"
+    },
+    {
+      "cell": "h2-r1-5000-nginx",
+      "owned_peak_rss_bytes": 112930816,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1481",
+        "1482",
+        "1483"
+      ],
+      "proxy_threads_before": {
+        "1481": 1,
+        "1482": 1,
+        "1483": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34263040,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 8599,
+      "histogram_sha256": "04f540f026c7e16cbfc9fc650b96234870c823e12776f21a06d4bbf30afb54dc"
+    },
+    {
+      "cell": "h2-r1-5000-pathwatch",
+      "owned_peak_rss_bytes": 94904320,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1498"
+      ],
+      "proxy_threads_before": {
+        "1498": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17489920,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 15971,
+      "histogram_sha256": "b9a86fb758dbe3a4abd45ab427cc097bcff411b96a3e27892b1b1e9551cbc98d"
+    },
+    {
+      "cell": "h2-r1-10000-envoy",
+      "owned_peak_rss_bytes": 203022336,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1515"
+      ],
+      "proxy_threads_before": {
+        "1515": 9
+      },
+      "proxy_rss_boundary_max_bytes": 97542144,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 7392,
+      "histogram_sha256": "329e6d172b9de556e76e0ddbc2914461053ef218dab5a5543870d27e308dfa02"
+    },
+    {
+      "cell": "h2-r1-10000-nginx",
+      "owned_peak_rss_bytes": 137879552,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1538",
+        "1539",
+        "1540"
+      ],
+      "proxy_threads_before": {
+        "1538": 1,
+        "1539": 1,
+        "1540": 1
+      },
+      "proxy_rss_boundary_max_bytes": 37269504,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4386,
+      "histogram_sha256": "d8a9f45fd64696cc74f8176c5e3e8d961c9c500cf8e766460c206049b736fe8f"
+    },
+    {
+      "cell": "h2-r1-10000-pathwatch",
+      "owned_peak_rss_bytes": 113823744,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1555"
+      ],
+      "proxy_threads_before": {
+        "1555": 3
+      },
+      "proxy_rss_boundary_max_bytes": 19505152,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3951,
+      "histogram_sha256": "5d2f741f8bc792bbe8f0f0a7bb44d3c9e03d46e62ed3090e60cd30e58fe05bb9"
+    },
+    {
+      "cell": "h2-r1-20000-envoy",
+      "owned_peak_rss_bytes": 224641024,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1572"
+      ],
+      "proxy_threads_before": {
+        "1572": 9
+      },
+      "proxy_rss_boundary_max_bytes": 117493760,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 7967,
+      "histogram_sha256": "b6dea328ae227a224bdaf412b4b49f8e0ae14545e55aa3f6b541e6576920304e"
+    },
+    {
+      "cell": "h2-r1-20000-nginx",
+      "owned_peak_rss_bytes": 139943936,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1596",
+        "1597",
+        "1598"
+      ],
+      "proxy_threads_before": {
+        "1596": 1,
+        "1597": 1,
+        "1598": 1
+      },
+      "proxy_rss_boundary_max_bytes": 36986880,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4721,
+      "histogram_sha256": "02dae5b94f4aeb4baa0c9d44efb48828013928058684649b7a65331f3eb2b386"
+    },
+    {
+      "cell": "h2-r1-20000-pathwatch",
+      "owned_peak_rss_bytes": 117903360,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1613"
+      ],
+      "proxy_threads_before": {
+        "1613": 3
+      },
+      "proxy_rss_boundary_max_bytes": 22798336,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 5048,
+      "histogram_sha256": "ea2c630222b12e9e5810b7440ffcd606fff5efb5898b61817239e9fcdc95a64c"
+    },
+    {
+      "cell": "h2-r2-1000-nginx",
+      "owned_peak_rss_bytes": 93208576,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1630",
+        "1631",
+        "1632"
+      ],
+      "proxy_threads_before": {
+        "1630": 1,
+        "1631": 1,
+        "1632": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33767424,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3783,
+      "histogram_sha256": "bb9c979670661e35b4898376c0de25f40025acf56838fcd43e0e6cbf08f631e5"
+    },
+    {
+      "cell": "h2-r2-1000-pathwatch",
+      "owned_peak_rss_bytes": 75063296,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1647"
+      ],
+      "proxy_threads_before": {
+        "1647": 3
+      },
+      "proxy_rss_boundary_max_bytes": 16879616,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4264,
+      "histogram_sha256": "cdca2f13a470af1a58fb9be46d6308cf24372545764644afef3f235b11681a52"
+    },
+    {
+      "cell": "h2-r2-1000-envoy",
+      "owned_peak_rss_bytes": 133709824,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1664"
+      ],
+      "proxy_threads_before": {
+        "1664": 9
+      },
+      "proxy_rss_boundary_max_bytes": 75284480,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3813,
+      "histogram_sha256": "06b9347c808ea47861e30a223d5403131ea12c81609b8d7521ebc6137c7bef00"
+    },
+    {
+      "cell": "h2-r2-5000-nginx",
+      "owned_peak_rss_bytes": 117166080,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1687",
+        "1688",
+        "1689"
+      ],
+      "proxy_threads_before": {
+        "1687": 1,
+        "1688": 1,
+        "1689": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33718272,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4745,
+      "histogram_sha256": "a1c14253fe06e1d5625197aa49d057d4797efe3e8f08599c0471df33d74c133e"
+    },
+    {
+      "cell": "h2-r2-5000-pathwatch",
+      "owned_peak_rss_bytes": 94683136,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1704"
+      ],
+      "proxy_threads_before": {
+        "1704": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17268736,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 7572,
+      "histogram_sha256": "4921c9d5aee513cad09cdc45f7a378744ccaea19f110df999407ef5334699f31"
+    },
+    {
+      "cell": "h2-r2-5000-envoy",
+      "owned_peak_rss_bytes": 158715904,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1721"
+      ],
+      "proxy_threads_before": {
+        "1721": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76136448,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4111,
+      "histogram_sha256": "3b3e304f3d5e4136f71105d0e0a1e7588b4edc179d137dfc0eb4e21293b1327b"
+    },
+    {
+      "cell": "h2-r2-10000-nginx",
+      "owned_peak_rss_bytes": 131833856,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1744",
+        "1745",
+        "1746"
+      ],
+      "proxy_threads_before": {
+        "1744": 1,
+        "1745": 1,
+        "1746": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34910208,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4217,
+      "histogram_sha256": "09c4a3406c49438eb143a918548569f1afa5d7ff6ecad376d648c34833a6bca7"
+    },
+    {
+      "cell": "h2-r2-10000-pathwatch",
+      "owned_peak_rss_bytes": 120705024,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1761"
+      ],
+      "proxy_threads_before": {
+        "1761": 3
+      },
+      "proxy_rss_boundary_max_bytes": 18567168,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3777,
+      "histogram_sha256": "d50f72ea75495e9c98fa474a3ab428110a52aa6eb721f0c556dbf20c38f7d53e"
+    },
+    {
+      "cell": "h2-r2-10000-envoy",
+      "owned_peak_rss_bytes": 171708416,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1778"
+      ],
+      "proxy_threads_before": {
+        "1778": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76914688,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 6717,
+      "histogram_sha256": "f2a162b3234911230c45adc09b4ba9977ef2804df577b89171b1ca5a2ecd5271"
+    },
+    {
+      "cell": "h2-r2-20000-nginx",
+      "owned_peak_rss_bytes": 145018880,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1801",
+        "1802",
+        "1803"
+      ],
+      "proxy_threads_before": {
+        "1801": 1,
+        "1802": 1,
+        "1803": 1
+      },
+      "proxy_rss_boundary_max_bytes": 36528128,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3884,
+      "histogram_sha256": "1c18098b30c2345fbe8e6ae70af9f28413d3c04c9e8da5a76166da2852e136f5"
+    },
+    {
+      "cell": "h2-r2-20000-pathwatch",
+      "owned_peak_rss_bytes": 120815616,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1818"
+      ],
+      "proxy_threads_before": {
+        "1818": 3
+      },
+      "proxy_rss_boundary_max_bytes": 25280512,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4318,
+      "histogram_sha256": "1ba2220c739e1050596e2ec49d4dc372e689d01d1fdc83ac80f25ddfacda4ca8"
+    },
+    {
+      "cell": "h2-r2-20000-envoy",
+      "owned_peak_rss_bytes": 208019456,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1835"
+      ],
+      "proxy_threads_before": {
+        "1835": 9
+      },
+      "proxy_rss_boundary_max_bytes": 101605376,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4083,
+      "histogram_sha256": "068f0c3f92856622f61a13d94f6e3b0c973f3efc96bca6bbbbcfd8530b54f6f8"
+    },
+    {
+      "cell": "h2-r3-1000-pathwatch",
+      "owned_peak_rss_bytes": 75771904,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1858"
+      ],
+      "proxy_threads_before": {
+        "1858": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17420288,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3524,
+      "histogram_sha256": "816fb7b1d98583a1ae42ad89bea71a3112db264918743377148c3ef78e1f522b"
+    },
+    {
+      "cell": "h2-r3-1000-envoy",
+      "owned_peak_rss_bytes": 134709248,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1875"
+      ],
+      "proxy_threads_before": {
+        "1875": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76087296,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3751,
+      "histogram_sha256": "8618322f958a3e8a3f127e343586845b6f5970e47de5399888b1d6987e4b405b"
+    },
+    {
+      "cell": "h2-r3-1000-nginx",
+      "owned_peak_rss_bytes": 93556736,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1898",
+        "1899",
+        "1900"
+      ],
+      "proxy_threads_before": {
+        "1898": 1,
+        "1899": 1,
+        "1900": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33562624,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3549,
+      "histogram_sha256": "bd3a0875d9053c5a66586c9bd50f159f311b1d8a33b699cbe8614c455a696930"
+    },
+    {
+      "cell": "h2-r3-5000-pathwatch",
+      "owned_peak_rss_bytes": 94752768,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1915"
+      ],
+      "proxy_threads_before": {
+        "1915": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17125376,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4710,
+      "histogram_sha256": "354b1a1b84079f979144ff3b22b73a21d0b199f9715aef53b0fc2ce37bec8d50"
+    },
+    {
+      "cell": "h2-r3-5000-envoy",
+      "owned_peak_rss_bytes": 154001408,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1932"
+      ],
+      "proxy_threads_before": {
+        "1932": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76001280,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4641,
+      "histogram_sha256": "358c0604c20f0e50821ea7352b5d2987d49efe37b83debaf9ba70a9ff6703820"
+    },
+    {
+      "cell": "h2-r3-5000-nginx",
+      "owned_peak_rss_bytes": 113291264,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1955",
+        "1956",
+        "1957"
+      ],
+      "proxy_threads_before": {
+        "1955": 1,
+        "1956": 1,
+        "1957": 1
+      },
+      "proxy_rss_boundary_max_bytes": 34312192,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4607,
+      "histogram_sha256": "48e41cc8e628ce1ce8f5dcb2516d271c27ed118cacb8c091f8b5bb4bc5585a7d"
+    },
+    {
+      "cell": "h2-r3-10000-pathwatch",
+      "owned_peak_rss_bytes": 112709632,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1972"
+      ],
+      "proxy_threads_before": {
+        "1972": 3
+      },
+      "proxy_rss_boundary_max_bytes": 17965056,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 6920,
+      "histogram_sha256": "85d0ddb2cb087bebaa8a020f581d46391903f0b4fb1d12c4baf4f4d6222d3a2c"
+    },
+    {
+      "cell": "h2-r3-10000-envoy",
+      "owned_peak_rss_bytes": 170598400,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "1989"
+      ],
+      "proxy_threads_before": {
+        "1989": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76189696,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3831,
+      "histogram_sha256": "e6abf16089ab31fee6745cd7d3cac67d3c2b3157e1be8504c42edd4c6e874fce"
+    },
+    {
+      "cell": "h2-r3-10000-nginx",
+      "owned_peak_rss_bytes": 129347584,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2012",
+        "2013",
+        "2014"
+      ],
+      "proxy_threads_before": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33722368,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4645,
+      "histogram_sha256": "56c3cdd5cfd773e814f589057a3414ef892d9ad957f2b43ef3a851948ebbe1a6"
+    },
+    {
+      "cell": "h2-r3-20000-pathwatch",
+      "owned_peak_rss_bytes": 121352192,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2029"
+      ],
+      "proxy_threads_before": {
+        "2029": 3
+      },
+      "proxy_rss_boundary_max_bytes": 24424448,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 8167,
+      "histogram_sha256": "b6128c89c4c8bb8457bdd0d52d2bc2754ca11a39a296a45fde8a3b1705e19918"
+    },
+    {
+      "cell": "h2-r3-20000-envoy",
+      "owned_peak_rss_bytes": 211214336,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2046"
+      ],
+      "proxy_threads_before": {
+        "2046": 9
+      },
+      "proxy_rss_boundary_max_bytes": 104943616,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4471,
+      "histogram_sha256": "4d0677156c5d7bdb26c53b0c517308d7f2e6a1c07a4478cfd132fa52c81a6e10"
+    },
+    {
+      "cell": "h2-r3-20000-nginx",
+      "owned_peak_rss_bytes": 138067968,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2069",
+        "2070",
+        "2071"
+      ],
+      "proxy_threads_before": {
+        "2069": 1,
+        "2070": 1,
+        "2071": 1
+      },
+      "proxy_rss_boundary_max_bytes": 36417536,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 8235,
+      "histogram_sha256": "0b6217aee677cb489992a0cfb9690bba3ae4eb010cbbee4a98554dc57dd92f5a"
+    },
+    {
+      "cell": "h2-r4-1000-envoy",
+      "owned_peak_rss_bytes": 135413760,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2086"
+      ],
+      "proxy_threads_before": {
+        "2086": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76607488,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3254,
+      "histogram_sha256": "acf7a1822226537328bb920c29d3fe63fcc61e9f3a9423dc0edb90459cec81ad"
+    },
+    {
+      "cell": "h2-r4-1000-nginx",
+      "owned_peak_rss_bytes": 93663232,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2109",
+        "2110",
+        "2111"
+      ],
+      "proxy_threads_before": {
+        "2109": 1,
+        "2110": 1,
+        "2111": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33894400,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3859,
+      "histogram_sha256": "e400918f49a5904a0a2f9c28ba0d025cb702476c29c60fce151e587d6bbf4a61"
+    },
+    {
+      "cell": "h2-r4-1000-pathwatch",
+      "owned_peak_rss_bytes": 75169792,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2126"
+      ],
+      "proxy_threads_before": {
+        "2126": 3
+      },
+      "proxy_rss_boundary_max_bytes": 16781312,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4279,
+      "histogram_sha256": "ce96c4e5d8a9ab1026b369e720095742629b4b9112edbc6e7981956d2eced700"
+    },
+    {
+      "cell": "h2-r4-5000-envoy",
+      "owned_peak_rss_bytes": 154181632,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2143"
+      ],
+      "proxy_threads_before": {
+        "2143": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76386304,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4415,
+      "histogram_sha256": "974c70c51f55259929a8780984623a5cb22671d56d45429059c620b118bfce17"
+    },
+    {
+      "cell": "h2-r4-5000-nginx",
+      "owned_peak_rss_bytes": 117325824,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2166",
+        "2167",
+        "2168"
+      ],
+      "proxy_threads_before": {
+        "2166": 1,
+        "2167": 1,
+        "2168": 1
+      },
+      "proxy_rss_boundary_max_bytes": 33955840,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4039,
+      "histogram_sha256": "0d694419a49362594d9c3d6beb6b557b36fb1c1a761f55c77d510b58e119ec39"
+    },
+    {
+      "cell": "h2-r4-5000-pathwatch",
+      "owned_peak_rss_bytes": 99123200,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2183"
+      ],
+      "proxy_threads_before": {
+        "2183": 3
+      },
+      "proxy_rss_boundary_max_bytes": 16826368,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4113,
+      "histogram_sha256": "c0cd67d371e94f70b07aedfdf082fb47f284ed13e07beec780b8d9ed62a55a4d"
+    },
+    {
+      "cell": "h2-r4-10000-envoy",
+      "owned_peak_rss_bytes": 170901504,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2200"
+      ],
+      "proxy_threads_before": {
+        "2200": 9
+      },
+      "proxy_rss_boundary_max_bytes": 76427264,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4404,
+      "histogram_sha256": "21b37c50de1743cc38f273b4cc82c50a45a467f9638413d3a4e04c74ab79e5bf"
+    },
+    {
+      "cell": "h2-r4-10000-nginx",
+      "owned_peak_rss_bytes": 132726784,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2223",
+        "2224",
+        "2225"
+      ],
+      "proxy_threads_before": {
+        "2223": 1,
+        "2224": 1,
+        "2225": 1
+      },
+      "proxy_rss_boundary_max_bytes": 35004416,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4750,
+      "histogram_sha256": "0150a18b9633208d2a1bb4fbf168bd95a793fb7092ae46ae8fec4ccc0b885f59"
+    },
+    {
+      "cell": "h2-r4-10000-pathwatch",
+      "owned_peak_rss_bytes": 114749440,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2240"
+      ],
+      "proxy_threads_before": {
+        "2240": 3
+      },
+      "proxy_rss_boundary_max_bytes": 20144128,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 3858,
+      "histogram_sha256": "ef4ad5ec251e6ce695c70d7ca540400a2d7c9328666a0d428857f0ee002b550c"
+    },
+    {
+      "cell": "h2-r4-20000-envoy",
+      "owned_peak_rss_bytes": 205029376,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2257"
+      ],
+      "proxy_threads_before": {
+        "2257": 9
+      },
+      "proxy_rss_boundary_max_bytes": 98639872,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4041,
+      "histogram_sha256": "b8b5f9235e10281d26fbd9323c7629770ef66fd8976179e2901520ff18875cde"
+    },
+    {
+      "cell": "h2-r4-20000-nginx",
+      "owned_peak_rss_bytes": 141312000,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2280",
+        "2281",
+        "2282"
+      ],
+      "proxy_threads_before": {
+        "2280": 1,
+        "2281": 1,
+        "2282": 1
+      },
+      "proxy_rss_boundary_max_bytes": 36368384,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 4739,
+      "histogram_sha256": "67c8e24e955eff3a2e25e6301fc68d1f0a1fc30ad74bdf6f326ea73465386d18"
+    },
+    {
+      "cell": "h2-r4-20000-pathwatch",
+      "owned_peak_rss_bytes": 130187264,
+      "fifo_blocked_sample_count": 0,
+      "fifo_max_blocked_threads": 0,
+      "proxy_sampled_cpu_pids": [
+        "2297"
+      ],
+      "proxy_threads_before": {
+        "2297": 3
+      },
+      "proxy_rss_boundary_max_bytes": 25432064,
+      "certificate_sha256": "ade4453f7e61ec4a835b2bc0c2f81004a473304ac51acb179a5d13bb6e4998f3",
+      "collector_max_completion_lag_us": 13338,
+      "histogram_sha256": "0dc6ba8b050a85fd7aacc962c6e91a0c4a5880876059b1e37e3843017ffb6ffc"
+    }
+  ]
+}

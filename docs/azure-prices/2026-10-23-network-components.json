@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-24T03:25:21Z",
+  "classification": "unmetered_network_configuration",
+  "source": "https://azure.microsoft.com/en-us/pricing/details/virtual-network/",
+  "conclusion": "VNet itself is free; plain subnets, NSG rules and UDR configurations have no standalone paid SKU. This scope excludes peering, routing appliances, flow logs, IPs, VMs, gateways and traffic. Retail results show related billable SKUs and are not invented zero-price meters.",
+  "resource_types": [
+    "azurerm_virtual_network",
+    "azurerm_subnet",
+    "azurerm_network_security_group",
+    "azurerm_network_security_rule",
+    "azurerm_route_table",
+    "azurerm_route",
+    "azurerm_subnet_network_security_group_association",
+    "azurerm_subnet_route_table_association"
+  ],
+  "retail_captures": {
+    "westus": "docs/azure-prices/2026-10-23-network-westus.json",
+    "francecentral": "docs/azure-prices/2026-10-23-network-francecentral.json"
+  },
+  "configuration_references": [
+    "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
+    "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview"
+  ],
+  "boundaries": "No workload, PIP, peering, packet transfer or diagnostic storage is provisioned. Existing state storage request/version cost remains covered conservatively by Task1 reservation; actual billing not measurable."
+}

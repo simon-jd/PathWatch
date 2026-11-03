@@ -1,0 +1,16 @@
+[workspace]
+members = ["xdp-lb-common", "xdp-lb"]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

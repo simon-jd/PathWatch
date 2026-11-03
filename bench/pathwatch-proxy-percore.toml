@@ -1,0 +1,11 @@
+listeners = [{addr="127.0.0.1:18443", tls={certs=[{sni="bench.pathwatch.test",cert=".cache/task13/runtime/cert.pem",key=".cache/task13/runtime/key.pem"}]}}]
+routes = [{host="bench.pathwatch.test",path_prefix="/",cluster="echo"}]
+clusters = [{name="echo",endpoints=["http://127.0.0.1:19090"],lb="least_request",circuit={max_requests=1024,max_pending=1024,request_timeout_ms=10000}}]
+management = {addr="127.0.0.1:19092"}
+[pool]
+max_connections = 512
+request_timeout_ms = 10000
+drain_timeout_ms = 5000
+[runtime]
+mode = "per_core"
+workers = 2

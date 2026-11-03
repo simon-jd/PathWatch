@@ -1,0 +1,134 @@
+[
+  {
+    "protocol": "h2",
+    "rate": 1000,
+    "proxy": "pathwatch",
+    "completed": 600000,
+    "achieved_rps_mean": 999.9166736105325,
+    "cpu_us_per_completed": 76.96383333333327,
+    "unfinished_at_end": 0,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "failed": 0,
+      "errored": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      530,
+      530
+    ],
+    "p99_us_bounds": [
+      8036,
+      8039
+    ],
+    "p999_us_bounds": [
+      12432,
+      12439
+    ]
+  },
+  {
+    "protocol": "h2",
+    "rate": 5000,
+    "proxy": "pathwatch",
+    "completed": 3000000,
+    "achieved_rps_mean": 4999.333422210371,
+    "cpu_us_per_completed": 67.22406666666667,
+    "unfinished_at_end": 0,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "failed": 0,
+      "errored": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      480,
+      480
+    ],
+    "p99_us_bounds": [
+      5848,
+      5851
+    ],
+    "p999_us_bounds": [
+      7728,
+      7731
+    ]
+  },
+  {
+    "protocol": "h2",
+    "rate": 10000,
+    "proxy": "pathwatch",
+    "completed": 5999909,
+    "achieved_rps_mean": 9999.348365915039,
+    "cpu_us_per_completed": 55.02848459868308,
+    "unfinished_at_end": 79,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "failed": 0,
+      "errored": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      342,
+      342
+    ],
+    "p99_us_bounds": [
+      1866,
+      1866
+    ],
+    "p999_us_bounds": [
+      5232,
+      5235
+    ]
+  },
+  {
+    "protocol": "h2",
+    "rate": 20000,
+    "proxy": "pathwatch",
+    "completed": 11999275,
+    "achieved_rps_mean": 19997.458502766483,
+    "cpu_us_per_completed": 43.25223815605525,
+    "unfinished_at_end": 79,
+    "round_statuses": [
+      "measured",
+      "measured",
+      "measured",
+      "measured",
+      "measured"
+    ],
+    "errors": {
+      "failed": 0,
+      "errored": 0,
+      "timeout": 0
+    },
+    "p50_us_bounds": [
+      658,
+      658
+    ],
+    "p99_us_bounds": [
+      2444,
+      2445
+    ],
+    "p999_us_bounds": [
+      5880,
+      5883
+    ]
+  }
+]

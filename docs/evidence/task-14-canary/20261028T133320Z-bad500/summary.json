@@ -1,0 +1,140 @@
+{
+  "run": "20261028T133320Z-bad500",
+  "variant": "bad500",
+  "source_commit": "f645b121a94d",
+  "desired_state_commit": "3bef4a42ffbfc79902cbf3155df621da92890ce4",
+  "started": "2026-10-28T13:33:20.576136+00:00",
+  "completed": true,
+  "events_seconds_after_commit": {
+    "argo_synced_new_revision": 0.6,
+    "canary_pod_ready": 1.8,
+    "analysisrun_created": 1.8,
+    "analysisrun_failed": 21.5,
+    "rollout_aborted": 22.7,
+    "rollback_complete": 22.7
+  },
+  "client_impact": {
+    "sent": 620,
+    "non_200": 105,
+    "non_200_fraction": 0.1694,
+    "seconds_with_non_200": 22,
+    "first_non_200": "2026-10-28T13:33:16.610842748Z",
+    "last_non_200": "2026-10-28T13:33:42.6108406Z"
+  },
+  "stable_hash_before": "5dd4c96546",
+  "final": {
+    "rollout": {
+      "phase": "Degraded",
+      "message": "RolloutAborted: Rollout aborted update to revision 5: Step-based analysis phase error/failed: Metric \"query-error-ratio\" assessed Failed due to failed (1) > failureLimit (0)",
+      "abort": true,
+      "current": "b895f4576",
+      "stable": "5dd4c96546",
+      "step": 0,
+      "replicas": 4,
+      "pods": {
+        "5dd4c96546": [
+          4,
+          4
+        ]
+      },
+      "analysisruns": {
+        "frontend-5dd4c96546-2-1": "Successful",
+        "frontend-b895f4576-3-1": "Failed",
+        "frontend-b895f4576-5-1": "Failed"
+      },
+      "images": [
+        "pathwatch/ingest:git-bbc66daca5d7-bad500"
+      ]
+    },
+    "apps": {
+      "pathwatch-api": [
+        "Synced",
+        "Healthy",
+        "3bef4a42ffbfc79902cbf3155df621da92890ce4"
+      ],
+      "pathwatch-ingest": [
+        "Synced",
+        "Degraded",
+        "3bef4a42ffbfc79902cbf3155df621da92890ce4"
+      ],
+      "pathwatch-observability": [
+        "Synced",
+        "Healthy",
+        "3bef4a42ffbfc79902cbf3155df621da92890ce4"
+      ],
+      "pathwatch-root": [
+        "Synced",
+        "Healthy",
+        "3bef4a42ffbfc79902cbf3155df621da92890ce4"
+      ]
+    }
+  },
+  "recovery": {
+    "revert_commit": "a287a10f5883224d1bba3bbebb815e790226cd83",
+    "seconds_to_synced_healthy": 2.7,
+    "apps": {
+      "pathwatch-api": [
+        "Synced",
+        "Healthy",
+        "a287a10f5883224d1bba3bbebb815e790226cd83"
+      ],
+      "pathwatch-ingest": [
+        "Synced",
+        "Healthy",
+        "a287a10f5883224d1bba3bbebb815e790226cd83"
+      ],
+      "pathwatch-observability": [
+        "Synced",
+        "Healthy",
+        "a287a10f5883224d1bba3bbebb815e790226cd83"
+      ],
+      "pathwatch-root": [
+        "Synced",
+        "Healthy",
+        "a287a10f5883224d1bba3bbebb815e790226cd83"
+      ]
+    },
+    "rollout": {
+      "phase": "Healthy",
+      "message": null,
+      "abort": false,
+      "current": "5dd4c96546",
+      "stable": "5dd4c96546",
+      "step": 2,
+      "replicas": 4,
+      "pods": {
+        "5dd4c96546": [
+          4,
+          4
+        ]
+      },
+      "analysisruns": {
+        "frontend-5dd4c96546-2-1": "Successful",
+        "frontend-b895f4576-3-1": "Failed",
+        "frontend-b895f4576-5-1": "Failed"
+      },
+      "images": [
+        "pathwatch/ingest:git-bbc66daca5d7-control"
+      ]
+    }
+  },
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "18.69",
+      "10.58",
+      "7.46"
+    ],
+    "at": "2026-10-28T13:33:47.544279+00:00"
+  },
+  "machine_load_start": {
+    "nproc": 32,
+    "loadavg": [
+      "19.04",
+      "9.74",
+      "7.09"
+    ],
+    "at": "2026-10-28T13:33:20.367052+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"
+}

@@ -1,0 +1,22 @@
+{
+  "listen": "127.0.0.1:19443",
+  "binary_dir": ".cache/task10c2-bin",
+  "binary_sha256": {
+    "ingest": "REPLACE_WITH_REVIEWED_SHA256",
+    "probe": "REPLACE_WITH_REVIEWED_SHA256",
+    "echo": "REPLACE_WITH_REVIEWED_SHA256"
+  },
+  "development_cleartext": true,
+  "clickhouse_port": 18123,
+  "metrics_port": 19091,
+  "probe_metrics_port": 19464,
+  "observer_port": 19465,
+  "probe_config": ".cache/task10-home/probe.json",
+  "spool_dir": ".cache/task10-home/spool",
+  "roster": ".cache/task10-home/roster.json",
+  "owned_echo": true,
+  "prometheus_port": 19090,
+  "anomaly": {
+    "enabled": false
+  }
+}

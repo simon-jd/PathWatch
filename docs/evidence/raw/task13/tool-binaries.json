@@ -1,0 +1,22 @@
+{
+  ".cache/task13/nghttp2-build/src/h2load": {
+    "sha256": "780ad1ecda4af06e95f0db5120023ae2f7d513086547489f0fe7c3a61f2854e6",
+    "ldd": "\tlinux-vdso.so.1 (0x00007b791a958000)\n\tlibnghttp2.so.14 => /home/postedism/Desktop/PathWatch/.cache/task13/nghttp2-build/lib/libnghttp2.so.14 (0x00007b791a89e000)\n\tlibev.so.4 => /home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/lib/x86_64-linux-gnu/libev.so.4 (0x00007b791a88d000)\n\tlibssl.so.3 => /home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/lib/x86_64-linux-gnu/libssl.so.3 (0x00007b791a77c000)\n\tlibcrypto.so.3 => /home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007b791a000000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007b7919c00000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x00007b791a63c000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007b7919fd2000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007b7919800000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x00007b791a61e000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x00007b7919f0f000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007b791a95a000)\n"
+  },
+  ".cache/task13/wrk2-44a94c17d8e6a0bac8559b53da76848e430cb7a7/wrk": {
+    "sha256": "fc49d84c51fc71ac8c7bb3a8237c781b485604ed4798c7527dc6468a5cb03fe1",
+    "ldd": "\tlinux-vdso.so.1 (0x00007efeaeeda000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x00007efeaed08000)\n\tlibcrypto.so.3 => /usr/lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007efeae600000)\n\tlibssl.so.3 => /usr/lib/x86_64-linux-gnu/libssl.so.3 (0x00007efeae4ef000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007efeaecda000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007efeae200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007efeaeedc000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x00007efeaecba000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x00007efeae42c000)\n"
+  },
+  ".cache/task13/nginx/sbin/nginx": {
+    "sha256": "835cf8923660ef36fba6c78d5ad41fb64aa5e90b4820cad9a95a99c02af3cc13",
+    "ldd": "\tlinux-vdso.so.1 (0x00007887fcfff000)\n\tlibcrypt.so.1 => /usr/lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007887fce70000)\n\tlibssl.so.3 => /usr/lib/x86_64-linux-gnu/libssl.so.3 (0x00007887fcd5f000)\n\tlibcrypto.so.3 => /usr/lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007887fc600000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007887fc200000)\n\tlibz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x00007887fcd41000)\n\tlibzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x00007887fcc7c000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007887fd001000)\n"
+  },
+  ".cache/task13/envoy": {
+    "sha256": "2057b6e3c2e18738eee1e42edd35dfbdfc615e873a2d060677ff178c5d1238f5",
+    "ldd": "\tlinux-vdso.so.1 (0x00007e2abd4f8000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x00007e2ab64da000)\n\tlibrt.so.1 => /usr/lib/x86_64-linux-gnu/librt.so.1 (0x00007e2abd4d3000)\n\tlibdl.so.2 => /usr/lib/x86_64-linux-gnu/libdl.so.2 (0x00007e2abd4ce000)\n\tlibpthread.so.0 => /usr/lib/x86_64-linux-gnu/libpthread.so.0 (0x00007e2abd4c9000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007e2ab6200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007e2abd4fa000)\n"
+  },
+  "proxy/target/release/edge-proxy": {
+    "sha256": "6b8fa8561bd431d453d5cef2ca90f4e04759eac682a41217cb230b4bc641499a",
+    "ldd": "\tlinux-vdso.so.1 (0x000072c909cf5000)\n\tlibgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000072c909ca7000)\n\tlibm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x000072c909b81000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x000072c909200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x000072c909cf7000)\n"
+  }
+}

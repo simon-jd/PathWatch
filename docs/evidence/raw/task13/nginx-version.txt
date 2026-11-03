@@ -1,0 +1,5 @@
+nginx version: nginx/1.30.6
+built by gcc 15.2.0 (Ubuntu 15.2.0-16ubuntu1) 
+built with OpenSSL 3.5.5 27 Jan 2026
+TLS SNI support enabled
+configure arguments: --prefix=/home/postedism/Desktop/PathWatch/.cache/task13/nginx --with-http_ssl_module --with-http_v2_module --without-http_rewrite_module --without-http_gzip_module --with-cc-opt='-I/home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/include -I/home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/include/x86_64-linux-gnu' --with-ld-opt=-L/home/postedism/Desktop/PathWatch/.cache/task13/deps/usr/lib/x86_64-linux-gnu

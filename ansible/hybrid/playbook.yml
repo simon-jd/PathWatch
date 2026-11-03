@@ -1,0 +1,119 @@
+---
+- name: Configure owned temporary Azure NVA
+  hosts: azure_nva
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Verify only intended ARM64 temporary appliance
+      ansible.builtin.assert:
+        that:
+          - ansible_architecture == 'aarch64'
+          - ansible_distribution == 'Ubuntu'
+          - ansible_distribution_version == '24.04'
+          - pathwatch_owned_vm | bool
+    - name: Install distro ARM-compatible routing and measurement packages
+      ansible.builtin.apt:
+        name: [wireguard-tools, frr, iproute2, iptables, iputils-ping, fping, iperf3, python3]
+        update_cache: true
+        state: present
+    - name: Configure only Azure NVA guest forwarding
+      ansible.builtin.copy:
+        dest: /etc/sysctl.d/80-pathwatch-hybrid.conf
+        mode: '0644'
+        content: |
+          net.ipv4.ip_forward=1
+          net.ipv4.conf.all.rp_filter=2
+          net.ipv4.conf.default.rp_filter=2
+      notify: Apply guest sysctl
+    - name: Load only own guest sysctl settings
+      ansible.builtin.command: sysctl -p /etc/sysctl.d/80-pathwatch-hybrid.conf
+      changed_when: false
+    - name: Copy private WG configs without logging keys
+      ansible.builtin.copy:
+        src: '{{ pathwatch_rendered }}/pw-wg{{ item }}.conf'
+        dest: '/etc/wireguard/pw-wg{{ item }}.conf'
+        mode: '0600'
+      no_log: true
+      loop: [0, 1]
+      notify: Restart WG
+    - name: Enable own WG units
+      ansible.builtin.systemd:
+        name: 'wg-quick@pw-wg{{ item }}'
+        enabled: true
+        state: started
+      loop: [0, 1]
+    - name: Configure FRR daemons
+      ansible.builtin.copy:
+        dest: /etc/frr/daemons
+        mode: '0644'
+        content: |
+          zebra=yes
+          bgpd=yes
+          bfdd=yes
+          vtysh_enable=yes
+          zebra_options=" -A 127.0.0.1 -s 90000000"
+          bgpd_options=" -A 127.0.0.1"
+          bfdd_options=" -A 127.0.0.1"
+      notify: Restart FRR
+    - name: Install strict FRR routing config
+      ansible.builtin.copy:
+        src: '{{ pathwatch_rendered }}/frr.conf'
+        dest: /etc/frr/frr.conf
+        owner: frr
+        group: frr
+        mode: '0640'
+      notify: Restart FRR
+    - name: Permit BGP/BFD only within WireGuard guest interfaces
+      ansible.builtin.script: ../../lab/hybrid/control-filter.sh
+      changed_when: false
+    - name: Enable FRR
+      ansible.builtin.systemd:
+        name: frr
+        state: started
+        enabled: true
+  handlers:
+    - name: Apply guest sysctl
+      ansible.builtin.command: sysctl -p /etc/sysctl.d/80-pathwatch-hybrid.conf
+    - name: Restart WG
+      ansible.builtin.systemd:
+        name: 'wg-quick@pw-wg{{ item }}'
+        state: restarted
+      loop: [0, 1]
+    - name: Restart FRR
+      ansible.builtin.systemd:
+        name: frr
+        state: restarted
+
+- name: Configure owned temporary workload endpoint
+  hosts: azure_workload
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Verify explicit ownership acknowledgement
+      ansible.builtin.assert:
+        that: [pathwatch_owned_vm | bool]
+    - name: Install bounded baseline tools
+      ansible.builtin.apt:
+        name: [iperf3, iputils-ping, fping, python3]
+        update_cache: true
+        state: present
+    - name: Start iperf only on owned workload private IP
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/pathwatch-iperf.service
+        mode: '0644'
+        content: |
+          [Unit]
+          Description=PathWatch private bounded baseline server
+          [Service]
+          ExecStart=/usr/bin/iperf3 -s -B 10.10.0.4
+          Restart=on-failure
+          User=nobody
+          NoNewPrivileges=true
+          [Install]
+          WantedBy=multi-user.target
+    - name: Enable private workload iperf server
+      ansible.builtin.systemd:
+        name: pathwatch-iperf
+        enabled: true
+        state: started
+        daemon_reload: true

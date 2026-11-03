@@ -1,0 +1,92 @@
+---
+- name: Refuse host-global changes outside explicitly owned Ubuntu probe guests
+  ansible.builtin.assert:
+    that:
+      - pathwatch_owned_probe_vm | bool
+      - inventory_hostname != 'localhost'
+      - ansible_distribution == 'Ubuntu'
+      - pathwatch_probe_sha256 is match('^[0-9a-f]{64}$')
+      - pathwatch_probe_config.probe_id in ['azure-a', 'azure-b']
+      - not (pathwatch_probe_config.development_cleartext | default(false) | bool)
+      - pathwatch_probe_config.spool_dir == pathwatch_probe_state + '/spool'
+      - pathwatch_probe_config.metrics_addr == '127.0.0.1:9464'
+- name: Install guest-only automatic security upgrades and log rotation
+  ansible.builtin.apt:
+    name: [unattended-upgrades, logrotate, ca-certificates]
+    state: present
+    update_cache: true
+- name: Create restricted probe account
+  ansible.builtin.user:
+    name: '{{ pathwatch_probe_user }}'
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
+- name: Create application directory
+  ansible.builtin.file:
+    path: '{{ pathwatch_probe_root }}'
+    state: directory
+    mode: '0755'
+- name: Create writable state and logs
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ pathwatch_probe_user }}'
+    mode: '0750'
+  loop: ['{{ pathwatch_probe_state }}', '{{ pathwatch_probe_state }}/spool', /var/log/pathwatch-probe]
+- name: Verify versioned local binary before installation
+  ansible.builtin.stat:
+    path: '{{ pathwatch_probe_binary }}'
+    checksum_algorithm: sha256
+  delegate_to: localhost
+  become: false
+  register: binary_stat
+- name: Require exact reviewed artifact
+  ansible.builtin.assert:
+    that: binary_stat.stat.checksum == pathwatch_probe_sha256
+- name: Atomically upgrade reviewed probe binary
+  ansible.builtin.copy:
+    src: '{{ pathwatch_probe_binary }}'
+    dest: '{{ pathwatch_probe_root }}/probe'
+    mode: '0755'
+  notify: Restart probe
+- name: Install private CA when supplied
+  ansible.builtin.copy:
+    src: '{{ pathwatch_probe_ca_file }}'
+    dest: '{{ pathwatch_probe_root }}/ingest-ca.pem'
+    mode: '0644'
+  when: pathwatch_probe_ca_file | length > 0
+  notify: Restart probe
+- name: Install exact application configuration
+  ansible.builtin.copy:
+    content: '{{ pathwatch_probe_config | to_nice_json }}'
+    dest: '{{ pathwatch_probe_root }}/probe.json'
+    mode: '0640'
+    group: '{{ pathwatch_probe_user }}'
+  notify: Restart probe
+- name: Install private target CA for this process only
+  ansible.builtin.copy:
+    src: '{{ pathwatch_probe_target_ca_file }}'
+    dest: '{{ pathwatch_probe_root }}/target-ca.pem'
+    mode: '0644'
+  when: pathwatch_probe_target_ca_file | length > 0
+  notify: Restart probe
+- name: Install scoped unit, guest sysctl, upgrades and log rotation
+  ansible.builtin.template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '0644'
+  loop:
+    - {src: probe.service.j2, dest: /etc/systemd/system/pathwatch-probe.service}
+    - {src: sysctl.conf.j2, dest: /etc/sysctl.d/80-pathwatch-probe.conf}
+    - {src: logrotate.j2, dest: /etc/logrotate.d/pathwatch-probe}
+    - {src: upgrades.j2, dest: /etc/apt/apt.conf.d/51pathwatch-security-upgrades}
+  notify: Restart probe
+- name: Apply only guest probe sysctl file
+  ansible.builtin.command: sysctl -p /etc/sysctl.d/80-pathwatch-probe.conf
+  changed_when: false
+- name: Enable bounded probe service
+  ansible.builtin.systemd:
+    name: pathwatch-probe
+    enabled: true
+    state: started
+    daemon_reload: true

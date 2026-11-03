@@ -1,0 +1,16 @@
+{
+  "probe_id": "home",
+  "ingest": "127.0.0.1:19443",
+  "development_cleartext": true,
+  "interval": "120s",
+  "probe_timeout": "5s",
+  "rpc_timeout": "10s",
+  "shutdown_timeout": "5s",
+  "spool_dir": ".cache/task10-home/spool",
+  "spool_max_bytes": 268435456,
+  "batch_size": 128,
+  "metrics_addr": "127.0.0.1:19464",
+  "targets": [
+    {"id": "owned-echo", "host": "127.0.0.1", "port": 18443, "public": false, "kinds": ["dns", "tcp", "tls", "http1", "http2", "http3", "trace"]}
+  ]
+}

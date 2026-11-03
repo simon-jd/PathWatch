@@ -1,0 +1,54 @@
+starting benchmark...
+spawning thread #0: 25 total client(s). Timing-based test with 0s of warm-up time and 15s of main duration for measurements.
+spawning thread #1: 25 total client(s). Timing-based test with 0s of warm-up time and 15s of main duration for measurements.
+spawning thread #2: 25 total client(s). Timing-based test with 0s of warm-up time and 15s of main duration for measurements.
+spawning thread #3: 25 total client(s). Timing-based test with 0s of warm-up time and 15s of main duration for measurements.
+Warm-up started for thread #0.
+Warm-up started for thread #2.
+progress: 8% of clients started
+progress: 16% of clients started
+progress: 24% of clients started
+progress: 32% of clients started
+progress: 40% of clients started
+progress: 48% of clients started
+progress: 56% of clients started
+progress: 64% of clients started
+progress: 72% of clients started
+progress: 80% of clients started
+progress: 88% of clients started
+Warm-up phase is over for thread #2.
+Main benchmark duration is started for thread #2.
+progress: 96% of clients started
+Warm-up started for thread #3.
+Warm-up phase is over for thread #0.
+Main benchmark duration is started for thread #0.
+Warm-up started for thread #1.
+Warm-up phase is over for thread #1.
+Main benchmark duration is started for thread #1.
+Warm-up phase is over for thread #3.
+Main benchmark duration is started for thread #3.
+TLS Protocol: TLSv1.3
+Cipher: TLS_AES_128_GCM_SHA256
+Server Temp Key: X25519 253 bits
+Certificate: ECDSA prime256v1 256 bits
+Negotiated Group: x25519
+Resumption: no
+Application protocol: h2
+Main benchmark duration is over for thread #0. Stopping all clients.
+Stopped all clients for thread #0
+Main benchmark duration is over for thread #2. Stopping all clients.
+Stopped all clients for thread #2
+Main benchmark duration is over for thread #1. Stopping all clients.
+Stopped all clients for thread #1
+Main benchmark duration is over for thread #3. Stopping all clients.
+Stopped all clients for thread #3
+
+finished in 15.01s, 4998.47 req/s, 5.01MB/s
+requests: 74977 total, 75000 started, 74977 done, 74977 succeeded, 0 failed, 0 errored, 0 timeout
+status codes: 74977 2xx, 0 3xx, 0 4xx, 0 5xx
+traffic: 75.16MB (78810327) total, 662.88KB (678793) headers (space savings 90.67%), 73.22MB (76776448) data
+                 min         max         median      p95         p99         mean        sd         +/- sd
+request     :       77us     22.70ms      3.27ms     20.65ms     21.09ms      7.10ms      8.18ms    72.84%
+connect     :     2.57ms     15.32ms      8.93ms     13.82ms     15.32ms      8.75ms      3.18ms    61.00%
+TTFB        :    10.03ms     35.24ms     28.16ms     33.02ms     35.24ms     28.11ms      3.58ms    73.00%
+req/s       :      49.92       50.00       49.99       50.00       50.00       49.98        0.03    77.00%

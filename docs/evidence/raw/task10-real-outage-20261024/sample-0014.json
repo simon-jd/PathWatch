@@ -1,0 +1,180 @@
+{
+  "utc": "2026-10-24T20:21:41Z",
+  "monotonic_seconds": 671054.182488882,
+  "owner": "codex-pathwatch",
+  "root": "/home/postedism/Desktop/PathWatch",
+  "container": "pathwatch-task10-5f7016c667d6",
+  "paused": true,
+  "pid_namespace": "pid:[4026534949]",
+  "children": {
+    "echo": {
+      "pid": 41,
+      "returncode": null,
+      "args": [
+        "/home/postedism/Desktop/PathWatch/.cache/task10-bin/echo",
+        "-listen",
+        "127.0.0.1:18443",
+        "-cert",
+        "/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/echo-cert.pem",
+        "-key",
+        "/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/echo-key.pem"
+      ]
+    },
+    "probe": {
+      "pid": 55,
+      "returncode": null,
+      "args": [
+        "/home/postedism/Desktop/PathWatch/.cache/task10-bin/probe",
+        "-config",
+        "/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/probe.json"
+      ]
+    },
+    "observer": {
+      "pid": 56,
+      "returncode": null,
+      "args": [
+        "/home/postedism/Desktop/PathWatch/.tools/checkov/bin/python3",
+        "/home/postedism/Desktop/PathWatch/slo/observe.py",
+        "--roster",
+        "/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/roster.json",
+        "--state",
+        "/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/slo-state.json",
+        "--endpoint",
+        "http://127.0.0.1:19091/readyz",
+        "--port",
+        "19465"
+      ]
+    },
+    "prometheus": {
+      "pid": 57,
+      "returncode": null,
+      "args": [
+        "/home/postedism/Desktop/PathWatch/.tools/bin/prometheus",
+        "--config.file=/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/prometheus.yaml",
+        "--web.listen-address=127.0.0.1:19090",
+        "--storage.tsdb.path=/home/postedism/Desktop/PathWatch/.cache/task10-long-20261024/prometheus",
+        "--storage.tsdb.retention.time=35d",
+        "--storage.tsdb.retention.size=64MB"
+      ]
+    }
+  },
+  "ingest_metrics": {
+    "error": "<urlopen error [Errno 111] Connection refused>"
+  },
+  "probe_metrics": "pathwatch_up 1\npathwatch_spool_dropped_total 0\npathwatch_spool_bytes 5620\npathwatch_spool_batches 3\npathwatch_report_attempts_total 19\npathwatch_report_acknowledged_total 10\npathwatch_report_failures_total 9\npathwatch_measurements_total 42\npathwatch_operational_errors_total 9\n",
+  "slo_metrics": "pathwatch_slo_windows_total 16\npathwatch_slo_windows_bad 12\npathwatch_slo_api_total 311\npathwatch_slo_api_bad 269\npathwatch_slo_expected_observers 1\npathwatch_slo_required_observers 1\npathwatch_slo_last_observation_seconds 1792873290\npathwatch_slo_observation_start_seconds 1792868625\npathwatch_slo_last_window_bad 0\npathwatch_slo_current_fresh_observers 0\npathwatch_journal_records 14\npathwatch_journal_bytes 15266\n",
+  "spool_manifest": {
+    "Version": 1,
+    "Dropped": 0,
+    "Entries": [
+      {
+        "ID": "35994ab96d3eef63ca5e9e49f2e311f6",
+        "Size": 1876,
+        "SHA256": "325d340750a2e85c89be3b7204e47241ba5509fa4473e0061b0b00fa690d4d70"
+      },
+      {
+        "ID": "f8b6358844358ab408ce88d0b62e9cab",
+        "Size": 1873,
+        "SHA256": "7050f34251cd911fa3ebc2e033f4f072a4d2bc91392596cb794e83e90e623404"
+      },
+      {
+        "ID": "98bdadf23710d785217e527bba28a86b",
+        "Size": 1871,
+        "SHA256": "17954cc3198b14ae13e1c78ef4d86b1e1d21d7cf19315f1a2ca05e1725da4a9c"
+      }
+    ]
+  },
+  "spool_batches": {
+    "35994ab96d3eef63ca5e9e49f2e311f6": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "f8b6358844358ab408ce88d0b62e9cab": {
+      "probe_id": "home",
+      "results": 7
+    },
+    "98bdadf23710d785217e527bba28a86b": {
+      "probe_id": "home",
+      "results": 7
+    }
+  },
+  "journal_records": 14,
+  "journal_bytes": 15518,
+  "spool_bytes": 6047,
+  "source_hashes": {
+    "infra/modules/clickhouse/home.py": "54b894c61830d3eb0e2d7a69cd5f0e5f4b950a80e9af0bc934d8f44cbc6f13db",
+    "slo/observe.py": "418ae1cde91b4c62afccdb3746ad9ebcf61e7773792b7a8f96572fd717451fbf",
+    "slo/generated.rules.yaml": "8b437fdcf56f39b4f5b00fb1cb5bc72a2c067daa12cc6f0797c7ee2c5f121f19",
+    ".cache/task10-bin/ingest": "73c0a44e60b875c49a0623a3873ad8b5cbbff63df1d2da01df60b574b78aee5d",
+    ".cache/task10-bin/probe": "135d423ed9384bf607fc3a6843cc999671c0177cf9c32f38ed0850bc62291f61",
+    ".cache/task10-bin/echo": "c4e26527c3415e4718bb6bfbb508c241406f7df6314b2d149d2ed1dc3122c347",
+    ".cache/task10-long-20261024/probe.json": "ee9672f63809ad74c5131291d27b4d8674820b95752d63dc44a8a7646f53f603",
+    ".cache/task10-long-20261024/roster.json": "2c97c05b25768a799b134b74a62a851c38d1474435309b43a7b3a5cbb43ebd1d"
+  },
+  "clickhouse_data_allocated_bytes": 2367488,
+  "project_allocated_bytes": 5167514366,
+  "native_rss_bytes": 171696128,
+  "prometheus_alerts": {
+    "status": "success",
+    "data": {
+      "alerts": [
+        {
+          "labels": {
+            "alertname": "PathWatchFreshnessBudgetBurn",
+            "owner": "codex-pathwatch",
+            "scope": "configured-physical-roster",
+            "severity": "ticket",
+            "sloth_id": "pathwatch-ingestion-freshness",
+            "sloth_service": "pathwatch",
+            "sloth_severity": "ticket",
+            "sloth_slo": "ingestion-freshness"
+          },
+          "annotations": {
+            "summary": "Ingestion freshness error budget is burning",
+            "title": "(ticket) pathwatch ingestion-freshness SLO error budget burn rate is too fast."
+          },
+          "state": "firing",
+          "activeAt": "2026-10-24T20:12:00.984872678Z",
+          "value": "7.5e-01"
+        },
+        {
+          "labels": {
+            "alertname": "PathWatchReadinessBudgetBurn",
+            "owner": "codex-pathwatch",
+            "severity": "page",
+            "sloth_id": "pathwatch-ingest-readiness",
+            "sloth_service": "pathwatch",
+            "sloth_severity": "page",
+            "sloth_slo": "ingest-readiness"
+          },
+          "annotations": {
+            "summary": "Ingest readiness API error budget is burning",
+            "title": "(page) pathwatch ingest-readiness SLO error budget burn rate is too fast."
+          },
+          "state": "firing",
+          "activeAt": "2026-10-24T20:16:04.487070398Z",
+          "value": "1e+00"
+        },
+        {
+          "labels": {
+            "alertname": "PathWatchReadinessBudgetBurn",
+            "owner": "codex-pathwatch",
+            "severity": "ticket",
+            "sloth_id": "pathwatch-ingest-readiness",
+            "sloth_service": "pathwatch",
+            "sloth_severity": "ticket",
+            "sloth_slo": "ingest-readiness"
+          },
+          "annotations": {
+            "summary": "Ingest readiness API error budget is burning",
+            "title": "(ticket) pathwatch ingest-readiness SLO error budget burn rate is too fast."
+          },
+          "state": "firing",
+          "activeAt": "2026-10-24T20:11:49.487070398Z",
+          "value": "8.645161290322579e-01"
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 363.159
+}

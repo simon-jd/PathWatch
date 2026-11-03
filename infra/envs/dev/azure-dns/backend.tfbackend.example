@@ -1,0 +1,7 @@
+subscription_id      = "00000000-0000-0000-0000-000000000000"
+resource_group_name  = "rg-pathwatch-lab"
+storage_account_name = "pwREPLACE"
+container_name       = "tfstate"
+key                  = "azure-dns.tfstate"
+use_azuread_auth     = true
+# CLI locally; CI additionally sets use_oidc=true and ARM_CLIENT_ID / ARM_TENANT_ID.

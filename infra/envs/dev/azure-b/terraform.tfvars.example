@@ -1,0 +1,7 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+location = "francecentral"
+ttl = "REPLACE_WITH_VALID_FUTURE_UTC_TIMESTAMP"
+# Task 3 only after checking actual home/containers/VPN routes for overlap:
+wireguard_peer_cidrs = []
+nva_private_ip = null
+home_routes_confirmed_no_overlap = false

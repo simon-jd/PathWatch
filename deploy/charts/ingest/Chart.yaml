@@ -1,0 +1,9 @@
+apiVersion: v2
+name: ingest
+description: PathWatch ingest - sole core with loopback ClickHouse, and the frontend canary Rollout.
+type: application
+version: 0.1.0
+dependencies:
+  - name: edge-proxy
+    version: 0.1.0
+    repository: file://../edge-proxy

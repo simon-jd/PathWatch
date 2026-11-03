@@ -1,0 +1,81 @@
+{
+  "run": "20261027T224131Z-control",
+  "variant": "control",
+  "source_commit": "5a16bf91fa03",
+  "desired_state_commit": "ae7533b91103dbd3eac7cf98a244fb8a9e9151fb",
+  "started": "2026-10-27T22:41:31.468622+00:00",
+  "completed": true,
+  "events_seconds_after_commit": {
+    "argo_synced_new_revision": 0.5,
+    "canary_pod_ready": 1.6,
+    "analysisrun_created": 1.6,
+    "analysisrun_successful": 115.9,
+    "promoted": 117.0
+  },
+  "stable_hash_before": "58585785f",
+  "final": {
+    "rollout": {
+      "phase": "Healthy",
+      "message": null,
+      "abort": false,
+      "current": "8676b7667f",
+      "stable": "8676b7667f",
+      "step": 2,
+      "replicas": 2,
+      "pods": {
+        "8676b7667f": [
+          2,
+          2
+        ]
+      },
+      "analysisruns": {
+        "frontend-8676b7667f-2-1": "Successful"
+      },
+      "images": [
+        "pathwatch/ingest:git-e7f4721370ba-control"
+      ]
+    },
+    "apps": {
+      "pathwatch-api": [
+        "Synced",
+        "Healthy",
+        "ae7533b91103dbd3eac7cf98a244fb8a9e9151fb"
+      ],
+      "pathwatch-ingest": [
+        "Synced",
+        "Healthy",
+        "ae7533b91103dbd3eac7cf98a244fb8a9e9151fb"
+      ],
+      "pathwatch-observability": [
+        "Synced",
+        "Healthy",
+        "ae7533b91103dbd3eac7cf98a244fb8a9e9151fb"
+      ],
+      "pathwatch-root": [
+        "Synced",
+        "Healthy",
+        "ae7533b91103dbd3eac7cf98a244fb8a9e9151fb"
+      ]
+    }
+  },
+  "recovery": null,
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "7.66",
+      "5.90",
+      "5.24"
+    ],
+    "at": "2026-10-27T22:43:29.829022+00:00"
+  },
+  "machine_load_start": {
+    "nproc": 32,
+    "loadavg": [
+      "6.95",
+      "5.22",
+      "4.98"
+    ],
+    "at": "2026-10-27T22:41:31.282384+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"
+}

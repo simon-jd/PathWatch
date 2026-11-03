@@ -1,0 +1,31 @@
+go test -count=1 -v -run 'TestCUSUM_ThresholdExperiment|TestCUSUM_SmallShiftExperiment' ./ingest/internal/anomaly
+=== RUN   TestCUSUM_ThresholdExperiment
+seed	20261027	K	0.5	points	10000	trials	2000	warmup	20
+H	siegmund_arl0	p_zero_known	mean_alarms_known	p_zero_warmup20	mean_alarms_warmup20	delay_1sigma	delay_2sigma	delay_3sigma	delay_6sigma
+4	338	0.0000	28.971	0.0575	64.681	8.31	3.37	2.20	1.07
+5	938	0.0000	10.507	0.1460	35.995	10.29	4.02	2.58	1.31
+6	2573	0.0190	3.885	0.2565	22.456	12.32	4.67	2.98	1.69
+8	19112	0.5945	0.509	0.4915	9.173	16.46	6.01	3.77	2.01
+10	141347	0.9375	0.065	0.6325	5.217	20.26	7.34	4.59	2.24
+12	1044574	0.9875	0.013	0.7455	3.075	24.48	8.62	5.37	2.76
+15	20981372	1.0000	0.000	0.8300	1.550	30.74	10.66	6.60	3.19
+--- PASS: TestCUSUM_ThresholdExperiment (1.63s)
+=== RUN   TestCUSUM_SmallShiftExperiment
+seed	20261031	K	0.5	H	12	sigma_floor_ms	1	warmup	20	windows_after_shift	36	trials	5000
+model	shift_ms	detected_frac	delay_mean	delay_p50	delay_p95	delay_max	alarms_latch_mean	alarms_reset_mean
+lab	1	1.0000	24.53	24	27	30	1.000	1.000
+lab	2	1.0000	8.51	9	9	9	1.000	4.000
+lab	3	1.0000	5.00	5	5	6	1.000	6.995
+lab	6	1.0000	3.00	3	3	3	1.000	12.000
+lab	20	1.0000	1.00	1	1	1	1.000	36.000
+gauss1	1	0.7222	21.51	21	34	36	0.722	0.965
+gauss1	2	0.9998	9.60	9	15	30	1.000	3.471
+gauss1	3	1.0000	5.79	6	8	12	1.000	5.931
+gauss1	6	1.0000	2.87	3	4	5	1.000	12.238
+gauss1	20	1.0000	1.00	1	1	2	1.000	35.990
+model	noise_windows	trials	p_zero_alarms	mean_alarms_latch	mean_alarms_reset
+lab	10000	200	1.0000	0.000	0.000
+gauss1	10000	200	0.8100	1.185	2.400
+--- PASS: TestCUSUM_SmallShiftExperiment (0.05s)
+PASS
+ok  	pathwatch.local/pathwatch/ingest/internal/anomaly	1.692s

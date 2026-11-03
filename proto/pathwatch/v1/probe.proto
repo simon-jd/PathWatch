@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package pathwatch.v1;
+
+option go_package = "pathwatch.local/pathwatch/proto/pathwatch/v1;pathwatchv1";
+
+import "google/protobuf/timestamp.proto";
+
+// All field numbers are part of the persisted spool and ingest wire contract.
+service Ingest {
+  rpc Report(ReportRequest) returns (ReportResponse);
+}
+
+message ReportRequest {
+  // Stable across retries and process restarts. Dedup key: (probe_id, batch_id).
+  string batch_id = 1;
+  string probe_id = 2;
+  // Send time, distinct from each measurement's started_at; checked for skew.
+  // May change per retry; excluded from duplicate result-content comparison.
+  google.protobuf.Timestamp sent_at = 3;
+  repeated ProbeResult results = 4;
+}
+
+message ProbeResult {
+  string target_id = 1;
+  string probe_id = 2;
+  // dns | tcp | tls | http1 | http2 | http3 | trace
+  string kind = 3;
+  // v4 | v6; empty only when no address/family could be resolved.
+  string family = 4;
+  // Literal destination IP, without brackets or port; empty for DNS failure.
+  string addr = 5;
+  // Reporting wall-clock timestamp, never used to derive phase durations.
+  google.protobuf.Timestamp started_at = 6;
+  // Monotonic elapsed durations in signed int64 nanoseconds (Go time.Duration).
+  // Keys depend on kind: resolve, dns, connect, tls_handshake, ttfb, total.
+  // A repeated address shares its DNS query duration.
+  map<string, int64> phases_nanoseconds = 7;
+  // Empty on success, otherwise a remote/transport measurement failure.
+  string err = 8;
+  // Actually negotiated HTTP protocol: h1 | h2 | h3; empty before response.
+  string protocol = 9;
+  repeated Hop hops = 10;
+  // crypto/tls wire version (e.g. 0x0304 for TLS 1.3), zero if no handshake.
+  uint32 tls_version = 11;
+  // Actual crypto/tls ConnectionState.DidResume; meaningful with tls_version.
+  bool tls_resumed = 12;
+}
+
+message Hop {
+  uint32 ttl = 1;
+  // Literal responding router IP; empty with rtt_nanoseconds=0 for unknown hop.
+  string addr = 2;
+  int64 rtt_nanoseconds = 3;
+}
+
+message ReportResponse {
+  // Echoes the fully committed request; a mismatch is never an ACK.
+  string batch_id = 1;
+  AckStatus status = 2;
+  // Number of results in the committed batch, also on DUPLICATE; no partial ACK.
+  uint32 committed_result_count = 3;
+}
+
+enum AckStatus {
+  ACK_STATUS_UNSPECIFIED = 0;
+  // Entire batch durably committed before this response.
+  ACK_STATUS_ACCEPTED = 1;
+  // The same ordered measurement results were committed; safe to remove spool.
+  // Reusing (probe_id,batch_id) with different results is an RPC error, not ACK.
+  ACK_STATUS_DUPLICATE = 2;
+}

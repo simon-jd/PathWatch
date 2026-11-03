@@ -1,0 +1,181 @@
+{
+  "proxy": "nginx",
+  "protocol": "h1",
+  "rate": 10000,
+  "round": 3,
+  "duration_s": 120,
+  "warmup_s": 15,
+  "start_utc": "2026-10-28T08:21:30Z",
+  "offered_requests": 1200000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measured",
+  "cpu_accounting_valid": true,
+  "proxy_pids": [
+    1649761,
+    1649762,
+    1649763
+  ],
+  "proxy_identities": [
+    {
+      "pid": 1649761,
+      "state": "S",
+      "ppid": 1365496,
+      "pgrp": 1649761,
+      "session": 1649761,
+      "starttime": 97344336
+    },
+    {
+      "pid": 1649762,
+      "state": "S",
+      "ppid": 1649761,
+      "pgrp": 1649761,
+      "session": 1649761,
+      "starttime": 97344336
+    },
+    {
+      "pid": 1649763,
+      "state": "S",
+      "ppid": 1649761,
+      "pgrp": 1649761,
+      "session": 1649761,
+      "starttime": 97344336
+    }
+  ],
+  "warmup_pid": 1649785,
+  "warmup": {
+    "configured_s": 15,
+    "wall_elapsed_s": 15.155030008056201,
+    "reported_elapsed_s": 15.001924,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/wrk2-44a94c17d8e6a0bac8559b53da76848e430cb7a7/wrk",
+    "-t4",
+    "-c100",
+    "-d120s",
+    "-R10000",
+    "--timeout",
+    "10s",
+    "--latency",
+    "-s",
+    "bench/wrk.lua",
+    "https://bench.pathwatch.test:18443/"
+  ],
+  "generator_pid": 1651124,
+  "collector_pid": null,
+  "wall_elapsed_s": 120.37722083204426,
+  "returncode": 0,
+  "measurement": {
+    "configured_s": 120,
+    "wall_elapsed_s": 120.37722083204426,
+    "reported_elapsed_s": 120.002024,
+    "returncode": 0,
+    "timer_threads": null,
+    "tolerance_s": 0.05
+  },
+  "backend_delta": {
+    "closed": 0,
+    "connections": 39,
+    "requests": 1194738
+  },
+  "cpu_pidstat_seconds": 40.17660000000003,
+  "cpu_proc_seconds": 40.23,
+  "cpu_boundary_delta_seconds": 0.05339999999996792,
+  "counts": {
+    "completed": 1194723,
+    "elapsed_s": 120.0,
+    "errors": {
+      "connect": 0,
+      "read": 0,
+      "write": 0,
+      "timeout": 0,
+      "http": 0
+    },
+    "started": 1194738
+  },
+  "latency": {
+    "p50_us": 1040.0,
+    "p99_us": 4160.0,
+    "p999_us": 35200.0
+  },
+  "configured_window_rps": 9956.025,
+  "achieved_rps": 9955.857077877286,
+  "cpu_us_per_completed": 33.628380804588204,
+  "upstream_requests_per_new_connection": 30634.30769230769,
+  "observer": {
+    "tls_handshakes": 100,
+    "http1_requests_started": 1194738,
+    "fifo_write_calls": 0,
+    "fifo_bytes": 0,
+    "fifo_write_errors": 0,
+    "fifo_partial_writes": 0,
+    "fifo_write_ns": 0,
+    "fifo_max_write_ns": 0
+  },
+  "unfinished_at_end": 15,
+  "actual_tls_handshakes": 100,
+  "cleanup_errors": [],
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 1649761,
+      "state": "S",
+      "ppid": 1365496,
+      "pgrp": 1649761,
+      "session": 1649761,
+      "starttime": 97344336
+    },
+    "observed_identities": [
+      {
+        "pid": 1649761,
+        "state": "S",
+        "ppid": 1365496,
+        "pgrp": 1649761,
+        "session": 1649761,
+        "starttime": 97344336
+      },
+      {
+        "pid": 1649762,
+        "state": "S",
+        "ppid": 1649761,
+        "pgrp": 1649761,
+        "session": 1649761,
+        "starttime": 97344336
+      },
+      {
+        "pid": 1649763,
+        "state": "S",
+        "ppid": 1649761,
+        "pgrp": 1649761,
+        "session": 1649761,
+        "starttime": 97344336
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 1649761,
+          "state": "S",
+          "ppid": 1365496,
+          "pgrp": 1649761,
+          "session": 1649761,
+          "starttime": 97344336
+        },
+        "signal": 3
+      }
+    ]
+  },
+  "total_elapsed_s": 136.5774947629543,
+  "end_utc": "2026-10-28T08:23:46Z"
+}

@@ -1,0 +1,134 @@
+{{/*
+Stateless frontends: ingest -mode frontend (Report + query API on loopback),
+the Rust edge proxy as a TLS sidecar on the pod IP, and the metrics bridge.
+Canary analysis fails on the candidate's query error ratio in Prometheus.
+*/}}
+{{- $sni := .Values.frontend.apiHost }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-edge-proxy
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+data:
+  config.toml: |
+    {{- include "edge-proxy.config" (dict "sni" $sni "port" 8443 "routes" (list
+          (dict "prefix" "/v1/measurements/" "upstream" "http://127.0.0.1:8081" "timeoutMs" 5000)
+          (dict "prefix" "/pathwatch.v1.Ingest/" "upstream" "h2c://127.0.0.1:9443" "timeoutMs" 40000))) | nindent 4 }}
+---
+{{- range $role := list "stable" "canary" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-{{ $role }}
+  labels: {{- include "ingest.labels" $ | nindent 4 }}
+spec:
+  # Argo Rollouts adds the pod-template-hash selector to each of these.
+  selector: { app.kubernetes.io/name: frontend }
+  ports:
+    - { name: https, port: 443, targetPort: https }
+---
+{{- end }}
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: frontend
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels: { app.kubernetes.io/name: frontend }
+  strategy:
+    canary:
+      stableService: frontend-stable
+      canaryService: frontend-canary
+      maxSurge: 1
+      maxUnavailable: 0
+      steps:
+        - setWeight: {{ .Values.frontend.canaryWeight }}
+        - analysis:
+            templates:
+              - templateName: frontend-error-rate
+            args:
+              - name: canary-hash
+                valueFrom: { podTemplateHashValue: Latest }
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frontend
+        app.kubernetes.io/component: frontend
+        {{- include "ingest.labels" . | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 90
+      securityContext:
+        fsGroup: 65532
+      initContainers:
+        - {{- include "edge-proxy.sidecar" (dict "image" .Values.images.edgeProxy "port" 8443) | nindent 10 }}
+      containers:
+        - name: frontend
+          image: {{ required "images.frontend" .Values.images.frontend }}
+          imagePullPolicy: Never
+          command: ["/ingest"]
+          args: ["-mode", "frontend",
+                 "-core-target", "{{ .Values.core.serverName }}:9444",
+                 "-core-ca", "/tls/ca.pem", "-core-cert", "/tls/frontend.pem", "-core-key", "/tls/frontend-key.pem",
+                 "-core-server-name", {{ .Values.core.serverName | quote }},
+                 "-listen", "127.0.0.1:9443", "-development-cleartext",
+                 "-query-listen", "127.0.0.1:8081",
+                 "-metrics", "127.0.0.1:9091"]
+          # Pod deletion removes the endpoint and starts termination together, and the
+          # frontend closes its query listener on SIGTERM; without this delay requests
+          # still routed to the pod got 502 (edge proxy: connection refused) and, once
+          # the edge-proxy sidecar exited too, transport errors. Readiness plays no part:
+          # /readyz only turns 503 after SIGTERM, by which time the endpoint is gone.
+          lifecycle:
+            preStop:
+              sleep: { seconds: {{ .Values.frontend.preStopSleepSeconds }} }
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { memory: 1Gi }
+          securityContext:
+            {{- include "ingest.securityContext" . | nindent 12 }}
+          volumeMounts:
+            - { name: frontend-tls, mountPath: /tls, readOnly: true }
+        - {{- include "ingest.adminbridge" (dict "image" .Values.images.frontend "format" "frontend") | nindent 10 }}
+      volumes:
+        - name: edge-proxy-config
+          configMap: { name: frontend-edge-proxy }
+        - name: frontend-tls
+          secret: { secretName: pathwatch-frontend-tls, defaultMode: 0440 }
+        - name: edge-tls
+          secret: { secretName: pathwatch-frontend-tls, defaultMode: 0440 }
+        - name: metrics-tls
+          secret: { secretName: pathwatch-metrics-tls, defaultMode: 0440 }
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: frontend-error-rate
+  labels: {{- include "ingest.labels" . | nindent 4 }}
+spec:
+  args:
+    - name: canary-hash
+  metrics:
+    - name: query-error-ratio
+      initialDelay: {{ .Values.analysis.initialDelay }}
+      interval: {{ .Values.analysis.interval }}
+      count: {{ .Values.analysis.count }}
+      failureLimit: 0
+      # Fail closed: no data (fewer than minRequests in the window) is a failure.
+      successCondition: len(result) == 1 && result[0] <= {{ .Values.analysis.maxErrorRatio }}
+      failureCondition: len(result) != 1 || result[0] > {{ .Values.analysis.maxErrorRatio }}
+      provider:
+        prometheus:
+          address: {{ .Values.analysis.prometheus }}
+          query: |
+            {{- $sel := printf "job=\"frontend\",rollouts_pod_template_hash=\"{{args.canary-hash}}\"" }}
+            (
+              sum(increase(pathwatch_query_requests_total{ {{- $sel }},outcome="failure"}[1m]))
+              /
+              sum(increase(pathwatch_query_requests_total{ {{- $sel }}}[1m]))
+            )
+            and on()
+            sum(increase(pathwatch_query_requests_total{ {{- $sel }}}[1m])) >= {{ .Values.analysis.minRequests }}

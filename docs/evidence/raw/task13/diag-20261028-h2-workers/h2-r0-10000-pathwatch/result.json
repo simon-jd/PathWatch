@@ -1,0 +1,119 @@
+{
+  "proxy": "pathwatch",
+  "variant": "pathwatch",
+  "proxy_env": {},
+  "protocol": "h2",
+  "rate": 10000,
+  "round": 0,
+  "duration_s": 30,
+  "warmup_s": 5,
+  "start_utc": "2026-10-28T09:13:08Z",
+  "offered_requests": 300000,
+  "affinity": {
+    "proxy": "16,17",
+    "generator": "18,19,20,21",
+    "backend": "22,23",
+    "collector": "24",
+    "coordinator": "25"
+  },
+  "status": "measurement_failed",
+  "cpu_accounting_valid": false,
+  "proxy_pids": [
+    2180031
+  ],
+  "proxy_identities": [
+    {
+      "pid": 2180031,
+      "state": "S",
+      "ppid": 2160495,
+      "pgrp": 2180031,
+      "session": 2180031,
+      "starttime": 97654188
+    }
+  ],
+  "warmup_pid": 2180285,
+  "warmup": {
+    "configured_s": 5,
+    "wall_elapsed_s": 5.227047062013298,
+    "reported_elapsed_s": 5.01,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05
+  },
+  "warmup_returncode": 0,
+  "command": [
+    "/home/postedism/Desktop/PathWatch/.cache/task13/nghttp2-build/src/h2load",
+    "-t4",
+    "-c100",
+    "-m16",
+    "-D30",
+    "--rps=100.0",
+    "--connect-to=127.0.0.1:18443",
+    "--connection-active-timeout=40",
+    "--connection-inactivity-timeout=10",
+    "https://bench.pathwatch.test:18443/",
+    "--log-file=/home/postedism/Desktop/PathWatch/.cache/task13/runtime/requests.fifo"
+  ],
+  "generator_pid": 2181019,
+  "collector_pid": 2180997,
+  "failure": "PermissionError(13, 'Permission denied')",
+  "measurement_failure_elapsed_s": 30.08971690305043,
+  "cleanup_errors": [],
+  "measurement": {
+    "configured_s": 30,
+    "wall_elapsed_s": 30.08971690305043,
+    "reported_elapsed_s": 30.02,
+    "returncode": 0,
+    "timer_threads": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tolerance_s": 0.05,
+    "incomplete_at_failure": true
+  },
+  "proxy_cleanup": {
+    "leader": {
+      "pid": 2180031,
+      "state": "S",
+      "ppid": 2160495,
+      "pgrp": 2180031,
+      "session": 2180031,
+      "starttime": 97654188
+    },
+    "observed_identities": [
+      {
+        "pid": 2180031,
+        "state": "S",
+        "ppid": 2160495,
+        "pgrp": 2180031,
+        "session": 2180031,
+        "starttime": 97654188
+      }
+    ],
+    "live_descendants": [],
+    "returncode": 0,
+    "retired": true,
+    "signals": [
+      {
+        "identity": {
+          "pid": 2180031,
+          "state": "S",
+          "ppid": 2160495,
+          "pgrp": 2180031,
+          "session": 2180031,
+          "starttime": 97654188
+        },
+        "signal": 2
+      }
+    ]
+  },
+  "total_elapsed_s": 36.35391636402346,
+  "end_utc": "2026-10-28T09:13:45Z"
+}

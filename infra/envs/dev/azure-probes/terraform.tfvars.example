@@ -1,0 +1,13 @@
+subscription_id                  = "00000000-0000-0000-0000-000000000000"
+probe_site                       = "azure-a"
+location                         = "westus"
+ttl                              = "REPLACE_ACTUAL_END_UTC"
+parent_ttl                       = "REPLACE_CURRENT_VERIFIED_PARENT_TTL"
+campaign_id                      = "REPLACE_NEW_UUID_ONCE_KEEP_ORIGINAL_ON_RETRY"
+vm_size                          = "Standard_B2pts_v2"
+image_version                    = "24.04.202610210"
+admin_public_key                 = "REPLACE_PUBLIC_KEY"
+hourly                           = { vm = "REPLACE", ip = "REPLACE", disk = "REPLACE" }
+owner_peer_cidrs                  = ["REPLACE_ACTUAL_OWNED_PUBLIC_IPV4/32"]
+home_routes_confirmed_no_overlap = false
+# Neither this SKU nor this image is an allocation authorization. Fresh evidence is required.

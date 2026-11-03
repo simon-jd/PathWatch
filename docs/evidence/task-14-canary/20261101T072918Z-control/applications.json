@@ -1,0 +1,912 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "Application",
+            "metadata": {
+                "annotations": {
+                    "argocd.argoproj.io/sync-wave": "2",
+                    "argocd.argoproj.io/tracking-id": "pathwatch-root:argoproj.io/Application:argocd/pathwatch-api",
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Application\",\"metadata\":{\"annotations\":{\"argocd.argoproj.io/sync-wave\":\"2\",\"argocd.argoproj.io/tracking-id\":\"pathwatch-root:argoproj.io/Application:argocd/pathwatch-api\"},\"labels\":{\"project\":\"pathwatch\"},\"name\":\"pathwatch-api\",\"namespace\":\"argocd\"},\"spec\":{\"destination\":{\"namespace\":\"pathwatch-app\",\"server\":\"https://kubernetes.default.svc\"},\"project\":\"pathwatch\",\"source\":{\"helm\":{\"valueFiles\":[\"values.yaml\",\"values-kind.yaml\"]},\"path\":\"deploy/charts/api\",\"repoURL\":\"git://127.0.0.1:9418/pathwatch-deploy\",\"targetRevision\":\"main\"},\"syncPolicy\":{\"automated\":{\"prune\":true,\"selfHeal\":true}}}}\n"
+                },
+                "creationTimestamp": "2026-11-01T02:33:23Z",
+                "generation": 105,
+                "labels": {
+                    "project": "pathwatch"
+                },
+                "name": "pathwatch-api",
+                "namespace": "argocd",
+                "resourceVersion": "35554",
+                "uid": "e366d60e-0f11-4bd1-b128-8a48209f846c"
+            },
+            "spec": {
+                "destination": {
+                    "namespace": "pathwatch-app",
+                    "server": "https://kubernetes.default.svc"
+                },
+                "project": "pathwatch",
+                "source": {
+                    "helm": {
+                        "valueFiles": [
+                            "values.yaml",
+                            "values-kind.yaml"
+                        ]
+                    },
+                    "path": "deploy/charts/api",
+                    "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                    "targetRevision": "main"
+                },
+                "syncPolicy": {
+                    "automated": {
+                        "prune": true,
+                        "selfHeal": true
+                    }
+                }
+            },
+            "status": {
+                "controllerNamespace": "argocd",
+                "health": {
+                    "lastTransitionTime": "2026-11-01T02:33:23Z",
+                    "status": "Healthy"
+                },
+                "history": [
+                    {
+                        "deployStartedAt": "2026-11-01T02:33:23Z",
+                        "deployedAt": "2026-11-01T02:33:23Z",
+                        "id": 0,
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/api",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                ],
+                "operationState": {
+                    "finishedAt": "2026-11-01T02:33:23Z",
+                    "message": "successfully synced (all tasks run)",
+                    "operation": {
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "retry": {
+                            "limit": 5
+                        },
+                        "sync": {
+                            "autoHealAttemptsCount": 1,
+                            "prune": true,
+                            "resources": [
+                                {
+                                    "kind": "Service",
+                                    "name": "api"
+                                },
+                                {
+                                    "group": "apps",
+                                    "kind": "Deployment",
+                                    "name": "querygen"
+                                }
+                            ],
+                            "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                            "source": {
+                                "helm": {
+                                    "valueFiles": [
+                                        "values.yaml",
+                                        "values-kind.yaml"
+                                    ]
+                                },
+                                "path": "deploy/charts/api",
+                                "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                                "targetRevision": "main"
+                            }
+                        }
+                    },
+                    "phase": "Succeeded",
+                    "startedAt": "2026-11-01T02:33:23Z",
+                    "syncResult": {
+                        "resources": [
+                            {
+                                "group": "",
+                                "hookPhase": "Running",
+                                "kind": "Service",
+                                "message": "service/api unchanged",
+                                "name": "api",
+                                "namespace": "pathwatch-app",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1"
+                            },
+                            {
+                                "group": "apps",
+                                "hookPhase": "Running",
+                                "images": [
+                                    "pathwatch/querygen:git-9a0132c8459b"
+                                ],
+                                "kind": "Deployment",
+                                "message": "deployment.apps/querygen unchanged",
+                                "name": "querygen",
+                                "namespace": "pathwatch-app",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1"
+                            }
+                        ],
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/api",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                },
+                "reconciledAt": "2026-11-01T07:29:18Z",
+                "resourceHealthSource": "appTree",
+                "resources": [
+                    {
+                        "kind": "Service",
+                        "name": "api",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "apps",
+                        "kind": "Deployment",
+                        "name": "querygen",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    }
+                ],
+                "sourceHydrator": {},
+                "sourceType": "Helm",
+                "summary": {},
+                "sync": {
+                    "comparedTo": {
+                        "destination": {
+                            "namespace": "pathwatch-app",
+                            "server": "https://kubernetes.default.svc"
+                        },
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/api",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    },
+                    "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                    "status": "Synced"
+                }
+            }
+        },
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "Application",
+            "metadata": {
+                "annotations": {
+                    "argocd.argoproj.io/sync-wave": "1",
+                    "argocd.argoproj.io/tracking-id": "pathwatch-root:argoproj.io/Application:argocd/pathwatch-ingest",
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Application\",\"metadata\":{\"annotations\":{\"argocd.argoproj.io/sync-wave\":\"1\",\"argocd.argoproj.io/tracking-id\":\"pathwatch-root:argoproj.io/Application:argocd/pathwatch-ingest\"},\"labels\":{\"project\":\"pathwatch\"},\"name\":\"pathwatch-ingest\",\"namespace\":\"argocd\"},\"spec\":{\"destination\":{\"namespace\":\"pathwatch-app\",\"server\":\"https://kubernetes.default.svc\"},\"project\":\"pathwatch\",\"source\":{\"helm\":{\"valueFiles\":[\"values.yaml\",\"values-kind.yaml\"]},\"path\":\"deploy/charts/ingest\",\"repoURL\":\"git://127.0.0.1:9418/pathwatch-deploy\",\"targetRevision\":\"main\"},\"syncPolicy\":{\"automated\":{\"prune\":true,\"selfHeal\":true}}}}\n"
+                },
+                "creationTimestamp": "2026-11-01T02:33:21Z",
+                "generation": 118,
+                "labels": {
+                    "project": "pathwatch"
+                },
+                "name": "pathwatch-ingest",
+                "namespace": "argocd",
+                "resourceVersion": "35961",
+                "uid": "43d39530-37d1-4966-91ec-3ff9afa00c9b"
+            },
+            "spec": {
+                "destination": {
+                    "namespace": "pathwatch-app",
+                    "server": "https://kubernetes.default.svc"
+                },
+                "project": "pathwatch",
+                "source": {
+                    "helm": {
+                        "valueFiles": [
+                            "values.yaml",
+                            "values-kind.yaml"
+                        ]
+                    },
+                    "path": "deploy/charts/ingest",
+                    "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                    "targetRevision": "main"
+                },
+                "syncPolicy": {
+                    "automated": {
+                        "prune": true,
+                        "selfHeal": true
+                    }
+                }
+            },
+            "status": {
+                "controllerNamespace": "argocd",
+                "health": {
+                    "lastTransitionTime": "2026-11-01T07:30:32Z",
+                    "status": "Healthy"
+                },
+                "history": [
+                    {
+                        "deployStartedAt": "2026-11-01T02:33:21Z",
+                        "deployedAt": "2026-11-01T02:33:21Z",
+                        "id": 0,
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/ingest",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    },
+                    {
+                        "deployStartedAt": "2026-11-01T07:29:19Z",
+                        "deployedAt": "2026-11-01T07:29:19Z",
+                        "id": 1,
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/ingest",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                ],
+                "operationState": {
+                    "finishedAt": "2026-11-01T07:29:19Z",
+                    "message": "successfully synced (all tasks run)",
+                    "operation": {
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "retry": {
+                            "limit": 5
+                        },
+                        "sync": {
+                            "autoHealAttemptsCount": 1,
+                            "prune": true,
+                            "resources": [
+                                {
+                                    "group": "argoproj.io",
+                                    "kind": "Rollout",
+                                    "name": "frontend"
+                                }
+                            ],
+                            "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                            "source": {
+                                "helm": {
+                                    "valueFiles": [
+                                        "values.yaml",
+                                        "values-kind.yaml"
+                                    ]
+                                },
+                                "path": "deploy/charts/ingest",
+                                "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                                "targetRevision": "main"
+                            }
+                        }
+                    },
+                    "phase": "Succeeded",
+                    "startedAt": "2026-11-01T07:29:19Z",
+                    "syncResult": {
+                        "resources": [
+                            {
+                                "group": "argoproj.io",
+                                "hookPhase": "Running",
+                                "images": [
+                                    "pathwatch/ingest:git-9a0132c8459b-control",
+                                    "pathwatch/ingest:git-9a0132c8459b-control"
+                                ],
+                                "kind": "Rollout",
+                                "message": "rollout.argoproj.io/frontend configured",
+                                "name": "frontend",
+                                "namespace": "pathwatch-app",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1alpha1"
+                            }
+                        ],
+                        "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/ingest",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                },
+                "reconciledAt": "2026-11-01T07:29:19Z",
+                "resourceHealthSource": "appTree",
+                "resources": [
+                    {
+                        "kind": "ConfigMap",
+                        "name": "core-clickhouse",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "ConfigMap",
+                        "name": "frontend-edge-proxy",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "Service",
+                        "name": "core",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "Service",
+                        "name": "frontend-canary",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "Service",
+                        "name": "frontend-stable",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "apps",
+                        "kind": "StatefulSet",
+                        "name": "core",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "argoproj.io",
+                        "kind": "AnalysisTemplate",
+                        "name": "frontend-error-rate",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1alpha1"
+                    },
+                    {
+                        "group": "argoproj.io",
+                        "kind": "Rollout",
+                        "name": "frontend",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1alpha1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "core-from-frontend",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "default-deny-egress",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "default-deny-ingress",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "dns-egress",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "frontend-egress-to-core",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "frontend-https-from-clients",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "metrics-from-prometheus",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "networking.k8s.io",
+                        "kind": "NetworkPolicy",
+                        "name": "querygen-egress-to-frontend",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    }
+                ],
+                "sourceHydrator": {},
+                "sourceType": "Helm",
+                "summary": {},
+                "sync": {
+                    "comparedTo": {
+                        "destination": {
+                            "namespace": "pathwatch-app",
+                            "server": "https://kubernetes.default.svc"
+                        },
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml",
+                                    "values-kind.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/ingest",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    },
+                    "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                    "status": "Synced"
+                }
+            }
+        },
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "Application",
+            "metadata": {
+                "annotations": {
+                    "argocd.argoproj.io/sync-wave": "0",
+                    "argocd.argoproj.io/tracking-id": "pathwatch-root:argoproj.io/Application:argocd/pathwatch-observability",
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Application\",\"metadata\":{\"annotations\":{\"argocd.argoproj.io/sync-wave\":\"0\",\"argocd.argoproj.io/tracking-id\":\"pathwatch-root:argoproj.io/Application:argocd/pathwatch-observability\"},\"labels\":{\"project\":\"pathwatch\"},\"name\":\"pathwatch-observability\",\"namespace\":\"argocd\"},\"spec\":{\"destination\":{\"namespace\":\"pathwatch-observe\",\"server\":\"https://kubernetes.default.svc\"},\"project\":\"pathwatch\",\"source\":{\"helm\":{\"valueFiles\":[\"values.yaml\"]},\"path\":\"deploy/charts/observability\",\"repoURL\":\"git://127.0.0.1:9418/pathwatch-deploy\",\"targetRevision\":\"main\"},\"syncPolicy\":{\"automated\":{\"prune\":true,\"selfHeal\":true}}}}\n"
+                },
+                "creationTimestamp": "2026-11-01T02:33:19Z",
+                "generation": 114,
+                "labels": {
+                    "project": "pathwatch"
+                },
+                "name": "pathwatch-observability",
+                "namespace": "argocd",
+                "resourceVersion": "35555",
+                "uid": "d693a244-18d9-4d40-8c8f-4dc922e24e1c"
+            },
+            "spec": {
+                "destination": {
+                    "namespace": "pathwatch-observe",
+                    "server": "https://kubernetes.default.svc"
+                },
+                "project": "pathwatch",
+                "source": {
+                    "helm": {
+                        "valueFiles": [
+                            "values.yaml"
+                        ]
+                    },
+                    "path": "deploy/charts/observability",
+                    "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                    "targetRevision": "main"
+                },
+                "syncPolicy": {
+                    "automated": {
+                        "prune": true,
+                        "selfHeal": true
+                    }
+                }
+            },
+            "status": {
+                "controllerNamespace": "argocd",
+                "health": {
+                    "lastTransitionTime": "2026-11-01T02:33:20Z",
+                    "status": "Healthy"
+                },
+                "history": [
+                    {
+                        "deployStartedAt": "2026-11-01T02:33:19Z",
+                        "deployedAt": "2026-11-01T02:33:19Z",
+                        "id": 0,
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/observability",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                ],
+                "operationState": {
+                    "finishedAt": "2026-11-01T02:33:19Z",
+                    "message": "successfully synced (all tasks run)",
+                    "operation": {
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "retry": {
+                            "limit": 5
+                        },
+                        "sync": {
+                            "autoHealAttemptsCount": 1,
+                            "prune": true,
+                            "resources": [
+                                {
+                                    "kind": "Service",
+                                    "name": "prometheus"
+                                },
+                                {
+                                    "group": "apps",
+                                    "kind": "Deployment",
+                                    "name": "prometheus"
+                                }
+                            ],
+                            "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                            "source": {
+                                "helm": {
+                                    "valueFiles": [
+                                        "values.yaml"
+                                    ]
+                                },
+                                "path": "deploy/charts/observability",
+                                "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                                "targetRevision": "main"
+                            }
+                        }
+                    },
+                    "phase": "Succeeded",
+                    "startedAt": "2026-11-01T02:33:19Z",
+                    "syncResult": {
+                        "resources": [
+                            {
+                                "group": "",
+                                "hookPhase": "Running",
+                                "kind": "Service",
+                                "message": "service/prometheus unchanged",
+                                "name": "prometheus",
+                                "namespace": "pathwatch-observe",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1"
+                            },
+                            {
+                                "group": "apps",
+                                "hookPhase": "Running",
+                                "images": [
+                                    "prom/prometheus:v3.14.0"
+                                ],
+                                "kind": "Deployment",
+                                "message": "deployment.apps/prometheus unchanged",
+                                "name": "prometheus",
+                                "namespace": "pathwatch-observe",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1"
+                            }
+                        ],
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/observability",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                },
+                "reconciledAt": "2026-11-01T07:29:18Z",
+                "resourceHealthSource": "appTree",
+                "resources": [
+                    {
+                        "kind": "ConfigMap",
+                        "name": "prometheus",
+                        "namespace": "pathwatch-observe",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "Service",
+                        "name": "prometheus",
+                        "namespace": "pathwatch-observe",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "kind": "ServiceAccount",
+                        "name": "prometheus",
+                        "namespace": "pathwatch-observe",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "apps",
+                        "kind": "Deployment",
+                        "name": "prometheus",
+                        "namespace": "pathwatch-observe",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "rbac.authorization.k8s.io",
+                        "kind": "Role",
+                        "name": "pathwatch-prometheus-discovery",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    },
+                    {
+                        "group": "rbac.authorization.k8s.io",
+                        "kind": "RoleBinding",
+                        "name": "pathwatch-prometheus-discovery",
+                        "namespace": "pathwatch-app",
+                        "status": "Synced",
+                        "version": "v1"
+                    }
+                ],
+                "sourceHydrator": {},
+                "sourceType": "Helm",
+                "summary": {},
+                "sync": {
+                    "comparedTo": {
+                        "destination": {
+                            "namespace": "pathwatch-observe",
+                            "server": "https://kubernetes.default.svc"
+                        },
+                        "source": {
+                            "helm": {
+                                "valueFiles": [
+                                    "values.yaml"
+                                ]
+                            },
+                            "path": "deploy/charts/observability",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    },
+                    "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                    "status": "Synced"
+                }
+            }
+        },
+        {
+            "apiVersion": "argoproj.io/v1alpha1",
+            "kind": "Application",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Application\",\"metadata\":{\"annotations\":{},\"labels\":{\"project\":\"pathwatch\"},\"name\":\"pathwatch-root\",\"namespace\":\"argocd\"},\"spec\":{\"destination\":{\"namespace\":\"argocd\",\"server\":\"https://kubernetes.default.svc\"},\"project\":\"pathwatch-root\",\"source\":{\"path\":\"deploy/argocd/apps\",\"repoURL\":\"git://127.0.0.1:9418/pathwatch-deploy\",\"targetRevision\":\"main\"},\"syncPolicy\":{\"automated\":{\"prune\":true,\"selfHeal\":true}}}}\n"
+                },
+                "creationTimestamp": "2026-11-01T02:33:16Z",
+                "generation": 115,
+                "labels": {
+                    "project": "pathwatch"
+                },
+                "name": "pathwatch-root",
+                "namespace": "argocd",
+                "resourceVersion": "35553",
+                "uid": "83346683-54f5-4f98-b5d0-732e5f3f94eb"
+            },
+            "spec": {
+                "destination": {
+                    "namespace": "argocd",
+                    "server": "https://kubernetes.default.svc"
+                },
+                "project": "pathwatch-root",
+                "source": {
+                    "path": "deploy/argocd/apps",
+                    "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                    "targetRevision": "main"
+                },
+                "syncPolicy": {
+                    "automated": {
+                        "prune": true,
+                        "selfHeal": true
+                    }
+                }
+            },
+            "status": {
+                "controllerNamespace": "argocd",
+                "health": {
+                    "lastTransitionTime": "2026-11-01T02:33:17Z",
+                    "status": "Healthy"
+                },
+                "history": [
+                    {
+                        "deployStartedAt": "2026-11-01T02:33:16Z",
+                        "deployedAt": "2026-11-01T02:33:23Z",
+                        "id": 0,
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "path": "deploy/argocd/apps",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                ],
+                "operationState": {
+                    "finishedAt": "2026-11-01T02:33:23Z",
+                    "message": "successfully synced (all tasks run)",
+                    "operation": {
+                        "initiatedBy": {
+                            "automated": true
+                        },
+                        "retry": {
+                            "limit": 5
+                        },
+                        "sync": {
+                            "autoHealAttemptsCount": 1,
+                            "prune": true,
+                            "resources": [
+                                {
+                                    "group": "argoproj.io",
+                                    "kind": "Application",
+                                    "name": "pathwatch-api"
+                                }
+                            ],
+                            "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                            "source": {
+                                "path": "deploy/argocd/apps",
+                                "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                                "targetRevision": "main"
+                            }
+                        }
+                    },
+                    "phase": "Succeeded",
+                    "startedAt": "2026-11-01T02:33:23Z",
+                    "syncResult": {
+                        "resources": [
+                            {
+                                "group": "argoproj.io",
+                                "hookPhase": "Running",
+                                "kind": "Application",
+                                "message": "application.argoproj.io/pathwatch-api unchanged",
+                                "name": "pathwatch-api",
+                                "namespace": "argocd",
+                                "status": "Synced",
+                                "syncPhase": "Sync",
+                                "version": "v1alpha1"
+                            }
+                        ],
+                        "revision": "3270a1827aac3cfec3964102dfe66dd7b003a840",
+                        "source": {
+                            "path": "deploy/argocd/apps",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    }
+                },
+                "reconciledAt": "2026-11-01T07:29:18Z",
+                "resourceHealthSource": "appTree",
+                "resources": [
+                    {
+                        "group": "argoproj.io",
+                        "kind": "AppProject",
+                        "name": "pathwatch",
+                        "namespace": "argocd",
+                        "status": "Synced",
+                        "syncWave": -1,
+                        "version": "v1alpha1"
+                    },
+                    {
+                        "group": "argoproj.io",
+                        "kind": "Application",
+                        "name": "pathwatch-api",
+                        "namespace": "argocd",
+                        "status": "Synced",
+                        "syncWave": 2,
+                        "version": "v1alpha1"
+                    },
+                    {
+                        "group": "argoproj.io",
+                        "kind": "Application",
+                        "name": "pathwatch-ingest",
+                        "namespace": "argocd",
+                        "status": "Synced",
+                        "syncWave": 1,
+                        "version": "v1alpha1"
+                    },
+                    {
+                        "group": "argoproj.io",
+                        "kind": "Application",
+                        "name": "pathwatch-observability",
+                        "namespace": "argocd",
+                        "status": "Synced",
+                        "version": "v1alpha1"
+                    }
+                ],
+                "sourceHydrator": {},
+                "sourceType": "Directory",
+                "summary": {
+                    "isAppOfApps": true
+                },
+                "sync": {
+                    "comparedTo": {
+                        "destination": {
+                            "namespace": "argocd",
+                            "server": "https://kubernetes.default.svc"
+                        },
+                        "source": {
+                            "path": "deploy/argocd/apps",
+                            "repoURL": "git://127.0.0.1:9418/pathwatch-deploy",
+                            "targetRevision": "main"
+                        }
+                    },
+                    "revision": "1af3e2f177ed98c58d7e159b6455d7f7c75a125e",
+                    "status": "Synced"
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

@@ -1,0 +1,26 @@
+all:
+  children:
+    pathwatch_probes:
+      hosts:
+        azure-a:
+          ansible_host: REPLACE_CURRENT_VERIFIED_OWNED_A_PUBLIC_IP
+          ansible_user: pathwatch
+          pathwatch_owned_probe_vm: true
+          pathwatch_rendered: /REPLACE/PROJECT/.cache/task10-transport/azure-a/azure
+          pathwatch_probe_binary: /REPLACE/PROJECT/.cache/REVIEWED_ARM64_OR_AMD64_PROBE
+          pathwatch_probe_sha256: REPLACE_REVIEWED_BINARY_SHA256
+          pathwatch_probe_ca_file: /REPLACE/PROJECT/.cache/task10-transport/tls/ingest.pem
+          pathwatch_probe_config:
+            probe_id: azure-a
+            ingest: 10.30.0.1:19443
+            ingest_ca: /opt/pathwatch-probe/ingest-ca.pem
+            development_cleartext: false
+            interval: 120s
+            probe_timeout: 5s
+            rpc_timeout: 10s
+            shutdown_timeout: 5s
+            spool_dir: /var/lib/pathwatch-probe/spool
+            spool_max_bytes: 268435456
+            batch_size: 128
+            metrics_addr: 127.0.0.1:9464
+            targets: [] # Add explicitly owned deployed echo endpoints; no fabricated private URL.

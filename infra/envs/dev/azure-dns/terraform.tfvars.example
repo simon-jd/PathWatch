@@ -1,0 +1,8 @@
+subscription_id = "00000000-0000-0000-0000-000000000000"
+# Fresh controller-approved <=2h window, within retained parent TTL.
+ttl = "2026-10-24T10:00:00Z"
+owner_cidr = "REPLACE_WITH_ACTUAL_OWNED_PUBLIC_IPV4/32"
+admin_public_key = "REPLACE_WITH_PROJECT_SSH_PUBLIC_KEY"
+campaign_id = "REPLACE_WITH_NEW_UUID"
+task3_cleanup_confirmed = false
+hourly = { vm = "0.1", ip = "0.005", disk = "0.05", dns = "0.1", tm = "1" }

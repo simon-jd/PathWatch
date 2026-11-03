@@ -1,0 +1,7 @@
+---
+- name: Configure explicitly owned future probe VMs
+  hosts: pathwatch_probes
+  become: true
+  gather_facts: true
+  roles:
+    - probe

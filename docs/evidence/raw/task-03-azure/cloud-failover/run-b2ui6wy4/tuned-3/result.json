@@ -1,0 +1,39 @@
+{
+  "route_switch": {
+    "monotonic_ns": 621326898601903,
+    "realtime_ns": 1792823573804031699
+  },
+  "impair": {
+    "monotonic_ns": 621318089121067,
+    "realtime_ns": 1792823564994551059
+  },
+  "route_convergence_ms": 8809.480836,
+  "traffic": {
+    "samples": 159,
+    "loss_count": 86,
+    "loss_intervals": [
+      {
+        "first_lost_seq": 21,
+        "recovered_seq": 107,
+        "loss_interval_ms": 8537.304005,
+        "recovery_from_impair_ms": 8763.582212
+      }
+    ],
+    "sample_resolution_ms": 100,
+    "timestamp_semantics": "monotonic/realtime at fping line receipt; raw fping unix timestamp preserved",
+    "recovery_proof": {
+      "cutoff_monotonic_ns": 621332014606999,
+      "route_switch_monotonic_ns": 621326898601903,
+      "terminal_success_samples": 51,
+      "last_success_monotonic_ns": 621331950517196,
+      "minimum_terminal_success_samples": 3,
+      "maximum_sample_age_ms": 500
+    }
+  },
+  "capture_cutoff": {
+    "monotonic_ns": 621332014606999,
+    "realtime_ns": 1792823578920036653
+  },
+  "profile": "tuned",
+  "trial": 3
+}

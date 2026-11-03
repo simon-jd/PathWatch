@@ -1,0 +1,32 @@
+.tools/
+.cache/
+.superpowers/
+.agents/
+.codex/
+.aws/
+**/.terraform/
+**/terraform.tfstate*
+**/*.tfplan
+infra/**/proposal.json
+**/*.tfvars
+**/*.tfvars.json
+**/*.tfbackend
+!**/*.tfvars.example
+!**/*.tfbackend.example
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+__pycache__/
+.venv/
+target/
+bin/
+*.log
+
+# Stable ledger lock and crash-interrupted unique journal staging files.
+docs/**/azure-ledger.json.lock
+docs/**/.azure-ledger.json.*.tmp
+
+# Local opt-in after successful initial bootstrap and reviewed migration.
+infra/bootstrap/backend.tf

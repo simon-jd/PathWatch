@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "name": "envoy",
+      "url": "https://github.com/envoyproxy/envoy/releases/download/v1.39.5/envoy-1.39.5-linux-x86_64",
+      "sha256": "2057b6e3c2e18738eee1e42edd35dfbdfc615e873a2d060677ff178c5d1238f5",
+      "bytes": 105105368
+    },
+    {
+      "name": "nghttp2.tar.xz",
+      "url": "https://github.com/nghttp2/nghttp2/releases/download/v1.70.0/nghttp2-1.70.0.tar.xz",
+      "sha256": "e05cb1388eaca3830aded4ccf20044b6e1ac1a61411dcca11b0437c4285c8bc2",
+      "bytes": 2018996
+    },
+    {
+      "name": "wrk2.tar.gz",
+      "url": "https://codeload.github.com/giltene/wrk2/tar.gz/44a94c17d8e6a0bac8559b53da76848e430cb7a7",
+      "sha256": "40fb577303ae83bfc211855880696b6e14daf1eaea2a684fe8cf2252c735b47e",
+      "bytes": 1026220
+    },
+    {
+      "name": "nginx.tar.gz",
+      "url": "https://nginx.org/download/nginx-1.30.6.tar.gz",
+      "sha256": "3cf46f5ed7504d460125866b7bea99fb357f31d887e2e63b35503310e9b8b6c8",
+      "bytes": 1331698
+    },
+    {
+      "name": "nginx.tar.gz.asc",
+      "url": "https://nginx.org/download/nginx-1.30.6.tar.gz.asc",
+      "sha256": "42a21739576b5c01a7329667858a5da987672c8cb16a0e5122e5da4aa5238500",
+      "bytes": 862
+    },
+    {
+      "name": "go.tar.gz",
+      "url": "https://go.dev/dl/go1.27.3.linux-amd64.tar.gz",
+      "sha256": "65efbc80fdc1fa2cd2631cad5b481777a68e8725f34e89f50fc6ac714e379b40"
+    },
+    {
+      "name": "nginx-pluknet.key",
+      "url": "https://nginx.org/keys/pluknet.key",
+      "sha256": "9a70c136946c1d18d5355c41516f1bdc95d4321938919e69065533e2aeb51e0e"
+    },
+    {
+      "name": "libssl-dev_3.5.5-1ubuntu3.7_amd64.deb",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_3.5.5-1ubuntu3.7_amd64.deb",
+      "sha256": "d1cf6cafb141490b7020e392964b1f901835d60cb88c3a68ef0f95ef5e930de4"
+    },
+    {
+      "name": "libev-dev_4.33-2.1build2_amd64.deb",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/universe/libe/libev/libev-dev_4.33-2.1build2_amd64.deb",
+      "sha256": "08a82ead31bd218443d835e398bdb9d25dbe3fa64cf0c416aa2ce6ef8f293495"
+    },
+    {
+      "name": "libev4t64_4.33-2.1build2_amd64.deb",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/universe/libe/libev/libev4t64_4.33-2.1build2_amd64.deb",
+      "sha256": "b69dd50df7ac1dfc5c67f44e825944e2aa76eaacbc270a996d2790f188fe8568"
+    }
+  ],
+  "wrk2_commit": "44a94c17d8e6a0bac8559b53da76848e430cb7a7",
+  "nginx_signing_fingerprint": "D6786CE303D9A9022998DC6CC8464D549AF75C0A"
+}

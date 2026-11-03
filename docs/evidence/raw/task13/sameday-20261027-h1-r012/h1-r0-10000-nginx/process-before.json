@@ -1,0 +1,41 @@
+{
+  "40681": {
+    "cpu_ticks": 0,
+    "starttime": 95544229,
+    "session": 40681,
+    "pgrp": 40681,
+    "threads": 1,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 9801728,
+    "command": "nginx: master process /home/postedism/Desktop/PathWatch/.cache/task13/nginx/sbin/nginx -e stderr -p /home/postedism/Desktop/PathWatch/ -c bench/nginx.conf "
+  },
+  "40682": {
+    "cpu_ticks": 242,
+    "starttime": 95544230,
+    "session": 40681,
+    "pgrp": 40681,
+    "threads": 1,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 11837440,
+    "command": "nginx: worker process                                                                                                                "
+  },
+  "40683": {
+    "cpu_ticks": 225,
+    "starttime": 95544230,
+    "session": 40681,
+    "pgrp": 40681,
+    "threads": 1,
+    "affinity": [
+      16,
+      17
+    ],
+    "rss_bytes": 11722752,
+    "command": "nginx: worker process                                                                                                                "
+  }
+}

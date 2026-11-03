@@ -1,0 +1,312 @@
+{
+  "profile": "tuned3/9",
+  "impair": {
+    "monotonic_ns": 618097951316592,
+    "realtime_ns": 1792820344856746494
+  },
+  "restored": {
+    "monotonic_ns": 618132463084560,
+    "realtime_ns": 1792820379368514397
+  },
+  "diagnostic_only_not_trial_median": true,
+  "samples": [
+    {
+      "monotonic_ns": 618093473268231,
+      "realtime_ns": 1792820340378697872,
+      "home_kernel": [
+        {
+          "dst": "10.10.0.4",
+          "gateway": "10.255.0.1",
+          "dev": "pw-wg0",
+          "prefsrc": "10.255.0.2",
+          "flags": [],
+          "uid": 0,
+          "cache": []
+        }
+      ],
+      "neighbors": {
+        "home": {
+          "10.255.0.1": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 1000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          },
+          "10.255.0.5": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 1000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        },
+        "azure": {
+          "10.255.0.2": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 2000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          },
+          "10.255.0.6": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 2000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        }
+      },
+      "primary_output_drop_packet_count": [],
+      "home_endpoint_ports": [
+        51820,
+        51821
+      ]
+    },
+    {
+      "monotonic_ns": 618102013264465,
+      "realtime_ns": 1792820348918694777,
+      "home_kernel": [
+        {
+          "dst": "10.10.0.4",
+          "gateway": "10.255.0.1",
+          "dev": "pw-wg0",
+          "prefsrc": "10.255.0.2",
+          "flags": [],
+          "uid": 0,
+          "cache": []
+        }
+      ],
+      "neighbors": {
+        "home": {
+          "10.255.0.1": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 7000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          },
+          "10.255.0.5": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 1000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        },
+        "azure": {
+          "10.255.0.2": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 11000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.6": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 2000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        }
+      },
+      "primary_output_drop_packet_count": [
+        16
+      ],
+      "home_endpoint_ports": [
+        51820,
+        51821
+      ]
+    },
+    {
+      "monotonic_ns": 618110562826072,
+      "realtime_ns": 1792820357468256210,
+      "home_kernel": [
+        {
+          "dst": "10.10.0.4",
+          "gateway": "10.255.0.5",
+          "dev": "pw-wg1",
+          "prefsrc": "10.255.0.6",
+          "flags": [],
+          "uid": 0,
+          "cache": []
+        }
+      ],
+      "neighbors": {
+        "home": {
+          "10.255.0.1": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 15000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.5": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 0,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        },
+        "azure": {
+          "10.255.0.2": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 19000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.6": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 1000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        }
+      },
+      "primary_output_drop_packet_count": [
+        35
+      ],
+      "home_endpoint_ports": [
+        51820,
+        51821
+      ]
+    },
+    {
+      "monotonic_ns": 618119034365749,
+      "realtime_ns": 1792820365939796100,
+      "home_kernel": [
+        {
+          "dst": "10.10.0.4",
+          "gateway": "10.255.0.5",
+          "dev": "pw-wg1",
+          "prefsrc": "10.255.0.6",
+          "flags": [],
+          "uid": 0,
+          "cache": []
+        }
+      ],
+      "neighbors": {
+        "home": {
+          "10.255.0.1": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 24000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.5": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 3000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        },
+        "azure": {
+          "10.255.0.2": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 28000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.6": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 1000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        }
+      },
+      "primary_output_drop_packet_count": [
+        40
+      ],
+      "home_endpoint_ports": [
+        51820,
+        51821
+      ]
+    },
+    {
+      "monotonic_ns": 618127406624790,
+      "realtime_ns": 1792820374312055451,
+      "home_kernel": [
+        {
+          "dst": "10.10.0.4",
+          "gateway": "10.255.0.5",
+          "dev": "pw-wg1",
+          "prefsrc": "10.255.0.6",
+          "flags": [],
+          "uid": 0,
+          "cache": []
+        }
+      ],
+      "neighbors": {
+        "home": {
+          "10.255.0.1": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 32000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.5": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 2000,
+            "last_reset": "User reset",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        },
+        "azure": {
+          "10.255.0.2": {
+            "state": "Connect",
+            "hold_ms": 9000,
+            "last_read_ms": 36000,
+            "last_reset": "BGP Notification send",
+            "local_GR_mode": "Helper*",
+            "notification": "Hold Timer Expired"
+          },
+          "10.255.0.6": {
+            "state": "Established",
+            "hold_ms": 9000,
+            "last_read_ms": 3000,
+            "last_reset": "No AFI/SAFI activated for peer",
+            "local_GR_mode": "Helper*",
+            "notification": null
+          }
+        }
+      },
+      "primary_output_drop_packet_count": [
+        47
+      ],
+      "home_endpoint_ports": [
+        51820,
+        51821
+      ]
+    }
+  ]
+}

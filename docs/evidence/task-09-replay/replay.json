@@ -1,0 +1,404 @@
+{
+  "alertmanager_posts": 6,
+  "batches": 1448,
+  "closed_before": "2026-10-28T15:15:00Z",
+  "first_result": "2026-10-28T13:16:18.699216407Z",
+  "last_result": "2026-10-28T15:16:44.252949393Z",
+  "path_events": [
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:00:00",
+      "p95": 20.633,
+      "baseline": 0.358,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": true,
+      "first_divergent_ttl": 2,
+      "correlation_reason": ""
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:00:00",
+      "p95": 20.642,
+      "baseline": 0.268,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": false,
+      "first_divergent_ttl": 0,
+      "correlation_reason": "trace latency has no independent latency path"
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:05:00",
+      "p95": 20.542,
+      "baseline": 0.358,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": false,
+      "first_divergent_ttl": 0,
+      "correlation_reason": ""
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:05:00",
+      "p95": 20.717,
+      "baseline": 0.268,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": false,
+      "first_divergent_ttl": 0,
+      "correlation_reason": "trace latency has no independent latency path"
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:10:00",
+      "p95": 20.588,
+      "baseline": 0.268,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": false,
+      "first_divergent_ttl": 0,
+      "correlation_reason": "trace latency has no independent latency path"
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:10:00",
+      "p95": 20.503,
+      "baseline": 0.358,
+      "sigma": 1,
+      "cusum_k": 0.5,
+      "cusum_h": 12,
+      "path_changed": false,
+      "first_divergent_ttl": 0,
+      "correlation_reason": ""
+    }
+  ],
+  "path_spans": [
+    {
+      "hops": "10.219.1.2 10.219.2.3 10.219.4.10",
+      "First": "2026-10-28 13:16:18.699559054",
+      "Last": "2026-10-28 15:01:55.247238070",
+      "Count": 1267
+    },
+    {
+      "hops": "10.219.1.2 10.219.3.4 10.219.4.10",
+      "First": "2026-10-28 15:02:00.678869540",
+      "Last": "2026-10-28 15:16:44.252949393",
+      "Count": 177
+    }
+  ],
+  "results_by_kind": {
+    "tcp": 1444,
+    "trace": 1444
+  },
+  "spool": "/home/postedism/Desktop/PathWatch/.cache/task09/spool",
+  "trace_errors": 0,
+  "trace_method": "UDP probes, ICMP errors via IP_RECVERR (unprivileged, tracepath style)",
+  "windows": [
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:15:00",
+      "p95": 0.42,
+      "n": 45
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:15:00",
+      "p95": 0.493,
+      "n": 45
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:20:00",
+      "p95": 0.53,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:20:00",
+      "p95": 0.444,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:25:00",
+      "p95": 0.337,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:25:00",
+      "p95": 0.167,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:30:00",
+      "p95": 0.407,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:30:00",
+      "p95": 0.377,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:35:00",
+      "p95": 0.28,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:35:00",
+      "p95": 0.203,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:40:00",
+      "p95": 0.274,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:40:00",
+      "p95": 0.168,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:45:00",
+      "p95": 0.36,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:45:00",
+      "p95": 0.224,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:50:00",
+      "p95": 0.305,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:50:00",
+      "p95": 0.143,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 13:55:00",
+      "p95": 0.533,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 13:55:00",
+      "p95": 0.535,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:00:00",
+      "p95": 0.444,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:00:00",
+      "p95": 0.488,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:05:00",
+      "p95": 0.533,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:05:00",
+      "p95": 0.57,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:10:00",
+      "p95": 0.299,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:10:00",
+      "p95": 0.184,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:15:00",
+      "p95": 0.281,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:15:00",
+      "p95": 0.175,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:20:00",
+      "p95": 0.275,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:20:00",
+      "p95": 0.152,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:25:00",
+      "p95": 0.304,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:25:00",
+      "p95": 0.191,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:30:00",
+      "p95": 0.413,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:30:00",
+      "p95": 0.173,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:35:00",
+      "p95": 0.34,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:35:00",
+      "p95": 0.158,
+      "n": 61
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:40:00",
+      "p95": 0.273,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:40:00",
+      "p95": 0.178,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:45:00",
+      "p95": 0.26,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:45:00",
+      "p95": 0.161,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:50:00",
+      "p95": 0.297,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:50:00",
+      "p95": 0.173,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 14:55:00",
+      "p95": 0.324,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 14:55:00",
+      "p95": 0.398,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:00:00",
+      "p95": 20.633,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:00:00",
+      "p95": 20.642,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:05:00",
+      "p95": 20.542,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:05:00",
+      "p95": 20.717,
+      "n": 59
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:10:00",
+      "p95": 20.503,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:10:00",
+      "p95": 20.588,
+      "n": 60
+    },
+    {
+      "path_key": "home-t9→t9-target\/tcp\/v4",
+      "w": "2026-10-28 15:15:00",
+      "p95": 20.364,
+      "n": 21
+    },
+    {
+      "path_key": "home-t9→t9-target\/trace\/v4",
+      "w": "2026-10-28 15:15:00",
+      "p95": 20.274,
+      "n": 21
+    }
+  ]
+}

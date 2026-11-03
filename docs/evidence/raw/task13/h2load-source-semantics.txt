@@ -1,0 +1,189 @@
+Source: official nghttp2 v1.70.0, SHA256-verified release archive in tools.lock.json.
+
+287: void rps_cb(struct ev_loop *loop, ev_timer *w, int revents) {
+288:   auto client = static_cast<Client *>(w->data);
+289:   auto &session = client->session;
+290: 
+291:   assert(!config.timing_script);
+292: 
+293:   if (client->req_left == 0) {
+294:     ev_timer_stop(loop, w);
+295:     return;
+296:   }
+297: 
+298:   auto now = std::chrono::steady_clock::now();
+299:   auto d = now - client->rps_duration_started;
+300:   auto n = static_cast<size_t>(
+301:     round(std::chrono::duration<double>(d).count() * config.rps));
+302:   client->rps_req_pending += n;
+303:   client->rps_duration_started +=
+304:     util::duration_from(static_cast<double>(n) / config.rps);
+305: 
+306:   if (client->rps_req_pending == 0) {
+307:     return;
+308:   }
+309: 
+310:   auto nreq = session->max_concurrent_streams() - client->rps_req_inflight;
+311:   if (nreq == 0) {
+312:     return;
+313:   }
+314: 
+315:   nreq = config.is_timing_based_mode() ? std::max(nreq, client->req_left)
+316:                                        : std::min(nreq, client->req_left);
+317:   nreq = std::min(nreq, client->rps_req_pending);
+318: 
+319:   client->rps_req_inflight += nreq;
+320:   client->rps_req_pending -= nreq;
+321: 
+322:   for (; nreq > 0; --nreq) {
+323:     if (!client->submit_request()) {
+324:       client->process_request_failure();
+325:       break;
+326:     }
+327:   }
+328: 
+329:   client->signal_write();
+330: }
+
+1108: void Client::on_stream_close(int64_t stream_id, bool success, bool final) {
+1109:   if (worker->current_phase == Phase::MAIN_DURATION) {
+1110:     if (req_inflight > 0) {
+1111:       --req_inflight;
+1112:     }
+1113:     auto req_stat = get_req_stat(stream_id);
+1114:     if (!req_stat) {
+1115:       return;
+1116:     }
+1117: 
+1118:     req_stat->stream_close_time = std::chrono::steady_clock::now();
+1119:     if (success) {
+1120:       req_stat->completed = true;
+1121:       ++worker->stats.req_success;
+1122:       ++cstat.req_success;
+1123: 
+1124:       if (streams[stream_id].status_success == 1) {
+1125:         ++worker->stats.req_status_success;
+1126:       } else {
+1127:         ++worker->stats.req_failed;
+1128:       }
+1129: 
+1130:       worker->sample_req_stat(req_stat);
+1131: 
+1132:       // Count up in successful cases only
+1133:       ++worker->request_times_smp.n;
+1134:     } else {
+1135:       ++worker->stats.req_failed;
+1136:       ++worker->stats.req_error;
+1137:     }
+1138:     ++worker->stats.req_done;
+1139:     ++req_done;
+1140: 
+1141:     if (worker->config->log_fd != -1) {
+1142:       auto start = std::chrono::duration_cast<std::chrono::microseconds>(
+1143:         req_stat->request_wall_time.time_since_epoch());
+1144:       auto delta = std::chrono::duration_cast<std::chrono::microseconds>(
+1145:         req_stat->stream_close_time - req_stat->request_time);
+1146: 
+1147:       std::array<uint8_t, 256> buf;
+1148:       auto p = std::ranges::begin(buf);
+1149:       p = util::utos(as_unsigned(start.count()), p);
+1150:       *p++ = '\t';
+1151:       if (success) {
+1152:         p = util::utos(as_unsigned(req_stat->status), p);
+1153:       } else {
+1154:         *p++ = '-';
+1155:         *p++ = '1';
+1156:       }
+1157:       *p++ = '\t';
+1158:       p = util::utos(as_unsigned(delta.count()), p);
+1159:       *p++ = '\n';
+1160: 
+1161:       auto nwrite =
+1162:         static_cast<size_t>(std::ranges::distance(std::ranges::begin(buf), p));
+1163:       assert(nwrite <= buf.size());
+1164:       while (write(worker->config->log_fd, buf.data(), nwrite) == -1 &&
+1165:              errno == EINTR)
+1166:         ;
+1167:     }
+1168:   }
+1169: 
+1170:   worker->report_progress();
+
+1287:   record_connect_time();
+1288: 
+1289:   if (config.rps_enabled()) {
+1290:     rps_watcher.repeat = std::max(0.01, 1. / config.rps);
+1291:     ev_timer_again(worker->loop, &rps_watcher);
+1292:     rps_duration_started = std::chrono::steady_clock::now();
+1293:   }
+1294: 
+1295:   if (config.rps_enabled()) {
+1296:     assert(req_left);
+1297: 
+1298:     ++rps_req_inflight;
+1299: 
+1300:     if (!submit_request()) {
+1301:       process_request_failure();
+
+1608: void Client::record_request_time(RequestStat *req_stat) {
+1609:   req_stat->request_time = std::chrono::steady_clock::now();
+1610:   req_stat->request_wall_time = std::chrono::system_clock::now();
+1611: }
+1612: 
+1613: void Client::record_connect_start_time() {
+1614:   cstat.connect_start_time = std::chrono::steady_clock::now();
+1615: }
+1616: 
+
+1806: void Worker::sample_req_stat(RequestStat *req_stat) {
+1807:   sample(request_times_smp, stats.req_stats, req_stat);
+1808: }
+1809: 
+1810: void Worker::sample_client_stat(ClientStat *cstat) {
+1811:   sample(client_smp, stats.client_stats, cstat);
+1812: }
+1813: 
+
+2821:   --log-file=<PATH>
+2822:               Write per-request information to a file as tab-separated
+2823:               columns: start  time as  microseconds since  epoch; HTTP
+2824:               status code;  microseconds until end of  response.  More
+2825:               columns may be added later.  Rows are ordered by end-of-
+2826:               response  time when  using  one worker  thread, but  may
+2827:               appear slightly  out of order with  multiple threads due
+2828:               to buffering.  Status code is -1 for failed streams.
+2829:   --qlog-file-base=<PATH>
+2830:               Enable qlog output and specify base file name for qlogs.
+2831:               Qlog is emitted  for each connection.  For  a given base
+2832:               name   "base",    each   output   file    name   becomes
+2833:               "base.M.N.sqlog" where M is worker ID and N is client ID
+2834:               (e.g. "base.0.3.sqlog").  Only effective in QUIC runs.
+2835:   --connect-to=<HOST>[:<PORT>]
+2836:               Host and port to connect  instead of using the authority
+2837:               in <URI>.
+2838:   --rps=<N>   Specify request  per second for each  client.  --rps and
+2839:               --timing-script-file are mutually exclusive.
+2840:   --groups=<GROUPS>
+
+3899:   if (stats.bytes_head_decomp > 0) {
+3900:     header_space_savings = 1. - static_cast<double>(stats.bytes_head) /
+3901:                                   static_cast<double>(stats.bytes_head_decomp);
+3902:   }
+3903: 
+3904:   std::println("");
+3905:   std::println("finished in {}, {:.2f} req/s, {}B/s",
+3906:                util::format_duration(duration), rps,
+3907:                util::utos_funit(as_unsigned(bps)));
+3908:   std::println("requests: {} total, {} started, {} done, {} succeeded, {} "
+3909:                "failed, {} errored, {} timeout",
+3910:                stats.req_todo, stats.req_started, stats.req_done,
+3911:                stats.req_status_success, stats.req_failed, stats.req_error,
+3912:                stats.req_timedout);
+3913:   std::println("status codes: {} 2xx, {} 3xx, {} 4xx, {} 5xx", stats.status[2],
+3914:                stats.status[3], stats.status[4], stats.status[5]);
+3915:   std::println(
+3916:     "traffic: {}B ({}) total, {}B ({}) headers (space savings {:.2f}%), {}B "
+3917:     "({}) data",
+3918:     util::utos_funit(as_unsigned(stats.bytes_total)), stats.bytes_total,
+3919:     util::utos_funit(as_unsigned(stats.bytes_head)), stats.bytes_head,
+3920:     header_space_savings * 100, util::utos_funit(as_unsigned(stats.bytes_body)),

@@ -1,0 +1,6 @@
+resource_group_name  = "rg-pathwatch-lab"
+storage_account_name = "pwNEWUNIQUErun"
+container_name       = "tfstate"
+key                  = "NEWUNIQUErun/runner.tfstate"
+use_azuread_auth     = true
+# Explicit subscription_id supplied privately. No keys/SAS.

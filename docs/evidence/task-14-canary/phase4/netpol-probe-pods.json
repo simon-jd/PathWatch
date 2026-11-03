@@ -1,0 +1,76 @@
+pod/pw-netpol-admitted created
+pod/pw-netpol-other created
+pod/pw-netpol-admitted condition met
+pod/pw-netpol-other condition met
+pod "pw-netpol-admitted" deleted from pathwatch-app namespace
+pod "pw-netpol-other" deleted from pathwatch-app namespace
+{
+  "at": "2026-10-28T13:28:59.966018+00:00",
+  "settle_seconds": 5,
+  "checks": [
+    {
+      "from": "pathwatch-observe/prometheus-789d486b8f-s42gk",
+      "to": "frontend",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus-789d486b8f-s42gk",
+      "to": "core",
+      "port": 9445,
+      "expected_open": true,
+      "open": true
+    },
+    {
+      "from": "pathwatch-observe/prometheus-789d486b8f-s42gk",
+      "to": "frontend",
+      "port": 8443,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-observe/prometheus-789d486b8f-s42gk",
+      "to": "core",
+      "port": 9444,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-app/pw-netpol-admitted",
+      "to": "frontend",
+      "port": 8443,
+      "expected_open": true,
+      "open": false
+    },
+    {
+      "from": "pathwatch-app/pw-netpol-admitted",
+      "to": "core",
+      "port": 9444,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-app/pw-netpol-other",
+      "to": "frontend",
+      "port": 8443,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-app/pw-netpol-other",
+      "to": "frontend",
+      "port": 9445,
+      "expected_open": false,
+      "open": false
+    },
+    {
+      "from": "pathwatch-app/pw-netpol-other",
+      "to": "core",
+      "port": 9444,
+      "expected_open": false,
+      "open": false
+    }
+  ],
+  "enforced": false
+}

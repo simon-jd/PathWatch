@@ -1,0 +1,70 @@
+{
+  "probe_id": "home",
+  "capacity_profile": "five-week-v1",
+  "capacity_dns_addresses": [
+    "10.30.0.2",
+    "fd30::2"
+  ],
+  "interval": "120s",
+  "probe_timeout": "5s",
+  "rpc_timeout": "10s",
+  "shutdown_timeout": "5s",
+  "batch_size": 128,
+  "spool_max_bytes": 67108864,
+  "spool_dir": ".cache/task10c3-home/spool",
+  "metrics_addr": "10.30.0.2:9464",
+  "ingest": "10.30.0.1:19443",
+  "ingest_ca": ".cache/task10c3-pki/ingest-ca.pem",
+  "dns_server": "10.30.0.53:53",
+  "targets": [
+    {
+      "ID": "private",
+      "Host": "10.30.0.2",
+      "Port": 18443,
+      "Kinds": [
+        "tcp",
+        "tls",
+        "http1",
+        "http2",
+        "http3",
+        "trace"
+      ]
+    },
+    {
+      "ID": "dns-udp",
+      "Host": "home.owned.test",
+      "Kinds": [
+        "dns"
+      ],
+      "DNS": {
+        "transport": "udp",
+        "server": "10.30.0.53:53"
+      }
+    },
+    {
+      "ID": "dns-tcp",
+      "Host": "home.owned.test",
+      "Kinds": [
+        "dns"
+      ],
+      "DNS": {
+        "transport": "tcp",
+        "server": "10.30.0.53:53"
+      }
+    },
+    {
+      "ID": "dns-doh",
+      "Host": "home.owned.test",
+      "Kinds": [
+        "dns"
+      ],
+      "DNS": {
+        "transport": "doh",
+        "doh_url": "https://10.30.0.53:8443/dns-query",
+        "ca_file": ".cache/task10c3-pki/target-ca.pem"
+      }
+    }
+  ],
+  "capacity_start_utc": "2026-11-01T00:00:00Z",
+  "capacity_deadline_utc": "2026-12-06T00:00:00Z"
+}

@@ -1,0 +1,337 @@
+{
+  "rule_files": [
+    "../generated.rules.yaml"
+  ],
+  "evaluation_interval": "1m",
+  "tests": [
+    {
+      "name": "healthy physical-roster windows and readiness requests",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "pathwatch_slo_windows_total",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_windows_bad",
+          "values": "0+0x180"
+        },
+        {
+          "series": "pathwatch_slo_api_total",
+          "values": "0+4x180"
+        },
+        {
+          "series": "pathwatch_slo_api_bad",
+          "values": "0+0x180"
+        },
+        {
+          "series": "pathwatch_slo_last_observation_seconds",
+          "values": "0+60x180"
+        },
+        {
+          "series": "pathwatch_slo_last_window_bad",
+          "values": "0+0x180"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingestion-freshness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingest-readiness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingestion-freshness\"})",
+          "eval_time": "119m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "120m",
+          "alertname": "PathWatchFreshnessBudgetBurn",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "120m",
+          "alertname": "PathWatchReadinessBudgetBurn",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "missing all telemetry fails closed",
+      "interval": "1m",
+      "input_series": [],
+      "promql_expr_test": [
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingestion-freshness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingest-readiness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "missing observers beyond N-1",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "pathwatch_slo_windows_total",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_windows_bad",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_api_total",
+          "values": "0+4x180"
+        },
+        {
+          "series": "pathwatch_slo_api_bad",
+          "values": "0+0x180"
+        },
+        {
+          "series": "pathwatch_slo_last_observation_seconds",
+          "values": "0+60x180"
+        },
+        {
+          "series": "pathwatch_slo_last_window_bad",
+          "values": "1+0x180"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingestion-freshness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ingest down synthetic request failures",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "pathwatch_slo_windows_total",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_windows_bad",
+          "values": "0+0x180"
+        },
+        {
+          "series": "pathwatch_slo_api_total",
+          "values": "0+4x180"
+        },
+        {
+          "series": "pathwatch_slo_api_bad",
+          "values": "0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120 124 128 132 136 140 144 148 152 156 160 164 168 172 176 180 184 188 192 196 200 204 208 212 216 220 224 228 232 236 240 244 248 252 256 260 264 268 272 276 280 284 288 292 296 300 304 308 312 316 320 324 328 332 336 340 344 348 352 356 360 364 368 372 376 380 384 388 392 396 400 404 408 412 416 420 424 428 432 436 440 444 448 452 456 460 464 468 472 476 480 484 488 492 496 500 504 508 512 516 520 524 528 532 536 540 544 548 552 556 560 564 568 572 576 580 584 588 592 596 600 604 608 612 616 620 624 628 632 636 640 644 648 652 656 660 664 668 672 676 680 684 688 692 696 700 704 708 712 716 720"
+        },
+        {
+          "series": "pathwatch_slo_last_observation_seconds",
+          "values": "0+60x180"
+        },
+        {
+          "series": "pathwatch_slo_last_window_bad",
+          "values": "0+0x180"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingest-readiness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "recovery preserves past errors but short window recovers",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "pathwatch_slo_windows_total",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_windows_bad",
+          "values": "0+0x180"
+        },
+        {
+          "series": "pathwatch_slo_api_total",
+          "values": "0+4x180"
+        },
+        {
+          "series": "pathwatch_slo_api_bad",
+          "values": "0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80"
+        },
+        {
+          "series": "pathwatch_slo_last_observation_seconds",
+          "values": "0+60x180"
+        },
+        {
+          "series": "pathwatch_slo_last_window_bad",
+          "values": "0+0x180"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "scalar(slo:sli_error:ratio_rate5m{sloth_slo=\"ingest-readiness\"})",
+          "eval_time": "120m",
+          "exp_samples": [
+            {
+              "labels": "{}",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "20-minute outage after 60 healthy minutes triggers native multiwindow burn alerts (fixture clock only)",
+      "interval": "1m",
+      "input_series": [
+        {
+          "series": "pathwatch_slo_windows_total",
+          "values": "0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36"
+        },
+        {
+          "series": "pathwatch_slo_windows_bad",
+          "values": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8"
+        },
+        {
+          "series": "pathwatch_slo_api_total",
+          "values": "0+4x180"
+        },
+        {
+          "series": "pathwatch_slo_api_bad",
+          "values": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120 124 128 132 136 140 144 148 152 156 160"
+        },
+        {
+          "series": "pathwatch_slo_last_observation_seconds",
+          "values": "0+60x180"
+        },
+        {
+          "series": "pathwatch_slo_last_window_bad",
+          "values": "0+0x180"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "80m",
+          "alertname": "PathWatchFreshnessBudgetBurn",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "owner": "codex-pathwatch",
+                "sloth_id": "pathwatch-ingestion-freshness",
+                "sloth_service": "pathwatch",
+                "sloth_slo": "ingestion-freshness",
+                "severity": "page",
+                "sloth_severity": "page",
+                "scope": "configured-physical-roster"
+              },
+              "exp_annotations": {
+                "summary": "Ingestion freshness error budget is burning",
+                "title": "(page) pathwatch ingestion-freshness SLO error budget burn rate is too fast."
+              }
+            },
+            {
+              "exp_labels": {
+                "owner": "codex-pathwatch",
+                "sloth_id": "pathwatch-ingestion-freshness",
+                "sloth_service": "pathwatch",
+                "sloth_slo": "ingestion-freshness",
+                "severity": "ticket",
+                "sloth_severity": "ticket",
+                "scope": "configured-physical-roster"
+              },
+              "exp_annotations": {
+                "summary": "Ingestion freshness error budget is burning",
+                "title": "(ticket) pathwatch ingestion-freshness SLO error budget burn rate is too fast."
+              }
+            }
+          ]
+        },
+        {
+          "eval_time": "80m",
+          "alertname": "PathWatchReadinessBudgetBurn",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "owner": "codex-pathwatch",
+                "sloth_id": "pathwatch-ingest-readiness",
+                "sloth_service": "pathwatch",
+                "sloth_slo": "ingest-readiness",
+                "severity": "page",
+                "sloth_severity": "page"
+              },
+              "exp_annotations": {
+                "summary": "Ingest readiness API error budget is burning",
+                "title": "(page) pathwatch ingest-readiness SLO error budget burn rate is too fast."
+              }
+            },
+            {
+              "exp_labels": {
+                "owner": "codex-pathwatch",
+                "sloth_id": "pathwatch-ingest-readiness",
+                "sloth_service": "pathwatch",
+                "sloth_slo": "ingest-readiness",
+                "severity": "ticket",
+                "sloth_severity": "ticket"
+              },
+              "exp_annotations": {
+                "summary": "Ingest readiness API error budget is burning",
+                "title": "(ticket) pathwatch ingest-readiness SLO error budget burn rate is too fast."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

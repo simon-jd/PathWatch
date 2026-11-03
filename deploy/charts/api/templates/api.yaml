@@ -1,0 +1,53 @@
+{{/*
+The API Service selects every ready frontend pod (stable and canary alike),
+so during a canary step real client traffic reaches the candidate.
+*/}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  labels: { app.kubernetes.io/part-of: pathwatch, project: pathwatch }
+spec:
+  selector: { app.kubernetes.io/name: frontend }
+  ports:
+    - { name: https, port: 443, targetPort: https }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: querygen
+  labels: { app.kubernetes.io/part-of: pathwatch, project: pathwatch }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app.kubernetes.io/name: querygen }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: querygen, app.kubernetes.io/part-of: pathwatch, project: pathwatch }
+    spec:
+      automountServiceAccountToken: false
+      securityContext: { fsGroup: 65532 }
+      containers:
+        - name: querygen
+          image: {{ required "images.querygen" .Values.images.querygen }}
+          imagePullPolicy: Never
+          args: ["-target", "https://api.{{ .Release.Namespace }}.svc:443",
+                 "-server-name", {{ .Values.apiHost | quote }},
+                 "-ca", "/tls/ca.pem",
+                 "-rps", {{ .Values.querygen.rps | quote }},
+                 "-report-rps", {{ .Values.querygen.reportRps | quote }},
+                 "-path-key", {{ .Values.querygen.pathKey | quote }}]
+          resources:
+            requests: { cpu: 20m, memory: 16Mi }
+            limits: { memory: 64Mi }
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65532
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: ca, mountPath: /tls, readOnly: true }
+      volumes:
+        - name: ca
+          secret: { secretName: pathwatch-api-client, defaultMode: 0440 }

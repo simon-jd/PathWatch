@@ -1,0 +1,5 @@
+images:
+  prometheus: prom/prometheus:v3.14.0
+appNamespace: pathwatch-app
+scrapeInterval: 5s
+retention: 6h

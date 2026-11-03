@@ -1,0 +1,6 @@
+---
+- name: Restart private echo
+  ansible.builtin.systemd:
+    name: pathwatch-echo
+    daemon_reload: true
+    state: restarted

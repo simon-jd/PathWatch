@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-24T20:12:05.556634+00:00",
+  "checkout_head": "8451a3db35d11c0d0f6b687a2783b1f3cb2699f5",
+  "approved_recovery_source": "9bcc9cb934d1fe6ccbba087010cb49eb18914780",
+  "go_binary_source": "e0553fb9c1a57883061c04d3b7b7f0bba6120e87",
+  "scope": "same retained original SLI/spool/journal; only reviewed CH settings and archived/regenerated loopback fixture cert; home-only physical roster",
+  "container": "pathwatch-task10-5f7016c667d6",
+  "source_hashes": {
+    "infra/modules/clickhouse/home.py": "54b894c61830d3eb0e2d7a69cd5f0e5f4b950a80e9af0bc934d8f44cbc6f13db",
+    "slo/observe.py": "418ae1cde91b4c62afccdb3746ad9ebcf61e7773792b7a8f96572fd717451fbf",
+    "slo/generated.rules.yaml": "8b437fdcf56f39b4f5b00fb1cb5bc72a2c067daa12cc6f0797c7ee2c5f121f19",
+    ".cache/task10-bin/ingest": "73c0a44e60b875c49a0623a3873ad8b5cbbff63df1d2da01df60b574b78aee5d",
+    ".cache/task10-bin/probe": "135d423ed9384bf607fc3a6843cc999671c0177cf9c32f38ed0850bc62291f61",
+    ".cache/task10-bin/echo": "c4e26527c3415e4718bb6bfbb508c241406f7df6314b2d149d2ed1dc3122c347",
+    ".cache/task10-long-20261024/probe.json": "ee9672f63809ad74c5131291d27b4d8674820b95752d63dc44a8a7646f53f603",
+    ".cache/task10-long-20261024/roster.json": "2c97c05b25768a799b134b74a62a851c38d1474435309b43a7b3a5cbb43ebd1d"
+  },
+  "clickhouse_config_sha256": "061c8c10a5adb09541b06ea5eeaa4f8f350b087f7f729d8c989453bb12a47295",
+  "new_loopback_ca_sha256": "4a8958b48d903f4e6e22e841257cfa05aa6cbd61d75be74cb5821a74ff8ee5ab",
+  "known_gaps": [
+    "DoH absent from frozen probe",
+    "CAP_NET_RAW unavailable",
+    "no cloud observers",
+    "no week/5week claim"
+  ]
+}

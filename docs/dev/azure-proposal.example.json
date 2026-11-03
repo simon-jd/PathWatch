@@ -1,0 +1,121 @@
+{
+  "resources": [
+    {
+      "address": "azurerm_resource_group.project",
+      "type": "azurerm_resource_group",
+      "region": "westus2",
+      "start_utc": "2026-10-24T02:43:00Z",
+      "end_utc": "2026-10-25T02:43:01Z",
+      "estimate_usd": 0,
+      "meters": [],
+      "tag_boundary": "Parent RG/state account carries tags; Azure child tags unsupported where applicable."
+    },
+    {
+      "address": "azurerm_storage_account.state",
+      "type": "azurerm_storage_account",
+      "region": "westus2",
+      "start_utc": "2026-10-24T02:43:00Z",
+      "end_utc": "2026-10-25T02:43:01Z",
+      "estimate_usd": 0.3,
+      "bounds": {
+        "storage_gb": 1,
+        "write_requests": 10000,
+        "read_requests": 10000,
+        "other_requests": 10000,
+        "egress_gb": 1
+      },
+      "meters": [
+        {
+          "category": "storage_gb",
+          "capture": "docs/azure-prices/2026-10-23-storage-westus2.json",
+          "selector": {
+            "meterId": "e490b7ca-7d10-4b35-8b4d-81336dd54bfe",
+            "skuId": "DZH318Z0BPH7/004C",
+            "armRegionName": "westus2",
+            "unitOfMeasure": "1 GB/Month",
+            "productName": "General Block Blob v2",
+            "skuName": "Hot LRS",
+            "meterName": "Hot LRS Data Stored",
+            "tierMinimumUnits": 0.0
+          }
+        },
+        {
+          "category": "write_requests",
+          "capture": "docs/azure-prices/2026-10-23-storage-westus2.json",
+          "selector": {
+            "meterId": "d3103db5-2146-405b-9e46-342ba37f3c30",
+            "skuId": "DZH318Z0BPH7/004C",
+            "armRegionName": "westus2",
+            "unitOfMeasure": "10K",
+            "productName": "General Block Blob v2",
+            "skuName": "Hot LRS",
+            "meterName": "Hot LRS Write Operations",
+            "tierMinimumUnits": 0.0
+          }
+        },
+        {
+          "category": "read_requests",
+          "capture": "docs/azure-prices/2026-10-23-storage-westus2.json",
+          "selector": {
+            "meterId": "0c622ef2-cd52-4909-b2b2-3f6e8f940cc2",
+            "skuId": "DZH318Z0BPH7/004C",
+            "armRegionName": "westus2",
+            "unitOfMeasure": "10K",
+            "productName": "General Block Blob v2",
+            "skuName": "Hot LRS",
+            "meterName": "Hot Read Operations",
+            "tierMinimumUnits": 0.0
+          }
+        },
+        {
+          "category": "other_requests",
+          "capture": "docs/azure-prices/2026-10-23-storage-westus2.json",
+          "selector": {
+            "meterId": "8639aab0-4871-46b7-a0b2-d96dd73cd780",
+            "skuId": "DZH318Z0BPH7/004C",
+            "armRegionName": "westus2",
+            "unitOfMeasure": "10K",
+            "productName": "General Block Blob v2",
+            "skuName": "Hot LRS",
+            "meterName": "LRS List and Create Container Operations",
+            "tierMinimumUnits": 0.0
+          }
+        },
+        {
+          "category": "egress_gb",
+          "capture": "docs/azure-prices/2026-10-23-bandwidth-westus2.json",
+          "selector": {
+            "meterId": "9995d93a-7d35-4d3f-9c69-7a7fea447ef4",
+            "skuId": "DZH318Z0BNVX/000H",
+            "armRegionName": "westus2",
+            "unitOfMeasure": "1 GB",
+            "productName": "Rtn Preference: MGN",
+            "skuName": "Standard",
+            "meterName": "Standard Data Transfer Out",
+            "tierMinimumUnits": 100.0
+          }
+        }
+      ]
+    },
+    {
+      "address": "azurerm_role_assignment.operator_state",
+      "type": "azurerm_role_assignment",
+      "region": "westus2",
+      "start_utc": "2026-10-24T02:43:00Z",
+      "end_utc": "2026-10-25T02:43:01Z",
+      "estimate_usd": 0,
+      "meters": [],
+      "tag_boundary": "Parent RG/state account carries tags; Azure child tags unsupported where applicable."
+    },
+    {
+      "address": "azurerm_storage_container.state",
+      "type": "azurerm_storage_container",
+      "region": "westus2",
+      "start_utc": "2026-10-24T02:43:00Z",
+      "end_utc": "2026-10-25T02:43:01Z",
+      "estimate_usd": 0,
+      "meters": [],
+      "tag_boundary": "Parent RG/state account carries tags; Azure child tags unsupported where applicable."
+    }
+  ]
+}

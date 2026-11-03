@@ -1,0 +1,9 @@
+/var/log/pathwatch-echo/*.log {
+    size 1M
+    rotate 2
+    missingok
+    notifempty
+    copytruncate
+    compress
+    su {{ pathwatch_echo_user }} {{ pathwatch_echo_user }}
+}

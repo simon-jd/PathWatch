@@ -1,0 +1,26 @@
+{
+  "source": "4db893d9633fb0523b57dc10794b367a83c4be58",
+  "completed_cells": 120,
+  "actual_elapsed_s": 16326.509315397008,
+  "measurement_wall_elapsed_s": 14421.867297702935,
+  "measurement_reported_elapsed_s": 14400.309319,
+  "input_hashes_unchanged": true,
+  "cleanup_errors": [],
+  "cleanup_live_pids": [],
+  "cleanup_listeners": {
+    "18443": true,
+    "19090": true,
+    "19091": true,
+    "19092": true
+  },
+  "resources_after": {
+    "checkout_allocated": 2623496192,
+    "conservative_external_allowance": 2124313342,
+    "total": 4747809534,
+    "soft_limit": 5600000000
+  },
+  "terminal_utc": "2026-10-25T14:04:08.582599+00:00",
+  "session_id": 91672,
+  "exit_code": 0,
+  "source_commit": "24f13eddaf2235beebb65bcb5ae05e9de80b2280"
+}

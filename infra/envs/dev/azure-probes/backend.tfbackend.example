@@ -1,0 +1,7 @@
+subscription_id      = "00000000-0000-0000-0000-000000000000"
+resource_group_name  = "rg-pathwatch-lab"
+storage_account_name = "pwREPLACE"
+container_name       = "tfstate"
+key                  = "azure-probe-a.tfstate"
+use_azuread_auth     = true
+# B must use a separate azure-probe-b.tfstate key; never point both sites at one state.

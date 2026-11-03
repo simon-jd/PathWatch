@@ -1,0 +1,5 @@
+apiVersion: v2
+name: api
+description: PathWatch measurement API entry (edge proxy TLS on every frontend pod) and its synthetic client.
+type: application
+version: 0.1.0

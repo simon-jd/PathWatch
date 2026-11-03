@@ -1,0 +1,7 @@
+---
+- name: Install private echo on explicitly owned Azure probe guests only
+  hosts: pathwatch_probes
+  become: true
+  gather_facts: true
+  roles:
+    - private_echo

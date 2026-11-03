@@ -1,0 +1,10 @@
+[package]
+name = "xdp-lb"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+xdp-lb-common = { path = "../xdp-lb-common" }
+lb = { path = "../../proxy/crates/lb" }

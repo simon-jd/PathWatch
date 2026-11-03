@@ -1,0 +1,8 @@
+{
+  "classification": "unmetered_dns_lab_configuration",
+  "source": "https://azure.microsoft.com/en-us/pricing/details/virtual-network/",
+  "dns_source": "https://azure.microsoft.com/en-us/pricing/details/dns/",
+  "conclusion": "Plain VNet/subnet/NSG/NIC configuration has no standalone SKU; Private DNS records and links are covered by separately priced zone and query rows. Public IP, VMs, disks, requests, egress, TM endpoints and TM queries are separately charged.",
+  "resource_types": ["azurerm_virtual_network", "azurerm_subnet", "azurerm_network_security_group", "azurerm_network_security_rule", "azurerm_subnet_network_security_group_association", "azurerm_network_interface", "azurerm_private_dns_a_record", "azurerm_private_dns_zone_virtual_network_link"],
+  "retail_captures": {"westus": "docs/azure-prices/2026-10-23-network-westus.json", "swedencentral": "docs/azure-prices/2026-10-23-network-swedencentral.json"}
+}

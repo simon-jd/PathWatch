@@ -1,0 +1,53 @@
+# Route collector AS65000: listens to t1a, t1b, t2 and c2, never exports.
+[global.config]
+  as = 65000
+  router-id = "10.117.100.2"
+
+[[rpki-servers]]
+  [rpki-servers.config]
+    address = "10.117.100.9"
+    port = 3323
+
+[[neighbors]]
+  [neighbors.config]
+    neighbor-address = "10.117.100.3"
+    peer-as = 64601
+    description = "t1a"
+  [[neighbors.afi-safis]]
+    [neighbors.afi-safis.config]
+      afi-safi-name = "ipv4-unicast"
+  [neighbors.apply-policy.config]
+    default-export-policy = "reject-route"
+
+[[neighbors]]
+  [neighbors.config]
+    neighbor-address = "10.117.100.4"
+    peer-as = 64601
+    description = "t1b"
+  [[neighbors.afi-safis]]
+    [neighbors.afi-safis.config]
+      afi-safi-name = "ipv4-unicast"
+  [neighbors.apply-policy.config]
+    default-export-policy = "reject-route"
+
+[[neighbors]]
+  [neighbors.config]
+    neighbor-address = "10.117.100.5"
+    peer-as = 64602
+    description = "t2"
+  [[neighbors.afi-safis]]
+    [neighbors.afi-safis.config]
+      afi-safi-name = "ipv4-unicast"
+  [neighbors.apply-policy.config]
+    default-export-policy = "reject-route"
+
+[[neighbors]]
+  [neighbors.config]
+    neighbor-address = "10.117.100.6"
+    peer-as = 64702
+    description = "c2"
+  [[neighbors.afi-safis]]
+    [neighbors.afi-safis.config]
+      afi-safi-name = "ipv4-unicast"
+  [neighbors.apply-policy.config]
+    default-export-policy = "reject-route"
