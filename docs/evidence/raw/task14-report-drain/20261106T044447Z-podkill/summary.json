@@ -1,0 +1,51 @@
+{
+  "run": "20261106T044447Z-podkill",
+  "checkout_head": "49753495aaf4",
+  "checkout_dirty": true,
+  "images": [
+    "pathwatch/edge-proxy:git-49753495aaf4",
+    "pathwatch/ingest:git-49753495aaf4"
+  ],
+  "count": 5,
+  "settle_s": 20,
+  "report_non_ok": [
+    161,
+    161,
+    160,
+    161,
+    161
+  ],
+  "report_window_s": [
+    81.0,
+    81.0,
+    81.0,
+    81.0,
+    81.0
+  ],
+  "query_non_200": [
+    0,
+    1,
+    3,
+    1,
+    0
+  ],
+  "gone_s": [
+    91.4,
+    91.7,
+    91.0,
+    91.5,
+    91.0
+  ],
+  "machine_load_start": null,
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "6.40",
+      "6.19",
+      "4.99"
+    ],
+    "at": "2026-11-06T04:56:13.036996+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running",
+  "note": "summary.json rebuilt after the run (the first version of `podkill` stopped at its summary on the uncommitted fix); machine_load_start was not recorded; checkout_head/dirty describe the rebuild, the images the run"
+}

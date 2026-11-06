@@ -247,11 +247,24 @@ Report RPCs/s over one long-lived gRPC connection.
 | control (3 runs) | promoted | 74.0, 74.1, 75.0 | 2 / 1600, 0 / 1600, 1 / 1620 (all 429) | 0/160, 127/162 (1 run invalid) |
 
 The control-run scale-event errors are gone (17 → at most 2, and those are admission 429s
-also seen in steady state). New, not fixed: a Report connection pinned to a pod that is
-being deleted gets `Unavailable` for about 63 s, from SIGTERM until the pod exits. The
-edge-proxy sidecar keeps the client connection open after the frontend has stopped. The
-lab's never-evicting core journal filled after about 10 h of Report traffic, which
-invalidated three runs' Report counts. Details are in canary-rollback.md.
+also seen in steady state). The lab's never-evicting core journal filled after about 10 h
+of Report traffic, which invalidated three runs' Report counts. Details are in
+canary-rollback.md.
+
+Fixed on 2026-11-06 (phase 6 in canary-rollback.md, raw:
+[raw/task14-report-drain/](raw/task14-report-drain/)): a Report connection pinned to a
+pod being deleted got `Unavailable` from the frontend's SIGTERM until the pod was gone.
+The edge-proxy sidecar ignored SIGTERM (it runs as PID 1 and only handled SIGINT), kept the
+client connection open and was killed at the end of the 90 s grace period. Deleting the
+pinned pod 5 times (`make kind-podkill`) failed 160-161 of 212-214 Reports per deletion
+over 81 s, from T+10 s to T+91 s. The "about 63 s" reported for 11-01 was cut short
+because the drill's log ends at promotion. Now the frontend's preStop hook asks the edge
+proxy to drain (HTTP/2 GOAWAY while the pod still serves) and the proxy handles SIGTERM.
+In 5 deletions 0 of 50-54 Reports failed per deletion, the client's connection closed
+0.1 s after the deletion, and the pod was gone after 10.9-11.5 s instead of 91.0-91.7 s.
+Two control drills afterwards had 0/158 Report failures each. One of them had a 3 s burst
+of 41 query transport errors and 60 429s; phase 5 saw the same burst once before the
+change, and its cause was not investigated.
 
 Limits: kind, not k3s or AKS. The egress rules added to the NetworkPolicy have not been
 through `make kind-netpol`; the drills ran with them and the traffic flowed.

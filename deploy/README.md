@@ -23,6 +23,7 @@ make kind-replace-core kind-wait
 make kind-drill VARIANT=control   # good build under a new tag: should promote
 make kind-drill VARIANT=bad500    # build that returns 500: should roll back
 make kind-netpol kind-test
+make kind-podkill N=5             # delete the pod holding querygen's Report connection; impact per deletion
 make kind-down
 ```
 

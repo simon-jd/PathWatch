@@ -1,0 +1,10 @@
+# querygen's ESTABLISHED conntrack rows on the kind node, sampled about once a second during the run
+# (side observer: `docker exec <node> conntrack -L -p tcp -s <querygen IP> --state ESTABLISHED`).
+# Seconds after each deletion: last sample with the Report connection to the deleted pod; first
+# sample of the next long-lived connection (seen in more than 5 samples) to another pod.
+deletion pod_ip report_conn_last_seen_s next_report_conn_first_seen_s
+1 10.244.0.14 89.8 90.9
+2 10.244.0.17 89.3 91.4
+3 10.244.0.21 89.5 90.5
+4 10.244.0.15 89.4 91.5
+5 10.244.0.20 89.5 90.5

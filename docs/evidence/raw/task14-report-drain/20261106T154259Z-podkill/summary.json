@@ -1,0 +1,58 @@
+{
+  "run": "20261106T154259Z-podkill",
+  "checkout_head": "3a4fe535c593",
+  "checkout_dirty": true,
+  "images": [
+    "pathwatch/edge-proxy:git-3a4fe535c593",
+    "pathwatch/ingest:git-3a4fe535c593"
+  ],
+  "count": 5,
+  "settle_s": 20,
+  "report_non_ok": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "report_window_s": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "query_non_200": [
+    0,
+    0,
+    0,
+    2,
+    4
+  ],
+  "gone_s": [
+    10.9,
+    10.9,
+    10.9,
+    11.0,
+    11.5
+  ],
+  "machine_load_start": {
+    "nproc": 32,
+    "loadavg": [
+      "6.02",
+      "5.44",
+      "5.23"
+    ],
+    "at": "2026-11-06T15:42:59.129196+00:00"
+  },
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "4.69",
+      "5.14",
+      "5.16"
+    ],
+    "at": "2026-11-06T15:46:34.314110+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"
+}

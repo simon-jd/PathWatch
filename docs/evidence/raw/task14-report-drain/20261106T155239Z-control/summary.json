@@ -1,0 +1,99 @@
+{
+  "run": "20261106T155239Z-control",
+  "variant": "control",
+  "source_commit": "cc66428847fd",
+  "desired_state_commit": "29719e464e276ad5305cbe2609c9cd520e22a9fc",
+  "started": "2026-11-06T15:52:39.008207+00:00",
+  "completed": true,
+  "events_seconds_after_commit": {
+    "argo_synced_new_revision": 0.5,
+    "canary_pod_ready": 1.7,
+    "analysisrun_created": 1.7,
+    "analysisrun_successful": 71.4,
+    "promoted": 73.8
+  },
+  "client_impact": {
+    "sent": 1580,
+    "non_200": 2,
+    "non_200_fraction": 0.0013,
+    "seconds_with_non_200": 1,
+    "first_non_200": "2026-11-06T15:53:28.971829945Z",
+    "last_non_200": "2026-11-06T15:53:28.971829945Z"
+  },
+  "client_impact_report": {
+    "sent": 158,
+    "non_200": 0,
+    "non_200_fraction": 0.0,
+    "seconds_with_non_200": 0,
+    "first_non_200": null,
+    "last_non_200": null
+  },
+  "stable_hash_before": "c44686876",
+  "final": {
+    "rollout": {
+      "phase": "Healthy",
+      "message": null,
+      "abort": false,
+      "current": "7ff98fc4dd",
+      "stable": "7ff98fc4dd",
+      "step": 2,
+      "replicas": 4,
+      "pods": {
+        "7ff98fc4dd": [
+          4,
+          4
+        ]
+      },
+      "analysisruns": {
+        "frontend-7ff98fc4dd-2-1": "Successful",
+        "frontend-7ff98fc4dd-4-1": "Successful",
+        "frontend-c44686876-3-1": "Successful"
+      },
+      "images": [
+        "pathwatch/ingest:git-3a4fe535c593-control"
+      ]
+    },
+    "apps": {
+      "pathwatch-api": [
+        "Synced",
+        "Healthy",
+        "29719e464e276ad5305cbe2609c9cd520e22a9fc"
+      ],
+      "pathwatch-ingest": [
+        "Synced",
+        "Healthy",
+        "29719e464e276ad5305cbe2609c9cd520e22a9fc"
+      ],
+      "pathwatch-observability": [
+        "Synced",
+        "Healthy",
+        "29719e464e276ad5305cbe2609c9cd520e22a9fc"
+      ],
+      "pathwatch-root": [
+        "Synced",
+        "Healthy",
+        "29719e464e276ad5305cbe2609c9cd520e22a9fc"
+      ]
+    }
+  },
+  "recovery": null,
+  "machine_load_end": {
+    "nproc": 32,
+    "loadavg": [
+      "6.78",
+      "5.99",
+      "5.55"
+    ],
+    "at": "2026-11-06T15:53:54.164468+00:00"
+  },
+  "machine_load_start": {
+    "nproc": 32,
+    "loadavg": [
+      "6.31",
+      "5.86",
+      "5.48"
+    ],
+    "at": "2026-11-06T15:52:38.810536+00:00"
+  },
+  "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"
+}
