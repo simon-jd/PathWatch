@@ -46,6 +46,7 @@ gives the setup, method and limits of each. "One machine" is a single Linux work
 | H2 latency fix (`TCP_NODELAY`) | One machine | PathWatch H2 p50 at 10k rps: 10.168 ms → 0.342 ms (runs on different days) | [proxy bench](docs/evidence/README.md#edge-proxy-vs-envoy-and-nginx-one-machine) |
 | Proxy vs Envoy and NGINX, same run | One machine, one backend, 5 rounds x 120 s per cell | p50 at 10k rps, PathWatch / Envoy / NGINX: H2 0.318 / 0.861 / 0.108 ms, H1 1.070 / 1.750 / 0.980 ms. CPU per request at H1 10k: 40.22 / 80.04 / 32.82 µs | [proxy bench](docs/evidence/README.md#edge-proxy-vs-envoy-and-nginx-one-machine) |
 | Canary rollback | kind (single node), one machine | Build returning HTTP 500 rolled back 22.1-22.9 s after the commit (3 runs); clients saw non-200 responses for about 22 s, 15.81-18.28% of the requests in each drill window; good build promoted at 75.4 s | [canary](docs/evidence/README.md#canary-rollback-with-argo-rollouts-kind-one-machine) |
+| Report RPCs on pod deletion | kind (single node), one machine, 5 deletions each | Deleting the frontend pod that holds the client's long-lived HTTP/2 connection failed 160-161 of 212-214 Reports over 81 s each time; after the edge-proxy drain fix (GOAWAY from the preStop hook), 0 of 50-54 | [canary](docs/evidence/README.md#canary-rollback-with-argo-rollouts-kind-one-machine) |
 | Anycast and BGP incidents | Docker networks, one machine | Each client reaches its nearest of 3 anycast PoPs; route leak detected 5/5 in 0.167-0.415 s, /25 hijack 5/5 as RPKI-invalid in 0.178-0.426 s (0.25 s polling) | [BGP lab](docs/evidence/README.md#anycast-and-bgp-incident-detection-docker-networks-one-machine) |
 
 What the proxy numbers do and do not say: in the same-day run PathWatch had lower p50 and
@@ -135,8 +136,11 @@ Limitations of the results above:
 - Benchmarks and labs ran next to other workloads; compare numbers only within one run.
 - 1 of 9 runs of the ClickHouse integration suite failed after a container restart
   (ClickHouse stopped answering HTTP); the cause was not found, and the other 8 runs passed.
-- Canary: the good-build control run returned 17 non-200 responses out of 1,560 during scale
-  changes (not investigated); egress NetworkPolicy rules were added after the drills and
-  have not been through one.
+- Canary: the good-build control run's 17 non-200 responses out of 1,560 came from pod
+  deletion removing the endpoint and sending SIGTERM at the same time; a 10 s preStop sleep
+  removed them (later controls 2/1,600, 0/1,600 and 1/1,620, all 429). One control drill
+  after the Report drain fix had a 3 s burst of query errors (41 transport errors, 60 429s),
+  as one 11-01 run had before it; its cause was not investigated. Egress NetworkPolicy
+  rules were added after the drills and have not been through one.
 - BGP detection times are dominated by the 0.25 s polling interval and say nothing about
   internet propagation; routers detect but do not filter RPKI-invalid routes.
