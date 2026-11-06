@@ -160,6 +160,9 @@ kind-publish:
 	$(PY) deploy/kind/lab.py publish --variant $(or $(VARIANT),good)
 kind-drill:
 	$(PY) deploy/kind/lab.py drill --variant $(VARIANT)
+# Delete the frontend pod that holds querygen's Report connection N times (default 5); OUT= keeps the run elsewhere.
+kind-podkill:
+	$(PY) deploy/kind/lab.py podkill --count $(or $(N),5) $(if $(OUT),--output $(OUT))
 kind-test:
 	PATHWATCH_KIND_KUBECONFIG=$(KIND_KUBECONFIG) go test -count=1 -v -run '^TestClusters$$' ./infra/test
 # Task 17 BGP lab (lab/bgp/README.md): plain Docker networks pathwatch-bgp-*, no containerlab.

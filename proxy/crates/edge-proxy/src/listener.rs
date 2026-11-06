@@ -7,10 +7,12 @@ use hyper_util::{
 };
 use rustls::{ServerConfig, server::ResolvesServerCertUsingSni, sign::CertifiedKey};
 use std::net::SocketAddr;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::{fs::File, io::BufReader, sync::Arc, time::Duration};
 use tokio::{
     io::{AsyncRead, AsyncWrite},
     net::{TcpListener, TcpSocket},
+    sync::Notify,
     task::JoinSet,
 };
 use tokio_rustls::TlsAcceptor;
@@ -76,6 +78,7 @@ pub async fn run(
                 let generation=state.current.read().unwrap().clone();
                 let tls=generation.tls[index].clone();
                 let request_timeout=Duration::from_millis(generation.router.cfg.pool.request_timeout_ms);
+                let drain=state.drain.clone();
                 connections.spawn(async move {
                     let router=generation.router.clone();let stop=generation.stop.clone();
                     if let Some(tls) = tls {
@@ -87,9 +90,9 @@ pub async fn run(
                             }
                         };
                         let h2 = stream.get_ref().1.alpn_protocol() == Some(b"h2");
-                        connection(stream, router, stop, request_timeout, Some(h2)).await;
+                        connection(stream, router, stop, drain, request_timeout, Some(h2)).await;
                     } else {
-                        connection(socket, router, stop, request_timeout, None).await;
+                        connection(socket, router, stop, drain, request_timeout, None).await;
                     }
                 });
             }
@@ -112,6 +115,7 @@ async fn connection<I>(
     io: I,
     router: Arc<Router>,
     stop: Shutdown,
+    drain: Shutdown,
     request_timeout: Duration,
     protocol: Option<bool>,
 ) where
@@ -129,20 +133,38 @@ async fn connection<I>(
         Some(false) => builder.http1_only(),
         None => builder,
     };
+    let served = Arc::new(Notify::new());
+    let first = served.clone();
+    let announced = AtomicBool::new(false);
     let service = service_fn(move |req| {
+        if !announced.load(Ordering::Relaxed) && !announced.swap(true, Ordering::Relaxed) {
+            first.notify_one();
+        }
         let router = router.clone();
         async move { router.handle(req).await }
     });
     {
         let conn = builder.serve_connection(TokioIo::new(io), service);
         tokio::pin!(conn);
-        tokio::select! {
-            biased;
-            _ = stop.cancelled() => {
-                conn.as_mut().graceful_shutdown();
-                let _ = tokio::time::timeout(Duration::from_secs(30), &mut conn).await;
-            },
-            _ = &mut conn => {}
+        let mut going_away = false;
+        loop {
+            tokio::select! {
+                biased;
+                _ = stop.cancelled() => {
+                    conn.as_mut().graceful_shutdown();
+                    let _ = tokio::time::timeout(Duration::from_secs(30), &mut conn).await;
+                    break;
+                },
+                // Drain: GOAWAY (HTTP/2) or keep-alive off (HTTP/1.1) once the connection has
+                // started serving, so the client reconnects elsewhere while this one still
+                // serves. Before its first request a connection may still be reading its
+                // protocol, and shutting it down then would close it without a response.
+                _ = async { drain.cancelled().await; served.notified().await }, if !going_away => {
+                    going_away = true;
+                    conn.as_mut().graceful_shutdown();
+                },
+                _ = &mut conn => break,
+            }
         }
     }
     tasks.close().await;
@@ -195,6 +217,7 @@ request_timeout_ms=300000
                 server,
                 router,
                 stop.clone(),
+                Shutdown::new(),
                 Duration::from_secs(300),
                 Some(h2),
             ));

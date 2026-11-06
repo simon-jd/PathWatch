@@ -110,7 +110,8 @@ current-generation probes start after the old workers have stopped.
 The global physical
 pool remains shared; bound listener addresses/order, the management address,
 and `max_connections` cannot change on reload and require a restart. SIGINT
-stops accepts and drains until the startup `drain_timeout_ms`, then cancels work.
+or SIGTERM stops accepts and drains until the startup `drain_timeout_ms`, then
+cancels work.
 Startup validates all certificates and binds all sockets before starting workers;
 partial failure releases already acquired sockets.
 
@@ -133,7 +134,13 @@ cluster names and hexadecimal stable endpoint IDs: admitted `requests_total`,
 `pending_requests`, `endpoint_healthy`, plus process reload success/failure totals,
 all prefixed `pathwatch_proxy_`. Errors count each admitted caller at most once
 when it encounters a transport/status/body error (even if a retry later succeeds).
-Management exposes no configuration write API. This task does not add the proxy
+`POST /drain` puts the process in drain mode (`pathwatch_proxy_draining 1`), which
+lasts until it exits: the listeners keep accepting and serving, but every downstream
+connection is shut down gracefully once it has served a request (HTTP/2 GOAWAY,
+HTTP/1.1 `Connection: close`), including connections accepted later. Clients
+reconnect, through the Service, to another pod. A pod's preStop hook calls it when
+deletion starts, because a native sidecar only receives SIGTERM after the app has
+exited. Management exposes no configuration write API. This task does not add the proxy
 to the existing three-target Prometheus scrape profile.
 
 Maglev's version-1 interoperability contract is in `lb`: unsigned stable u64

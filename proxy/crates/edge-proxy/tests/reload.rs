@@ -458,3 +458,94 @@ async fn no_op_reload_does_not_accelerate_active_probe_schedule() {
     cli.close().await;
     a.close().await;
 }
+
+async fn exits_cleanly(cli: &mut Cli) {
+    let code = tokio::time::timeout(Duration::from_secs(3), async {
+        loop {
+            if let Some(code) = cli.child.try_wait().unwrap() {
+                return code;
+            }
+            tokio::time::sleep(Duration::from_millis(10)).await;
+        }
+    })
+    .await
+    .expect("proxy exits within 3 s");
+    assert!(
+        code.success(),
+        "graceful exit, not killed by the signal: {code}"
+    );
+}
+
+#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+async fn sigterm_drains_like_sigint() {
+    // Kubernetes stops the sidecar with SIGTERM. As PID 1 without a handler the proxy
+    // ignored it, kept client connections open and was killed at the grace period's end.
+    let upstream = Upstream::start().await;
+    let mut cli = Cli::start(upstream.addr).await;
+    let (mut tx, conn) = h2(cli.addr).await;
+    check(tx.send_request(request("/")).await.unwrap()).await;
+    cli.signal("-TERM");
+    tokio::time::timeout(Duration::from_secs(3), conn)
+        .await
+        .expect("GOAWAY ends the idle H2 connection")
+        .unwrap();
+    exits_cleanly(&mut cli).await;
+    assert!(tokio::net::TcpStream::connect(cli.addr).await.is_err());
+    upstream.close().await;
+}
+
+#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+async fn drain_sends_goaway_and_keeps_serving() {
+    // A pod's preStop hook calls POST /drain when deletion starts: H2 clients are told to
+    // reconnect (to another pod) while this one still serves, instead of staying pinned.
+    let upstream = Upstream::start().await;
+    let mut cli = Cli::start(upstream.addr).await;
+    let (mut pinned, pinned_conn) = h2(cli.addr).await;
+    check(pinned.send_request(request("/")).await.unwrap()).await;
+    let (mut idle, idle_conn) = h2(cli.addr).await;
+
+    let (mut admin, admin_conn) = h1(cli.management).await;
+    let r = admin.send_request(request("/drain")).await.unwrap();
+    assert_eq!(r.status(), 200);
+    r.into_body().collect().await.unwrap();
+    drop(admin);
+    admin_conn.abort();
+    let _ = admin_conn.await;
+    assert!(cli.metrics().await.contains("pathwatch_proxy_draining 1\n"));
+
+    tokio::time::timeout(Duration::from_secs(3), pinned_conn)
+        .await
+        .expect("GOAWAY ends the H2 connection that has served requests")
+        .unwrap();
+    // A connection without a request yet is served first, then told to go away: closing it
+    // before its first exchange would fail a client that reconnected to this pod in the
+    // window before kube-proxy dropped the endpoint.
+    check(idle.send_request(request("/")).await.unwrap()).await;
+    tokio::time::timeout(Duration::from_secs(3), idle_conn)
+        .await
+        .expect("GOAWAY after the first exchange")
+        .unwrap();
+    let (mut fresh, fresh_conn) = h2(cli.addr).await;
+    check(fresh.send_request(request("/")).await.unwrap()).await;
+    tokio::time::timeout(Duration::from_secs(3), fresh_conn)
+        .await
+        .expect("connections accepted while draining also get GOAWAY")
+        .unwrap();
+    let (mut one, one_conn) = h1(cli.addr).await;
+    let r = one.send_request(request("/")).await.unwrap();
+    assert_eq!(
+        r.headers().get("connection").map(|v| v.as_bytes()),
+        Some(&b"close"[..])
+    );
+    check(r).await;
+    tokio::time::timeout(Duration::from_secs(3), one_conn)
+        .await
+        .expect("HTTP/1.1 keep-alive ends after the response")
+        .unwrap();
+    assert!(
+        cli.child.try_wait().unwrap().is_none(),
+        "drain keeps the process and its listener"
+    );
+    cli.close().await;
+    upstream.close().await;
+}

@@ -1,4 +1,5 @@
-// Adminbridge exposes only authenticated metrics or checks local readiness.
+// Adminbridge exposes only authenticated metrics, checks local readiness, or runs the
+// frontend's preStop hook (drain the edge-proxy sidecar, then wait).
 package main
 
 import (
@@ -11,16 +12,18 @@ import (
 	"os/signal"
 	"pathwatch.local/pathwatch/ingest/internal/adminbridge"
 	"syscall"
+	"time"
 )
 
 func run(ctx context.Context, args []string, stderr io.Writer) error {
 	if len(args) == 0 {
-		return fmt.Errorf("mode required: serve or check-ready")
+		return fmt.Errorf("mode required: serve, check-ready or pre-stop")
 	}
 	f := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	f.SetOutput(stderr)
 	var c adminbridge.Config
-	var listen, format string
+	var listen, format, drain string
+	var wait time.Duration
 	f.StringVar(&c.Upstream, "upstream", "127.0.0.1:9091", "canonical local administration IP:port")
 	switch args[0] {
 	case "serve":
@@ -33,6 +36,9 @@ func run(ctx context.Context, args []string, stderr io.Writer) error {
 		f.StringVar(&c.ClientURI, "client-uri", "spiffe://pathwatch.local/prometheus", "exact allowed client URI SAN")
 	case "check-ready":
 		f.StringVar(&format, "ready-format", "frontend", "explicit readiness body contract")
+	case "pre-stop":
+		f.StringVar(&drain, "drain", "127.0.0.1:9092", "edge-proxy management IP:port (POST /drain)")
+		f.DurationVar(&wait, "wait", 10*time.Second, "keep serving this long after the drain request")
 	default:
 		return fmt.Errorf("unknown mode")
 	}
@@ -44,6 +50,9 @@ func run(ctx context.Context, args []string, stderr io.Writer) error {
 	}
 	if args[0] == "check-ready" {
 		return adminbridge.CheckReady(ctx, c.Upstream, format)
+	}
+	if args[0] == "pre-stop" {
+		return adminbridge.PreStop(ctx, drain, wait)
 	}
 	if e := adminbridge.ValidateListen(listen); e != nil {
 		return e

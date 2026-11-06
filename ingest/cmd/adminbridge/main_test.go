@@ -69,6 +69,21 @@ func TestCLIReadyExitAndStartupFailure(t *testing.T) {
 		}
 	}
 }
+func TestCLIPreStop(t *testing.T) {
+	drained := make(chan string, 1)
+	edge := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { drained <- r.Method + " " + r.URL.Path }))
+	defer edge.Close()
+	out, e := cli(t, "pre-stop", "-drain", edge.Listener.Addr().String(), "-wait", "50ms").CombinedOutput()
+	if e != nil {
+		t.Fatalf("pre-stop exit=%v output=%q", e, out)
+	}
+	if got := <-drained; got != "POST /drain" {
+		t.Fatalf("edge proxy saw %q", got)
+	}
+	if out, e := cli(t, "pre-stop", "-drain", "127.0.0.1:1", "-wait", "10ms").CombinedOutput(); e == nil {
+		t.Fatalf("failed drain exited 0: %q", out)
+	}
+}
 func cliPKI(t *testing.T) ([]string, *tls.Config) {
 	t.Helper()
 	now := time.Now()

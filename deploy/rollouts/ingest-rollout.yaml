@@ -1,5 +1,31 @@
 # Rendered from deploy/charts/ingest by `make deploy-check UPDATE=1`; do not edit by hand.
 # Image tags are the check placeholders; real tags come from each desired-state revision.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-edge-proxy
+  labels:
+    app.kubernetes.io/part-of: pathwatch
+    app.kubernetes.io/managed-by: argocd
+    project: pathwatch
+data:
+  config.toml: |
+    listeners = [{ addr = "0.0.0.0:8443", tls = { certs = [{ sni = "api.pathwatch.local", cert = "/tls/edge.pem", key = "/tls/edge-key.pem" }] } }]
+    management = { addr = "127.0.0.1:9092" }
+    routes = [
+      { host = "api.pathwatch.local", path_prefix = "/v1/measurements/", cluster = "r0" },
+      { host = "api.pathwatch.local", path_prefix = "/pathwatch.v1.Ingest/", cluster = "r1" },
+    ]
+    clusters = [
+      { name = "r0", endpoints = ["http://127.0.0.1:8081"], lb = "least_request", circuit = { max_requests = 64, max_pending = 64, request_timeout_ms = 5000 } },
+      { name = "r1", endpoints = ["h2c://127.0.0.1:9443"], lb = "least_request", circuit = { max_requests = 64, max_pending = 64, request_timeout_ms = 40000 } },
+    ]
+
+    [pool]
+    max_connections = 32
+    request_timeout_ms = 40000
+    drain_timeout_ms = 30000
+---
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
@@ -136,8 +162,14 @@ spec:
         - 127.0.0.1:9091
         lifecycle:
           preStop:
-            sleep:
-              seconds: 10
+            exec:
+              command:
+              - /adminbridge
+              - pre-stop
+              - -drain
+              - 127.0.0.1:9092
+              - -wait
+              - 10s
         resources:
           requests:
             cpu: 50m

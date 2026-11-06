@@ -5,6 +5,7 @@ Subcommands (run through make so the project toolchain env is set):
   images    build and kind-load the images for the current commit
   publish   write a desired-state commit to the local GitOps repo
   drill     time a canary release (bad500: expect automatic rollback; control: expect promotion)
+  podkill   delete the frontend pod holding querygen's Report connection; time the client impact
   status    print applications and the rollout
   down      delete the kind cluster
 Only the project's own cluster (pathwatch-canary) and kubeconfig are used.
@@ -14,6 +15,7 @@ import datetime
 import io
 import json
 import os
+import re
 import secrets
 import shutil
 import subprocess
@@ -511,6 +513,150 @@ def drill(args):
         raise SystemExit("drill did not reach its expected end state; see " + out)
 
 
+# ---- pod deletion under Report traffic ------------------------------------------
+
+CONNTRACK = re.compile(r"ESTABLISHED src=(\S+) dst=\S+ sport=(\d+) dport=\d+ src=(\S+) ")
+
+
+def persistent_peer(first, second, client_ip):
+    """(client port, pod IP) of the one client connection ESTABLISHED in both conntrack snapshots, else None.
+
+    querygen opens a new connection per query and keeps one for Report, so the
+    connection seen twice is the Report one."""
+    a = {(sport, peer) for src, sport, peer in CONNTRACK.findall(first) if src == client_ip}
+    b = {(sport, peer) for src, sport, peer in CONNTRACK.findall(second) if src == client_ip}
+    both = a & b
+    return next(iter(both)) if len(both) == 1 else None
+
+
+def epoch(stamp):
+    """RFC 3339 UTC time stamp (querygen writes nanoseconds) to Unix seconds."""
+    m = re.fullmatch(r"(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)(\.\d+)?Z", stamp)
+    base = datetime.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%S").replace(tzinfo=datetime.timezone.utc)
+    return base.timestamp() + float(m.group(2) or 0)
+
+
+def deletion_impact(lines, deleted_at, until, field="report", ok="OK"):
+    """Client impact of one pod deletion from querygen's per-second lines in [deleted_at - 5 s, until].
+
+    Each line counts the second before its time stamp, so the failing span runs from
+    the start of the first failing line to the end of the last (seconds after the deletion)."""
+    sent, codes, failing = 0, {}, []
+    for line in lines:
+        try:
+            rec = json.loads(line)
+            t = epoch(rec["t"])
+        except (ValueError, KeyError, AttributeError):
+            continue
+        if not deleted_at - 5 <= t <= until:
+            continue
+        got = rec.get(field) or {}
+        sent += sum(got.values())
+        for code, n in got.items():
+            if code != ok:
+                codes[code] = codes.get(code, 0) + n
+        if any(code != ok for code in got):
+            failing.append(t - deleted_at)
+    first = round(failing[0] - 1, 1) if failing else None
+    last = round(failing[-1], 1) if failing else None
+    return {"sent": sent, "non_ok": sum(codes.values()), "codes": codes, "seconds_with_non_ok": len(failing),
+            "first_non_ok_s": first, "last_non_ok_s": last, "window_s": round(last - first, 1) if failing else 0}
+
+
+def frontends_settled():
+    ro = rollout_state()
+    pods = (kget("pods", "-n", APP_NS, "-l", "app.kubernetes.io/name=frontend") or {"items": []})["items"]
+    ready = sum(r for _, r in ro["pods"].values())
+    return ro["phase"] == "Healthy" and ready == ro["replicas"] and len(pods) == ro["replicas"]
+
+
+def established(client, sport=None):
+    """querygen's ESTABLISHED TCP rows in the kind node's conntrack table (optionally one source port)."""
+    port = ["--sport", sport] if sport else []
+    return sh("docker", "exec", NODE, "conntrack", "-L", "-p", "tcp", "-s", client, *port, "--state", "ESTABLISHED",
+              capture=True, check=False).stdout
+
+
+def pinned_report_pod():
+    """(name, IP, querygen IP, client port) of the frontend pod holding querygen's Report connection."""
+    qg = kget("pods", "-n", APP_NS, "-l", "app.kubernetes.io/name=querygen")["items"]
+    client = next(p["status"]["podIP"] for p in qg if not p["metadata"].get("deletionTimestamp"))
+    for _ in range(10):
+        first = established(client)
+        time.sleep(1.5)
+        peer = persistent_peer(first, established(client), client)
+        for p in kget("pods", "-n", APP_NS, "-l", "app.kubernetes.io/name=frontend")["items"]:
+            if peer and p["status"].get("podIP") == peer[1]:
+                return p["metadata"]["name"], peer[1], client, peer[0]
+    raise SystemExit("could not identify the pod holding the Report connection")
+
+
+def watch_termination(pod, deleted_at, client, sport, timeout=150):
+    """Poll the deleted pod every 0.5 s until it is gone: first terminated state of each container,
+    and when querygen's Report connection to it was first no longer ESTABLISHED."""
+    containers, closed, end = {}, None, time.monotonic() + timeout
+    while time.monotonic() < end:
+        if closed is None and sport not in established(client, sport):
+            closed = round(time.time() - deleted_at, 1)
+        p = kget("pod", pod, "-n", APP_NS)
+        if p is None:
+            return {"gone_s": round(time.time() - deleted_at, 1), "report_connection_closed_s": closed, "containers": containers}
+        st = p.get("status", {})
+        for c in st.get("initContainerStatuses", []) + st.get("containerStatuses", []):
+            term = (c.get("state") or {}).get("terminated")
+            if term and c["name"] not in containers:
+                containers[c["name"]] = {"exit_code": term.get("exitCode"), "reason": term.get("reason"),
+                                         "finished_s": round(epoch(term["finishedAt"]) - deleted_at, 1) if term.get("finishedAt") else None,
+                                         "seen_s": round(time.time() - deleted_at, 1)}
+        time.sleep(0.5)
+    return {"gone_s": None, "report_connection_closed_s": closed, "containers": containers}
+
+
+def podkill(args):
+    """Delete the pod holding the Report connection `count` times; one JSON record per deletion."""
+    run_id = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-podkill"
+    out = os.path.join(args.output or os.path.join(CACHE, "podkill"), run_id)
+    os.makedirs(out)
+    images = sorted({c["image"] for p in kget("pods", "-n", APP_NS, "-l", "app.kubernetes.io/name=frontend")["items"]
+                     for c in p["spec"].get("initContainers", []) + p["spec"]["containers"]})
+    started, records = time.time(), []
+    for i in range(args.count):
+        wait_for(frontends_settled, 300, "all frontend pods Ready and none terminating")
+        time.sleep(args.settle)
+        pod, ip, client, sport = pinned_report_pod()
+        deleted_at = time.time()
+        kubectl("delete", "pod", pod, "-n", APP_NS, "--wait=false")
+        term = watch_termination(pod, deleted_at, client, sport)
+        time.sleep(args.after)
+        logs = kubectl("logs", "deploy/querygen", "-n", APP_NS, f"--since={int(time.time() - deleted_at) + 10}s", capture=True, check=False).stdout
+        until = time.time()
+        rec = {"deletion": i + 1, "pod": pod, "pod_ip": ip, "deleted_at": datetime.datetime.fromtimestamp(deleted_at, datetime.timezone.utc).isoformat(),
+               "report": deletion_impact(logs.splitlines(), deleted_at, until),
+               "query": deletion_impact(logs.splitlines(), deleted_at, until, field="status", ok="200"), **term}
+        records.append(rec)
+        with open(os.path.join(out, "podkill.jsonl"), "a") as f:
+            f.write(json.dumps(rec) + "\n")
+        print(json.dumps({k: rec[k] for k in ("deletion", "pod", "gone_s")} | {"report": rec["report"]}), flush=True)
+    logs = kubectl("logs", "deploy/querygen", "-n", APP_NS, f"--since={int(time.time() - started) + 10}s", capture=True, check=False).stdout
+    with open(os.path.join(out, "querygen.jsonl"), "w") as f:
+        f.write(logs)
+    podkill_summary(out, records, images, args.settle, args.load_start)
+    print(out)
+
+
+def podkill_summary(out, records, images, settle, load_start):
+    """summary.json of a podkill run; the images (tagged by source commit) say what was measured."""
+    head = sh("git", "rev-parse", "--short=12", "HEAD", capture=True, cwd=ROOT).stdout.strip()
+    dirty = bool(sh("git", "status", "--porcelain", "--", "deploy", "ingest", "proxy", capture=True, cwd=ROOT).stdout.strip())
+    summary = {"run": os.path.basename(out), "checkout_head": head, "checkout_dirty": dirty, "images": images, "count": len(records),
+               "settle_s": settle, "report_non_ok": [r["report"]["non_ok"] for r in records],
+               "report_window_s": [r["report"]["window_s"] for r in records], "query_non_200": [r["query"]["non_ok"] for r in records],
+               "gone_s": [r["gone_s"] for r in records], "machine_load_start": load_start, "machine_load_end": machine_load(),
+               "environment": "kind (single node, Kubernetes v1.36.4) on home-ubuntu; not k3s or AKS; other projects were running"}
+    with open(os.path.join(out, "summary.json"), "w") as f:
+        json.dump(summary, f, indent=2)
+
+
 def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -535,9 +681,14 @@ def main():
     d = sub.add_parser("drill")
     d.add_argument("--variant", choices=["bad500", "control"], required=True)
     d.add_argument("--timeout", type=int, default=600)
+    pk = sub.add_parser("podkill")
+    pk.add_argument("--count", type=int, default=5)
+    pk.add_argument("--settle", type=int, default=20, help="seconds of steady traffic before each deletion")
+    pk.add_argument("--after", type=int, default=10, help="seconds of traffic kept after the pod is gone")
+    pk.add_argument("--output", help="directory for the run (default .cache/task14/podkill)")
     a = ap.parse_args()
     a.load_start = machine_load()
-    {"up": up, "down": down, "images": images, "status": status, "diag": diag, "wait": wait, "replace-core": replace_core, "netpol": netpol, "logs": logs, "publish": publish, "drill": drill}[a.cmd](a)
+    {"up": up, "down": down, "images": images, "status": status, "diag": diag, "wait": wait, "replace-core": replace_core, "netpol": netpol, "logs": logs, "publish": publish, "drill": drill, "podkill": podkill}[a.cmd](a)
 
 
 if __name__ == "__main__":

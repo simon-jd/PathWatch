@@ -12,9 +12,16 @@ fn main() -> anyhow::Result<()> {
             .build()
             .expect("signal runtime");
         runtime.block_on(async move {
-            if tokio::signal::ctrl_c().await.is_ok() {
-                cancel.cancel();
+            // SIGTERM is how Kubernetes stops the sidecar. As PID 1 the proxy only receives
+            // signals it handles, so without this it ran until SIGKILL.
+            let mut term =
+                tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+                    .expect("SIGTERM handler");
+            tokio::select! {
+                result = tokio::signal::ctrl_c() => if result.is_err() { return },
+                _ = term.recv() => {}
             }
+            cancel.cancel();
         });
     });
     edge_proxy::run_file(path.into(), shutdown)

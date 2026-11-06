@@ -17,8 +17,9 @@ frontend:
   replicas: 4
   canaryWeight: 25
   apiHost: api.pathwatch.local
-  # SIGTERM waits this long after the pod is deleted, so kube-proxy has dropped the
-  # pod from the api Service before the frontend closes its listeners.
+  # SIGTERM waits this long after the pod is deleted (and the edge proxy was told to
+  # drain), so kube-proxy has dropped the pod from the api Service and clients have
+  # moved off before the frontend closes its listeners.
   preStopSleepSeconds: 10
 
 analysis:

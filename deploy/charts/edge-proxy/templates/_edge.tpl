@@ -1,12 +1,16 @@
 {{/*
 The edge proxy terminates TLS on the pod IP and forwards to loopback-only
 listeners in the same pod (ingest/README.md: query and metrics never leave
-the network namespace). Call with a dict: image, sni, port, routes, secret.
+the network namespace). Call with a dict: image, sni, port, routes, secret, and
+optionally management (loopback IP:port for GET /metrics and POST /drain).
 Each route: prefix, upstream, timeoutMs.
 */}}
 
 {{- define "edge-proxy.config" -}}
 listeners = [{ addr = "0.0.0.0:{{ .port }}", tls = { certs = [{ sni = {{ .sni | quote }}, cert = "/tls/edge.pem", key = "/tls/edge-key.pem" }] } }]
+{{- with .management }}
+management = { addr = {{ . | quote }} }
+{{- end }}
 routes = [
 {{- range $i, $r := .routes }}
   { host = {{ $.sni | quote }}, path_prefix = {{ $r.prefix | quote }}, cluster = "r{{ $i }}" },

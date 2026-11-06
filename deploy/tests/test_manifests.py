@@ -18,6 +18,7 @@ class CanaryContract(unittest.TestCase):
     def setUp(self):
         docs = {d["kind"]: d for d in load("rollouts", "ingest-rollout.yaml")}
         self.rollout, self.template = docs["Rollout"], docs["AnalysisTemplate"]
+        self.edge_config = docs["ConfigMap"]["data"]["config.toml"]
 
     def test_steps_shift_traffic_then_analyse_the_candidate(self):
         canary = self.rollout["spec"]["strategy"]["canary"]
@@ -55,10 +56,26 @@ class CanaryContract(unittest.TestCase):
         # sidecar is only stopped after the frontend exits, so it serves through the sleep.
         spec = self.rollout["spec"]["template"]["spec"]
         frontend = next(c for c in spec["containers"] if c["name"] == "frontend")
-        sleep = frontend["lifecycle"]["preStop"]["sleep"]["seconds"]
+        hook = frontend["lifecycle"]["preStop"]["exec"]["command"]
+        self.assertEqual(hook[:2], ["/adminbridge", "pre-stop"])
+        wait = hook[hook.index("-wait") + 1]
+        self.assertRegex(wait, r"^\d+s$")
+        sleep = int(wait[:-1])
         self.assertGreaterEqual(sleep, 5)
         # Then query drain 5 s + gRPC graceful stop 35 s + metrics 5 s (ingest/cmd/ingest).
         self.assertGreaterEqual(spec["terminationGracePeriodSeconds"], sleep + 45)
+
+    def test_deletion_drains_the_edge_proxy_before_the_frontend_stops(self):
+        # A Report connection is long-lived HTTP/2: without a GOAWAY from the edge proxy it
+        # stayed on the deleted pod and failed with Unavailable until the sidecar was killed.
+        spec = self.rollout["spec"]["template"]["spec"]
+        frontend = next(c for c in spec["containers"] if c["name"] == "frontend")
+        hook = frontend["lifecycle"]["preStop"]["exec"]["command"]
+        drain = hook[hook.index("-drain") + 1]
+        self.assertTrue(drain.startswith("127.0.0.1:"), drain)
+        self.assertIn(f'management = {{ addr = "{drain}" }}', self.edge_config)
+        ports = [a.split(":")[-1] for a in frontend["args"] if a.startswith("127.0.0.1:")]
+        self.assertNotIn(drain.split(":")[1], ports, "management port must not collide with the frontend's")
 
 
 class CanaryBlastRadius(unittest.TestCase):
@@ -122,6 +139,54 @@ class ClientImpact(unittest.TestCase):
                          {"sent": 4, "non_200": 1, "non_200_fraction": 0.25, "seconds_with_non_200": 1,
                           "first_non_200": "b", "last_non_200": "b"})
         self.assertEqual(lab.client_impact(lines)["non_200"], 0)
+
+
+def kindlab():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("kindlab", os.path.join(DEPLOY, "kind", "lab.py"))
+    lab = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(lab)
+    return lab
+
+
+class PodDeletion(unittest.TestCase):
+    """make kind-podkill: which pod holds the Report connection, and what one deletion cost the client."""
+
+    def test_the_pinned_pod_is_the_peer_of_the_connection_seen_in_both_snapshots(self):
+        lab = kindlab()
+        row = "tcp      6 86399 ESTABLISHED src={c} dst=10.96.209.49 sport={p} dport=443 src={s} dst={c} sport=8443 dport={p} [ASSURED] mark=0 use=1"
+        first = "\n".join([row.format(c="10.244.0.18", p=46070, s="10.244.0.14"),
+                           row.format(c="10.244.0.18", p=38226, s="10.244.0.16"),
+                           row.format(c="10.244.0.99", p=50000, s="10.244.0.15")])
+        second = "\n".join([row.format(c="10.244.0.18", p=46070, s="10.244.0.14"),
+                            row.format(c="10.244.0.18", p=38230, s="10.244.0.17"),
+                            row.format(c="10.244.0.99", p=50000, s="10.244.0.15")])
+        self.assertEqual(lab.persistent_peer(first, second, "10.244.0.18"), ("46070", "10.244.0.14"))
+        # A short query connection that happens to be in both snapshots makes the answer ambiguous.
+        both = second + "\n" + row.format(c="10.244.0.18", p=38226, s="10.244.0.16")
+        self.assertIsNone(lab.persistent_peer(first, both, "10.244.0.18"))
+        self.assertIsNone(lab.persistent_peer("", second, "10.244.0.18"))
+
+    def test_querygen_times_keep_their_nanoseconds(self):
+        lab = kindlab()
+        self.assertAlmostEqual(lab.epoch("2026-11-06T04:42:48.414455888Z") - lab.epoch("2026-11-06T04:42:47Z"), 1.414455888, places=6)
+
+    def test_deletion_impact_counts_codes_and_times_the_span_from_the_deletion(self):
+        lab = kindlab()
+        t0 = lab.epoch("2026-11-06T05:00:00Z")
+        line = lambda s, report: '{"t":"2026-11-06T05:00:%02d.5Z","sent":20,"status":{"200":20},"report_sent":2,"report":%s}' % (s, report)
+        lines = [line(1, '{"OK":2}'), line(2, '{"OK":2}'), line(12, '{"OK":1,"Unavailable":1}'),
+                 line(13, '{"Unavailable":2}'), line(14, '{"OK":1,"DeadlineExceeded":1}'), line(15, '{"OK":2}'),
+                 line(59, '{"Unavailable":2}')]
+        got = lab.deletion_impact(lines, t0, until=t0 + 30)
+        self.assertEqual(got["sent"], 12)
+        self.assertEqual(got["codes"], {"Unavailable": 3, "DeadlineExceeded": 1})
+        self.assertEqual(got["non_ok"], 4)
+        self.assertEqual(got["seconds_with_non_ok"], 3)
+        # Each line covers the second before its time stamp.
+        self.assertEqual((got["first_non_ok_s"], got["last_non_ok_s"], got["window_s"]), (11.5, 14.5, 3.0))
+        clean = lab.deletion_impact(lines[:2] + lines[5:6], t0, until=t0 + 30)
+        self.assertEqual((clean["non_ok"], clean["window_s"], clean["first_non_ok_s"]), (0, 0, None))
 
 
 class LabPKI(unittest.TestCase):

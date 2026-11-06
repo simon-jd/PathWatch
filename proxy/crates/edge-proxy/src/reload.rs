@@ -24,6 +24,10 @@ pub(crate) struct Generation {
 }
 pub(crate) struct State {
     pub current: RwLock<Arc<Generation>>,
+    /// Process-wide and kept across reloads: once cancelled (POST /drain on the management
+    /// listener), every downstream connection is told to go away after it has served a
+    /// request, while the listeners keep accepting and serving.
+    pub drain: Shutdown,
     registry: Arc<crate::admission::Registry>,
     success: AtomicU64,
     failure: AtomicU64,
@@ -97,6 +101,7 @@ pub async fn serve(
         None
     };
     let stop = shutdown.child_token();
+    let drain = Shutdown::new();
     let pool = Pool::new(cfg.pool.max_connections);
     let registry = Arc::new(crate::admission::Registry::default());
     let generation = Arc::new(Generation {
@@ -106,6 +111,7 @@ pub async fn serve(
     });
     let state = Arc::new(State {
         current: RwLock::new(generation),
+        drain: drain.clone(),
         registry,
         success: AtomicU64::new(0),
         failure: AtomicU64::new(0),
@@ -195,9 +201,12 @@ pub(crate) fn serve_sharded(
         generation: 0,
         cfg: initial,
     });
+    // One drain for the process: the management listener runs on the first runtime only.
+    let drain = Shutdown::new();
     let mut joins = Vec::with_capacity(workers);
     for index in 0..workers {
         let shutdown = shutdown.clone();
+        let drain = drain.clone();
         let rx = rx.clone();
         let tx = if index == 0 { Some(tx.clone()) } else { None };
         let path = path.clone();
@@ -208,7 +217,7 @@ pub(crate) fn serve_sharded(
                     let rt = tokio::runtime::Builder::new_current_thread()
                         .enable_all()
                         .build()?;
-                    rt.block_on(serve_shard(shutdown, index, path, tx, rx))
+                    rt.block_on(serve_shard(shutdown, drain, index, path, tx, rx))
                 })?,
         );
     }
@@ -237,6 +246,7 @@ pub(crate) fn serve_sharded(
 
 async fn serve_shard(
     shutdown: Shutdown,
+    drain: Shutdown,
     index: usize,
     path: PathBuf,
     reload_tx: Option<tokio::sync::watch::Sender<Published>>,
@@ -276,6 +286,7 @@ async fn serve_shard(
     });
     let state = Arc::new(State {
         current: RwLock::new(generation),
+        drain: drain.clone(),
         registry,
         success: AtomicU64::new(0),
         failure: AtomicU64::new(0),
@@ -365,13 +376,18 @@ async fn manage(socket: TcpListener, state: Arc<State>, stop: Shutdown) -> anyho
                     let _permit = permit;
                     let service = hyper::service::service_fn(move |req: hyper::Request<hyper::body::Incoming>| {
                         let mut text = String::new();
-                        let status = if req.method() == http::Method::GET && req.uri().path() == "/metrics" {
+                        let status = if req.method() == http::Method::POST && req.uri().path() == "/drain" {
+                            state.drain.cancel();
+                            text.push_str("draining\n");
+                            200
+                        } else if req.method() == http::Method::GET && req.uri().path() == "/metrics" {
                             let generation = state.current.read().unwrap().clone();
                             for (name,state) in state.registry.snapshot(){state.metrics(&name,&mut text);}
                             for c in &generation.router.clusters { c.health_metrics(&mut text); }
                             text.push_str(&format!(
-                                "pathwatch_proxy_reload_success_total {}\npathwatch_proxy_reload_failure_total {}\n",
-                                state.success.load(Ordering::Relaxed), state.failure.load(Ordering::Relaxed)
+                                "pathwatch_proxy_reload_success_total {}\npathwatch_proxy_reload_failure_total {}\npathwatch_proxy_draining {}\n",
+                                state.success.load(Ordering::Relaxed), state.failure.load(Ordering::Relaxed),
+                                u8::from(state.drain.is_cancelled())
                             ));
                             200
                         } else { 404 };

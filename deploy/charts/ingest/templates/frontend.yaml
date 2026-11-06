@@ -4,6 +4,8 @@ the Rust edge proxy as a TLS sidecar on the pod IP, and the metrics bridge.
 Canary analysis fails on the candidate's query error ratio in Prometheus.
 */}}
 {{- $sni := .Values.frontend.apiHost }}
+{{- /* The frontend's preStop hook asks the edge proxy to drain here (pod loopback only). */}}
+{{- $edgeAdmin := "127.0.0.1:9092" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,7 +13,7 @@ metadata:
   labels: {{- include "ingest.labels" . | nindent 4 }}
 data:
   config.toml: |
-    {{- include "edge-proxy.config" (dict "sni" $sni "port" 8443 "routes" (list
+    {{- include "edge-proxy.config" (dict "sni" $sni "port" 8443 "management" $edgeAdmin "routes" (list
           (dict "prefix" "/v1/measurements/" "upstream" "http://127.0.0.1:8081" "timeoutMs" 5000)
           (dict "prefix" "/pathwatch.v1.Ingest/" "upstream" "h2c://127.0.0.1:9443" "timeoutMs" 40000))) | nindent 4 }}
 ---
@@ -82,9 +84,15 @@ spec:
           # still routed to the pod got 502 (edge proxy: connection refused) and, once
           # the edge-proxy sidecar exited too, transport errors. Readiness plays no part:
           # /readyz only turns 503 after SIGTERM, by which time the endpoint is gone.
+          # The hook first tells the edge proxy to drain: HTTP/2 clients (a Report
+          # connection lasts for hours) get GOAWAY and reconnect to another pod while
+          # this one still serves. The native sidecar only gets SIGTERM after the
+          # frontend has exited, too late for that.
           lifecycle:
             preStop:
-              sleep: { seconds: {{ .Values.frontend.preStopSleepSeconds }} }
+              exec:
+                command: ["/adminbridge", "pre-stop", "-drain", {{ $edgeAdmin | quote }},
+                          "-wait", "{{ .Values.frontend.preStopSleepSeconds }}s"]
           resources:
             requests: { cpu: 50m, memory: 64Mi }
             limits: { memory: 1Gi }
