@@ -563,6 +563,23 @@ def deletion_impact(lines, deleted_at, until, field="report", ok="OK"):
             "first_non_ok_s": first, "last_non_ok_s": last, "window_s": round(last - first, 1) if failing else 0}
 
 
+def reports_steady(lines, seconds=10):
+    """True if querygen's last `seconds` lines each carry Report RPCs and all were OK."""
+    recs = []
+    for line in lines:
+        try:
+            recs.append(json.loads(line))
+        except ValueError:
+            continue
+    last = recs[-seconds:]
+    return len(last) == seconds and all(r.get("report") and set(r["report"]) == {"OK"} for r in last)
+
+
+def querygen_steady():
+    logs = kubectl("logs", "deploy/querygen", "-n", APP_NS, "--tail", "10", capture=True, check=False).stdout
+    return reports_steady(logs.splitlines())
+
+
 def frontends_settled():
     ro = rollout_state()
     pods = (kget("pods", "-n", APP_NS, "-l", "app.kubernetes.io/name=frontend") or {"items": []})["items"]
@@ -623,6 +640,7 @@ def podkill(args):
     for i in range(args.count):
         wait_for(frontends_settled, 300, "all frontend pods Ready and none terminating")
         time.sleep(args.settle)
+        wait_for(querygen_steady, 120, "10 s of OK Report RPCs before the deletion")
         pod, ip, client, sport = pinned_report_pod()
         deleted_at = time.time()
         kubectl("delete", "pod", pod, "-n", APP_NS, "--wait=false")

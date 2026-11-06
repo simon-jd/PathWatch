@@ -171,6 +171,16 @@ class PodDeletion(unittest.TestCase):
         lab = kindlab()
         self.assertAlmostEqual(lab.epoch("2026-11-06T04:42:48.414455888Z") - lab.epoch("2026-11-06T04:42:47Z"), 1.414455888, places=6)
 
+    def test_a_deletion_waits_for_ten_seconds_of_ok_reports(self):
+        # The first post-fix attempt deleted a pod while core was down; its "impact" started before the deletion.
+        lab = kindlab()
+        ok = '{"t":"x","sent":20,"status":{"200":20},"report_sent":2,"report":{"OK":2}}'
+        bad = '{"t":"x","sent":20,"status":{"200":20},"report_sent":2,"report":{"OK":1,"Unavailable":1}}'
+        self.assertTrue(lab.reports_steady([bad] + [ok] * 10))
+        self.assertFalse(lab.reports_steady([ok] * 9 + [bad]))
+        self.assertFalse(lab.reports_steady([ok] * 9))
+        self.assertFalse(lab.reports_steady(['{"t":"x","sent":20,"status":{"200":20}}'] * 10))
+
     def test_deletion_impact_counts_codes_and_times_the_span_from_the_deletion(self):
         lab = kindlab()
         t0 = lab.epoch("2026-11-06T05:00:00Z")
